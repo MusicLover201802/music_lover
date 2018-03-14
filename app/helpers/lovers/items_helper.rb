@@ -1,0 +1,2 @@
+module Lovers::ItemsHelper
+end

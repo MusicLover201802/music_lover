@@ -1,0 +1,2 @@
+module Lovers::RootHelper
+end
