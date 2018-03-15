@@ -1,2 +1,39 @@
-<h1>Admin::Root#top</h1>
-<p>Find me in app/views/admin/root/top.html.erb</p>
+<%= render 'layouts/admintop' %>
+
+<div class="container">
+ 	<div class="row">
+ 		<div class="col-xs-6 col-xs-offset-3">
+ 			<div class="row btn-margin-top">
+ 				<div class="col-xs-8 col-xs-offset-2">
+ 					<div style="text-align:center;">
+ 						<%= link_to 'ユーザー一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="row">
+ 		<div class="col-xs-6 col-xs-offset-3">
+ 			<div class="row btn-margin">
+ 				<div class="col-xs-8 col-xs-offset-2">
+ 					<div style="text-align:center;">
+ 						<%= link_to '商品一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="row">
+ 		<div class="col-xs-6 col-xs-offset-3">
+ 			<div class="row">
+ 				<div class="col-xs-8 col-xs-offset-2">
+ 					<div style="text-align:center;">
+ 						<%= link_to '購入履歴一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+
