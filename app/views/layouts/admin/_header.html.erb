@@ -1,0 +1,31 @@
+<div class="navbar-inverse navbar-fixed-top">
+  <div class="row">
+   <div class="col-xs-2">
+    <%= link_to(image_tag("/ml_logo2.png", :size=>"90x90", :alt=>"img"), {:controller => 'root', :action => 'top'}) %>
+   </div>
+   <div class="col-xs-8 col-xs-offset-2 navnav">
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+	    <span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	 </button>
+    </div>
+    <div class="collapse navbar-collapse navbar-right" id="navbarEexample8">
+	 <ul class="nav navbar-nav">
+	  <% if admin_signed_in? %>
+        <li><%= link_to 'User List', admin_users_path(current_admin) ,class: "glyphicon glyphicon-user"%></li>
+        <li><%= link_to 'Item List', admin_items_path ,class: "glyphicon glyphicon-th-list"%></li>
+        <li><%= link_to 'Order List', admin_orders_path ,class: "glyphicon glyphicon-shopping-cart"%></li>
+        <li><%= link_to "Logout", destroy_admin_session_path, method: :delete ,class: "glyphicon glyphicon-log-out"%></li>
+      <% else %>
+      <ul class="list-inline">
+        <li><%= link_to "Login", new_admin_session_path,class: "glyphicon glyphicon-thumbs-up" %></li>
+      </ul>
+      <% end %>
+	 </ul>
+	</div>
+   </div>
+  </div>
+</div>
