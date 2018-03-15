@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.test, .navbar-inverse {
+// renderにtop-blank90pxを指定して上げることでviewページの回り込みを回避しています。
+.top-blank, .navbar-inverse {
 	height: 90px;
 }
 
