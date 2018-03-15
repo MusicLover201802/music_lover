@@ -1,2 +1,15 @@
-<h1>Lovers::Items#show</h1>
-<p>Find me in app/views/lovers/items/show.html.erb</p>
+<%= render 'layouts/header'%><!-- header -->
+	<div class="row">
+		<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
+
+		<!-- main -->
+		<div class="col-xs-6">
+			<h2 class="row headline",　style="text-align: center">商品詳細</h2><!-- 見出し -->
+
+			<div class="row item-index"><!-- 商品一覧 -->
+				このdivの間に商品の画像などなど並べてね
+			</div>
+		</div>
+	<!-- R sidebar --><%= render 'layouts/Rsidebar' %>
+	</div>
+<!-- footer --><%= render 'layouts/footer'%>
