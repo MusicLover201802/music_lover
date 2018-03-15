@@ -1,29 +1,88 @@
-<h2>Sign up</h2>
+<!-- header -->
+<%= render 'layouts/header' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="container">
+    <div class="row" style="margin-top: 60px">
+      <div class="panel panel-success col-xs-6 col-xs-offset-3">
+        <h1 class="panel-heading row" style="margin-top: 0">Sign up</h1>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="panel-body">
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="field col-xs-6">
+                <%= f.label :last_name, "姓"%><br />
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-6">
+                <%= f.label :first_name, "名" %><br />
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "off", size: 27 %>
+              </div>
+
+              <div class="field col-xs-6">
+                <%= f.label :last_name_kana,"セイ" %><br />
+                <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-6">
+                <%= f.label :first_name_kana,"メイ" %><br />
+                <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", size: 27 %>
+              </div>
+
+              <div class="field col-xs-12">
+                <%= f.label :postal_code,"郵便番号" %><br />
+                <%= f.text_field :postal_code, autofocus: true, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-6">
+                <%= f.label :prefecture,"都道府県" %><br />
+                <%= f.text_field :prefecture, autofocus: true, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-6">
+                <%= f.label :city,"市区町村" %><br />
+                <%= f.text_field :city, autofocus: true, autocomplete: "off", size: 27 %>
+              </div>
+
+              <div class="field col-xs-12">
+                <%= f.label :building,"建物マンション名" %><br />
+                <%= f.text_field :building, autofocus: true, autocomplete: "off", size: 65 %>
+              </div>
+
+              <div class="field col-xs-12">
+                <%= f.label :phone_number,"電話番号" %><br />
+                <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-12">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "off", size: 65 %>
+              </div>
+
+              <div class="field col-xs-12">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 字以上)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="field col-xs-12" style="margin-bottom: 10px">
+                <%= f.label :password確認 %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off", size: 30 %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Sign up", class: "btn btn-success col-xs-12"%>
+              </div>
+            <% end %>
+
+<%#            <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "lovers/users/shared/links" %>
+  <!-- footer -->
+<%= render 'layouts/footer'%>
