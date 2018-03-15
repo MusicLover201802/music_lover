@@ -1,3 +1,23 @@
 // Place all the styles related to the admin/admins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// renderにtop-blank90pxを指定して上げることでviewページの回り込みを回避しています。
+.top-blank, .navbar-inverse {
+	height: 90px;
+}
+
+.navnav {
+	height: 90px;
+	line-height: 90px;
+	font-size: 20px;
+}
+
+.navbar-nav > li >a {
+	line-height: 50px !important;
+}
+
+.row{
+	margin-right: 20px !important;
+	margin-left: 10px !important;
+}
