@@ -1,8 +1,10 @@
-<h1>*カート内容表示画面*</h1>
+<%= render 'layouts/header'%><!-- header -->
+
+<h1 style="text-align: center">*カート内容表示画面*</h1>  <!-- 完成したらこの行は削除する -->
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-6 col-xs-offset-3">
 			<h1>ショッピングカート</h1>
 			<table class="table table-stripped">
 				<thead>
@@ -39,9 +41,10 @@
 				</thoot>
 			</table>
 			<% end %>
-			<button class=""> レジへ進む </button>
-			<button class=""> 買い物を続ける </button>
+			<%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
+			<%= link_to "レジへ進む", lovers_orders_new_path, class: "btn btn-info" %>
 		</div>
 	</div>
 </div>
+<%= render 'layouts/footer'%>
 

@@ -46,21 +46,21 @@
 # また下記と同じデータを持つレコードが存在する状態でrake db:seedを実行するとエラーになるため、
 # コメントアウト化してあります（フカイ）
 
-	# user = User.new(email:'1@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '渋谷区１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
- # 	user.save!
- # 	user = User.new(email:'2@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
-	# user.save!
-	# user = User.new(email:'3@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '渋谷区３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
-	# user.save!
-	# user = User.new(email:'4@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '渋谷区４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
-	# user.save!
+	 # user = User.new(email:'1@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '渋谷区１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+  #  	user.save!
+  # 	user = User.new(email:'2@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+	 # user.save!
+	 # user = User.new(email:'3@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '渋谷区３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+	 # user.save!
+	 # user = User.new(email:'4@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '渋谷区４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+	 # user.save!
 
-	# admin = Admin.new(email:'5@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'サノ')
-	# admin.save!
-	# admin = Admin.new(email:'6@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ハタ')
-	# admin.save!
-	# admin = Admin.new(email:'7@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ヒラバヤシ')
-	# admin.save!
-	# admin = Admin.new(email:'8@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'フカイ')
- # 	admin.save!
+	 # admin = Admin.new(email:'5@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'サノ')
+	 # admin.save!
+	 # admin = Admin.new(email:'6@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ハタ')
+	 # admin.save!
+	 # admin = Admin.new(email:'7@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ヒラバヤシ')
+	 # admin.save!
+	 # admin = Admin.new(email:'8@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'フカイ')
+  # 	admin.save!
 
