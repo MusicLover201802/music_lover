@@ -1,10 +1,10 @@
 <!-- header -->
-<%#= render 'layouts/admin/header' %>
+<%= render 'layouts/admin/header' %>
 
   <div class="container">
     <div class="row" style="margin-top: 100px">
-      <div class="panel panel-warning col-xs-6 col-xs-offset-3" style="text-align: center">
-        <h1 class="panel-heading row" style="margin-top: 0">Log in</h1>
+      <div class="panel panel-default col-xs-6 col-xs-offset-3" style="text-align: center">
+        <h1 class="panel-heading row" style="margin-top: 0">Admins Log in</h1>
 
         <div class="panel-body">
 
@@ -30,7 +30,6 @@
               <%= f.submit "Log in", class: "btn btn-grey col-xs-12" %>
             </div>
           <% end %>
-          <%= render "admin/admins/shared/links" %>
         </div>
       </div>
     </div>

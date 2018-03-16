@@ -1,12 +1,18 @@
-<%= render 'layouts/admintop' %>
+<%= render 'layouts/admin/header' %>
 
+<div class="row btn-margin-top" >
+	<div class="col-xs-9">
+		<!-- <h2>商品一覧</h2> -->
+	</div>
+	<%= render 'layouts/admin/top' %>
+</div>
 <div class="container">
  	<div class="row">
  		<div class="col-xs-6 col-xs-offset-3">
  			<div class="row btn-margin-top">
  				<div class="col-xs-8 col-xs-offset-2">
  					<div style="text-align:center;">
- 						<%= link_to 'ユーザー一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 						<%= link_to 'ユーザー一覧', admin_users_path, class: "btn btn-lg btn-grey btn-block" %>
  					</div>
  				</div>
  			</div>
@@ -17,7 +23,7 @@
  			<div class="row btn-margin">
  				<div class="col-xs-8 col-xs-offset-2">
  					<div style="text-align:center;">
- 						<%= link_to '商品一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 						<%= link_to '商品一覧', admin_items_path, class: "btn btn-lg btn-grey btn-block" %>
  					</div>
  				</div>
  			</div>
@@ -28,14 +34,10 @@
  			<div class="row">
  				<div class="col-xs-8 col-xs-offset-2">
  					<div style="text-align:center;">
- 						<%= link_to '購入履歴一覧', admin_top_path, class: "btn btn-lg btn-grey btn-block" %>
+ 						<%= link_to '購入履歴一覧', admin_orders_path, class: "btn btn-lg btn-grey btn-block" %>
  					</div>
  				</div>
  			</div>
  		</div>
  	</div>
 </div>
-
-
-<%= button_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-

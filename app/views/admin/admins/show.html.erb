@@ -1,2 +1,40 @@
-<h1>Admin::Admins#show</h1>
-<p>Find me in app/views/admin/admins/show.html.erb</p>
+<!-- header -->
+<%= render 'layouts/admin/header' %>
+
+<div class="contener">
+	<div class="row btn-margin-top">
+		<div class="col-xs-3" style="text-align: center;">
+			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3" style="text-align: right;">
+			<h2><strong>Your Mypage</strong></h2>
+		</div>
+	</div>
+	<div class="row ad-margin">
+		<div class="col-xs-6 col-xs-offset-3" style="text-align: center;">
+			<div class="col-xs-6">
+				<h2>管理者名</h2>
+			</div>
+			<div class="col-xs-6">
+				<h2><%= current_admin.admin_name %></h2>
+			</div>
+		</div>
+	</div>
+	<div class="row ad-margin">
+		<div class="col-xs-6 col-xs-offset-3" style="text-align: center;">
+			<div class="col-xs-6">
+				<h2>登録アドレス</h2>
+			</div>
+			<div class="col-xs-6">
+				<h2><%= current_admin.email %></h2>
+			</div>
+		</div>
+	</div>
+	<div class="row ad-margin">
+		<div class="col-xs-6 col-xs-offset-3" style="text-align: right;">
+			<%= link_to "編集", edit_admin_registration_path, class: "btn btn-primary btn-lg" %>
+		</div>
+	</div>
+</div>
