@@ -59,4 +59,8 @@ Rails.application.routes.draw do
       resources :admins, only: [:show, :edit, :update]
     end
 
+
+  get '/admins/:id', to: 'admin/admins#show', as: 'show_admin'
+    
+
 end

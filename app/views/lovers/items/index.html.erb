@@ -1,23 +1,26 @@
 <%= render 'layouts/header'%><!-- header -->
-	<div class="row">
-		<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
+<div class="row">
+	<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
 
-		<!-- main -->
-		<div class="col-xs-6">
-			<p>商品検索</p>
-<%#検索フォーム<%= form_tag(items_path) do %>
-<%#	    	  <p>
-			  	<%= text_field_tag :search %>
-<%#		  		<%= submit_tag "Search", :name => nil %>
-<%#			  </p>
-			<% end %>
-			<h2 class="row headline",　style="text-align: center">商品一覧</h2><!-- 見出し -->
+	<!-- main -->
+	<div class="col-xs-6" style="text-align: center">
+		<h4>商品検索</h4>
+		<%= form_tag(lovers_items_path) do %>
+    	  <p>
+		  	<%= text_field_tag :search %>
+	  		<%= submit_tag "Search", :name => nil %>
+		  </p>
+		<% end %>
 
-			<div class="row item-index"><!-- 商品一覧 -->
-				このdivの間に商品の画像などなど並べてね
-			<%#---<%= paginate @なんちゃら, class: "pagenate"%>
-			</div>
+		<h2 class="row headline",　style="text-align: center">商品一覧</h2><!-- 見出し -->
+
+		<div class="row item-index"><!-- 商品一覧 -->
+
+
+			このdivの間に商品の画像などなど並べてね
+		<%#---<%= paginate @なんちゃら, class: "pagenate"%>
 		</div>
-	<!-- R sidebar --><%= render 'layouts/Rsidebar' %>
 	</div>
-<!-- footer --><%= render 'layouts/footer'%>
+	<%= render 'layouts/Rsidebar' %><!-- R sidebar -->
+</div>
+<%= render 'layouts/footer'%><!-- footer -->
