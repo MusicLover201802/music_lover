@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       root 'root#top'
 
       get '/user_items/test', to: 'user_items#method'
+      get '/user_items/cart_stock', to: 'user_items#cart_stock'
+      get '/user_items/cart_save', to: 'user_items#cart_save'
       resources :user_items, only: [:show, :create, :destroy, :update]
 
       get '/end', to: 'end#end'

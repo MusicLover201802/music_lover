@@ -29,17 +29,17 @@
 						<td> </td>
 					</tr>
 				</tbody>
+			<% end %>
 				<thoot>
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
 						<td>購入金額合計：</td>
-						<td><%= user_item.item.price %> <!-- カート内合計金額を導き出す　やりかた不明 --></td>
+						<td> <!-- カート内合計金額を導き出す　やりかた不明 --></td>
 					</tr>
 				</thoot>
 			</table>
-			<% end %>
 
 
 			<!-- 商品送付先-->
@@ -62,8 +62,10 @@
 				<div class="line"> </div>
 			</div>
 
-			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs-6 btn btn-default' %>
-			<%= link_to '購入を確定する', lovers_user_items_path, method: :post, class: 'col-xs-6 btn btn-danger' %>
+			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs-4 btn btn-default' %>
+			<%= link_to '試す：在庫減らす処理', lovers_user_items_cart_stock_path, class: 'col-xs-4 btn btn-danger' %>
+			<%= link_to '試す：購入履歴保存→カート内削除処理', lovers_user_items_cart_save_path, class: 'col-xs-4 btn btn-danger' %>
+
 		</div>
 	</div>
 </div>

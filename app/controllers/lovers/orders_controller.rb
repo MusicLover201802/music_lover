@@ -18,10 +18,6 @@ class Lovers::OrdersController < ApplicationController
 		redirect_to controller: 'user_items', action: 'destroy', id: current_user.id
 	end
 
-  private
-	def order_params
-		params.require(:order).permit(:)
-	end
 
 end
 
