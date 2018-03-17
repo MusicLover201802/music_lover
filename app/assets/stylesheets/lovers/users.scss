@@ -12,18 +12,18 @@ body{
 }
 
 ////header////
+.user_header{
+	background: linear-gradient(-90deg, #983484, #FFE852);
+}
 .Logo{
 	margin-left: 80px;
 }
 .navlink{
 	display: inline-block;
 	line-height: 90px;
-	font-size: 20px;
+	font-size: 15px;
 	padding-right: 20px;
 	margin-right: 0;
-}
-.Cart{
-	margin-left: 20px;
 }
 
 ////footer///
@@ -38,24 +38,37 @@ footer{
 
 ////sidebar////
 .side-bar{
-	height: 1000px;
+	height: 980px;
 }
-.genre-nav{
-	padding-top: 20px;
-	font-size: 20px;
-	list-style: none;
+.genre_list{
+	// padding-top: 20px;
+	// font-size: 20px;
+	// list-style: none;
+
+  color: black;
+  border-left: solid 8px orange;
+  background-color: #fdcbcba1;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none;
 }
 .banner{
 	text-align: center;
+	background-size: cover;
 	background-position: center;
 	margin-top: 10px;
 }
 
 ////top////
+.bx-wrapper{
+	border: 0;
+}
+.BANANA{
+	height: 100px;
+}
 .pickup{
-	height: 200px;
-	width: 100%;
-	background-size: cover;
+	background-position: center;
 }
 
 ////SignUp////
