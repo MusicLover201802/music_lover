@@ -18,15 +18,14 @@ class Lovers::UserItemsController < ApplicationController
 
     # 在庫減らす処理 実装できた
     @user_items.each do |user_items|
-    user_items.item.stock -= user_items.quantity
-    user_items.item.save
+      user_items.item.stock -= user_items.quantity
+      user_items.item.save
     end
     redirect_to lovers_end_path
-
   end
 
 
-  def cart_save
+  def cart_destroy
     # カートの中身全取得
     @user = User.find(current_user.id)
     @user_items = @user.user_items
@@ -35,28 +34,33 @@ class Lovers::UserItemsController < ApplicationController
     @user_items.each do |user_items|
       user_items.destroy
     end
-
     redirect_to lovers_end_path
+  end
 
-    購入履歴を保存する処理
+
+  def order_save
+    # 購入履歴を保存する処理
     @user_items.each do |user_items|
-      @neworder = Order.new
-      @neworder = user_items
-      @neworder.save
-
+    @neworder = Order.new
+    @neworder = user_items
+    @neworder.save
   end
-    # カートの中身を全取得する find_by(カートid)
-    #   each文内で
-    #     在庫を減らす count -= （マイナスになったら？ゼロになったら？）
-    #     履歴保存.id
-
-  def destroy
-    user_items = UserItem.find(params[:id])
-    user_items.destroy
-    redirect_to lovers_end_path
-  end
-
-  def update
-  end
-
 end
+
+  def orderitems_save
+  # 購入明細を保存する処理
+    redirect_to lovers_end_path
+  
+  end
+
+
+    def destroy
+      user_items = UserItem.find(params[:id])
+      user_items.destroy
+      redirect_to lovers_end_path
+    end
+
+    def update
+    end
+
+  end

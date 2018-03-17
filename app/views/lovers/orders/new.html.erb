@@ -62,9 +62,11 @@
 				<div class="line"> </div>
 			</div>
 
-			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs-4 btn btn-default' %>
-			<%= link_to '試す：在庫減らす処理', lovers_user_items_cart_stock_path, class: 'col-xs-4 btn btn-danger' %>
-			<%= link_to '試す：購入履歴保存→カート内削除処理', lovers_user_items_cart_save_path, class: 'col-xs-4 btn btn-danger' %>
+			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs-12 btn btn-default' %><br>
+			<%= link_to '在庫減数', lovers_user_items_cart_stock_path, class: 'col-xs-3 btn btn-danger' %>
+			<%= link_to '購入履歴保存', lovers_user_items_order_save_path, class: 'col-xs-3 btn btn-danger' %>
+			<%= link_to '購入明細保存', lovers_user_items_orderitems_save_path, class: 'col-xs-3 btn btn-danger' %>
+			<%= link_to 'カート内削除', lovers_user_items_cart_destroy_path, class: 'col-xs-3 btn btn-danger' %>
 
 		</div>
 	</div>
