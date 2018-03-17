@@ -1,7 +1,7 @@
 <%= render 'layouts/header'%>
 <div class="row">
 	<div class="col-xs-3" style="text-align: right">
-		<h2><strong>マイページ</strong></h2>
+		<h2 style="margin-top: 40px"><strong>マイページ</strong></h2>
 	</div>
 </div>
 <div class="row">
@@ -14,11 +14,12 @@
 			</thread>
 			<tbody>
 				<tr>
-					<th>名前太郎<!-- <%#= user.name(current_user) %> --></th>
-					<th>様</th>
-					<th><%= link_to edit_user_registration_path do %>
-							<button class="btn btn-primary">お客様情報編集</button>
-						<% end %></th>
+					<th width="100px"><%= current_user.last_name %></th>
+					<th width="100px"><%= current_user.first_name %></th>
+					<th width="150px">様</th>
+					<th width="50px"><%= link_to edit_user_registration_path do %>
+					  <button class="btn btn-primary">お客様情報編集</button>
+					  <% end %></th>
 				</tr>
 			</tbody>
 		</table>
@@ -38,11 +39,11 @@
 								<tbody>
 									<tr>
 										<td>画像</td>
-										<td>title</td>
-										<td>Artist</td>
-										<td>￥0,000</td>
-										<td>n枚</td>
-										<td>￥0,000</td>
+										<td><%= @items.item_name %></td>
+										<td><%= @items.artist_name %></td>
+										<td><%= @items.price %></td>
+										<td><%= @items.stock %></td>
+										<td><%= @items.price * @items.stock %></td>
 									</tr>
 									<td>
 										<td></td>

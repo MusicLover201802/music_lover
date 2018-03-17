@@ -3,32 +3,32 @@
 		<%= link_to lovers_root_path do %>
 		<img class="Logo" src="/ml_logo1.png" width="90" height="90">
 		<% end %>
-			<span class="nav-box">
-				<div class="collapse navbar-collapse navbar-right" style="line-height: 90px" id="navbarEexample7">
-			      　　<ul class="nav navbar-nav" style="margin-right: 80px">
+		<span class="nav-box">
+			<div class="collapse navbar-collapse navbar-right" style="line-height: 90px" id="navbarEexample7">
+		      　　<ul class="nav navbar-nav" style="margin-right: 80px">
 
-			      	<%# if user_signed_in? %>
-			            <%= link_to new_user_session_path do %>
-		                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> マイページ</li>
-			            <% end %>
-			            <%= link_to new_user_registration_path do %>
-		                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> ログアウト</li>
-			            <% end %>
-			            <%= link_to lovers_root_path do %>
-	            		<img class="Cart" src="/cart.png" width="60" height="60">
-			            <% end %>
-			        <%# else %>
-			        	<%= link_to new_user_session_path do %>
-		                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> ログイン</li>
-			            <% end %>
-			            <%= link_to new_user_registration_path do %>
-		                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> 新規登録</li>
-			            <% end %>
-			            <%= link_to lovers_root_path do %>
-	            		<img class="Cart" src="/cart.png" width="60" height="60">
-			            <% end %>
-		            </ul>
-			    </div>
-			</span>
+		      	<% if user_signed_in? %>
+		      		<li style="padding-right: 30px">こんにちは <%= current_user.last_name %> さん</li>
+		            <%= link_to lovers_user_path(current_user) do %>
+	                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> マイページ</li>
+		            <% end %>
+		            <%= link_to lovers_root_path do %>
+	        		<img class="Cart" src="/cart.png" width="60" height="60">
+		            <% end %>
+		        <% else %>
+		        	<li style="padding-right: 30px">こんにちはゲストさん</li>
+		        	<%= link_to new_user_session_path do %>
+	                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> ログイン</li>
+		            <% end %>
+		            <%= link_to new_user_registration_path do %>
+	                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> 新規登録</li>
+		            <% end %>
+		            <%= link_to destroy_user_session_path, method: :delete do %>
+	                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"> ログアウト</li>
+		            <% end %>
+		        <% end %>
+	            </ul>
+		    </div>
+		</span>
 	</div>
 </div>

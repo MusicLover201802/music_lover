@@ -6,4 +6,6 @@ class Item < ApplicationRecord
 	belongs_to :admin
 	has_many :discs
 	has_many :tracks, through: :discs
+
+	attachment :image
 end

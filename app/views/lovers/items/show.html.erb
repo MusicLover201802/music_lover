@@ -7,11 +7,17 @@
 			<h2 class="row headline",　style="text-align: center">商品詳細</h2><!-- 見出し -->
 
 			<div class="col-xs-4" style="text-align: center">
-				ジャケット写真
+				<%#= attachment_image_tag @item, :jacket_image, :fill, 500, 500, format: 'png', class: "img-circle center-block", fallback: "no_image_m.png" %>
 			</div>
 
 			<div class="col-xs-4" style="text-align: center">
-				CD情報
+				<ul class="item_detail" style="list-style: none">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
 			</div>
 
 			<div class="col-xs-4" style="text-align: center">
