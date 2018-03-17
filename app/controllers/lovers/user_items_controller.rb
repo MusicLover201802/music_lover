@@ -7,7 +7,7 @@ class Lovers::UserItemsController < ApplicationController
   def method
     @user = User.find(current_user.id)
     @user_items = @user.user_items
-
+    @order_items = OrderItem.all
   end
 
 
@@ -41,26 +41,36 @@ class Lovers::UserItemsController < ApplicationController
   def order_save
     # 購入履歴を保存する処理
     @user_items.each do |user_items|
-    @neworder = Order.new
-    @neworder = user_items
-    @neworder.save
+      @neworder = Order.new
+      @neworder = user_items
+      @neworder.save
+    end
   end
-end
 
   def orderitems_save
-  # 購入明細を保存する処理
-    redirect_to lovers_end_path
-  
+  # カートの中身全取得
+  @user = User.find(current_user.id)
+  @user_items = @user.user_items
+  # 購入明細を保存する処理 データ受け渡し方法不明・・・
+  @user_items.each do |user_items|
+    @neworderitem = OrderItem.new(item_id:)
+    @neworderitem.item_id = user_items.item_id
+    @neworderitem.quantity = user_items.quantity
+    @neworderitem.price = user_items.item.price
+    @neworderitem.order_id = 7
+    @neworderitem.save
   end
+  redirect_to lovers_end_path
+end
 
 
-    def destroy
-      user_items = UserItem.find(params[:id])
-      user_items.destroy
-      redirect_to lovers_end_path
-    end
+def destroy
+  user_items = UserItem.find(params[:id])
+  user_items.destroy
+  redirect_to lovers_end_path
+end
 
-    def update
-    end
+def update
+end
 
-  end
+end
