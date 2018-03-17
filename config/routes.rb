@@ -11,14 +11,14 @@ Rails.application.routes.draw do
     namespace :lovers do
       root 'root#top'
 
+      get '/user_items/test', to: 'user_items#method'
       resources :user_items, only: [:show, :create, :destroy, :update]
 
       get '/end', to: 'end#end'
 
       resources :destinations, only: [:new, :create, :destroy]
 
-      get '/orders/new', to: 'orders#new'
-      get '/orders/:id', to: 'orders#show'
+      resources :orders, only: [:new, :show, :create]
 
       get '/items/', to: 'items#index'
       get '/items/:id', to: 'items#show'

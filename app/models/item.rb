@@ -7,5 +7,5 @@ class Item < ApplicationRecord
 	has_many :discs
 	has_many :tracks, through: :discs
 
-	attachment :image
+	attachment :jacket_image
 end

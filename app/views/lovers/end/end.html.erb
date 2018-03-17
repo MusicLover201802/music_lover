@@ -1,5 +1,14 @@
-<%= render "lovers/header-set" %>
+<%= render "layouts/footer" %>
 
-<h1>ご購入有難うございます</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<h2>ご購入ありがとうございました。<br>
+				またのご利用をお待ちしております。
+			</h2>
+			<p><%= link_to "Topページに戻る", lovers_root_path %></p>
+		</div>
+	</div>
+</div>
 
-<%= link_to "TOPへ", root_path %>
+<%= render 'layouts/footer'%>
