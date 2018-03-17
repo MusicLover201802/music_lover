@@ -1,2 +1,68 @@
-<h1>Lovers::Users#show</h1>
-<p>Find me in app/views/lovers/users/show.html.erb</p>
+<%= render 'layouts/header'%>
+<div class="row">
+	<div class="col-xs-3" style="text-align: right">
+		<h2><strong>マイページ</strong></h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<table class="table">
+			<thread>
+				<tr>
+					お名前
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th>名前太郎<!-- <%#= user.name(current_user) %> --></th>
+					<th>様</th>
+					<th><%= link_to edit_user_registration_path do %>
+							<button class="btn btn-primary">お客様情報編集</button>
+						<% end %></th>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table">
+			<thread>
+				<tr>ご購入履歴</tr>
+			</thread>
+			<tbody>
+				<td>
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<span>yyyy/mm/dd</span>
+							<span>Status</span>
+						</div>
+						<div class="panel-body">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>画像</td>
+										<td>title</td>
+										<td>Artist</td>
+										<td>￥0,000</td>
+										<td>n枚</td>
+										<td>￥0,000</td>
+									</tr>
+									<td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>合計金額</td>
+									</td>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</td>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-9">
+		<button class="btn btn-default">退会
+			<!-- 論理削除実装時　#外す -->
+			<%#= link_to "退会", lovers_user_path(current_user), method: :patch %>
+		</button>

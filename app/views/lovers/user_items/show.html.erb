@@ -1,2 +1,47 @@
-<h1>Lovers::UserItems#show</h1>
-<p>Find me in app/views/lovers/user_items/show.html.erb</p>
+<h1>*カート内容表示画面*</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<h1>ショッピングカート</h1>
+			<table class="table table-stripped">
+				<thead>
+					<tr>
+						<th>商品画像</th>
+						<th>商品名/アーティスト名</th>
+						<th>単価</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>   </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user_items.each do |user_item| %>
+					<tr>
+						<td> <!-- attachment_image_tag予定地 --></td>
+						<td><%= user_item.item.item_name %> / <%= user_item.item.artist_name %></td>
+						<td><%= user_item.item.price %></td>   <!-- 余裕があれば、金額形式で表記する -->
+						<td><%= user_item.quantity%></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
+						<td><%= user_item.item.price * user_item.quantity %>  </td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				</tbody>
+				<thoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>購入金額合計：</td>
+						<td><%= user_item.item.price %> <!-- カート内合計金額を導き出す　やりかた不明 --></td>
+					</tr>
+				</thoot>
+			</table>
+			<% end %>
+			<button class=""> レジへ進む </button>
+			<button class=""> 買い物を続ける </button>
+		</div>
+	</div>
+</div>
+

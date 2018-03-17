@@ -1,2 +1,34 @@
-<h1>Lovers::Root#top</h1>
-<p>Find me in app/views/lovers/root/top.html.erb</p>
+		<script>
+			$(document).ready(function(){
+				$('.bxslider').bxSlider();
+			});
+		</script>
+
+	<body>
+			<!-- header -->
+		<%= render 'layouts/header'%>
+			<div class="row">
+			<!-- L sidebar -->
+		<%= render 'layouts/Lsidebar' %>
+			<!-- main -->
+				<div class="col-xs-6">
+					<!-- 見出し -->
+					<div class="row pop"></div>
+
+					<!-- pickup -->
+					<div class="row pickup">
+	 					<ul class="bxslider">
+							<li><img src="/yokoku.jpg" class="pickup"></li>
+							<li><img src="/zoku.jpg" class="pickup"></li>
+					  		<li><img src="/eva.jpg" class="pickup"></li>
+							<li><img src="/bake.jpg" class="pickup"></li>
+						</ul>
+					</div>
+				</div>
+			<!-- R sidebar -->
+			<%= render 'layouts/Rsidebar' %>
+			</div>
+		</div>
+	<!-- footer -->
+<%= render 'layouts/footer'%>
+	</body>
