@@ -1,2 +1,24 @@
-<h1>Lovers::Genres#show</h1>
-<p>Find me in app/views/lovers/genres/show.html.erb</p>
+<%= render 'layouts/header'%><!-- header -->
+	<div class="row">
+		<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
+
+		<!-- main -->
+		<div class="col-xs-6" style="text-align: center">
+			<p>商品検索</p>
+			<%= form_tag(lovers_items_path) do %>
+	    	  <p>
+			  	<%= text_field_tag :search %>
+	  			<%= submit_tag "Search", :name => nil %>
+			  </p>
+			<% end %>
+
+			<h2 class="row headline",　style="text-align: center">商品一覧</h2><!-- 見出し -->
+
+			<div class="row item-index"><!-- 商品一覧 -->
+				このdivの間に商品の画像などなど並べてね
+			<%#---<%= paginate @なんちゃら, class: "pagenate"%>
+			</div>
+		</div>
+	<!-- R sidebar --><%= render 'layouts/Rsidebar' %>
+	</div>
+<!-- footer --><%= render 'layouts/footer'%>

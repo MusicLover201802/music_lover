@@ -1,2 +1,25 @@
-<h1>Lovers::Items#show</h1>
-<p>Find me in app/views/lovers/items/show.html.erb</p>
+<%= render 'layouts/header'%><!-- header -->
+	<div class="row">
+		<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
+
+		<!-- main -->
+		<div class="col-xs-6">
+			<h2 class="row headline",　style="text-align: center">商品詳細</h2><!-- 見出し -->
+
+			<div class="col-xs-4" style="text-align: center">
+				ジャケット写真
+			</div>
+
+			<div class="col-xs-4" style="text-align: center">
+				CD情報
+			</div>
+
+			<div class="col-xs-4" style="text-align: center">
+				<button class="btn btn-primary">カートに入れる</button>
+				<button class="btn btn-danger">売り切れ</button>
+				<button class="btn btn-default">近日発売</button>
+			</div>
+		</div>
+	<!-- R sidebar --><%= render 'layouts/Rsidebar' %>
+	</div>
+<!-- footer --><%= render 'layouts/footer'%>
