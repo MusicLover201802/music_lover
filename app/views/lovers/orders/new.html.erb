@@ -41,6 +41,7 @@
 			</table>
 			<% end %>
 
+
 			<!-- 商品送付先-->
 			<!-- 支払い方法選択 -->
 			<div class="">
@@ -62,7 +63,7 @@
 			</div>
 
 			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs-6 btn btn-default' %>
-			<%= link_to '購入を確定する', lovers_user_item_path(current_user), class: 'col-xs-6 btn btn-danger' %>
+			<%= link_to '購入を確定する', lovers_user_items_path, method: :post, class: 'col-xs-6 btn btn-danger' %>
 		</div>
 	</div>
 </div>
