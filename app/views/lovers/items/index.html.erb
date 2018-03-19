@@ -26,14 +26,22 @@
 								<%= link_to i.item_name, lovers_path(i) %></h4>
 							<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
 							<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
-							<tr class="index_item_detail"><%= i.stock %></tr>
+							<tr class="index_item_detail">
+							  <% if i.stock == 0 %>
+								  <p style="color: red">入荷待ち</p>
+								<% elseif i.stock < 5 %>
+								  <p>残り僅か</p>
+								<% else i.stock >= 10 %>
+								  <p>在庫有り</p>
+							  <% end %>
+							</tr>
 						</div>
 					</div>
 				</div>
 			</div>
 		  <% end %>
 
-		<%#---<%= paginate @なんちゃら, class: "pagenate"%>
+		<%#= paginate @item, class: "pagenate"%>
 		</div>
 	</div>
 

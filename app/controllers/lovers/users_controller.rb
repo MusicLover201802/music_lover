@@ -1,7 +1,6 @@
 class Lovers::UsersController < ApplicationController
   def show
-  	@orders = Order.find(current_user.id)
-  	@items = Item.find(id = 1)
+  	@orders = Order.where(user_id: current_user.id)
   end
 
   def edit

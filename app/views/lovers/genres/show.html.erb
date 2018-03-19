@@ -15,10 +15,10 @@
 		<h2 class="row headline",　style="text-align: center"><%= @genre.genre_name %></h2>
 
 		<div class="row item-index" style="text-align: center">
-		  <% @items.each do |i| %>
+		  <% @item.each do |i| %>
 			<div class="example-1 card" style="margin: 20px 0 20px">
 				<div class="wrapper">
-					<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
+					<%= attachment_image_tag i, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
 					<div class="data">
 						<div class="content">
 							<span class="index_artist"><%= i.artist_name %></span>
