@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315111342) do
+ActiveRecord::Schema.define(version: 20180317113742) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20180315111342) do
     t.string "building"
     t.string "phone_number", null: false
     t.string "payment", null: false
-    t.string "status", null: false
+    t.string "status", default: "商品準備中", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["first_name"], name: "index_orders_on_first_name"
