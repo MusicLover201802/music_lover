@@ -24,8 +24,8 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    discs = @item.discs
-    discs.each do |disc|
+    # discs = @item.discs
+    # discs.each do |disc|
       
 
      binding.pry # ブレークポイントを設定
