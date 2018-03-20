@@ -42,6 +42,25 @@
 <% end %>
 </table>
 
+<table class="table table-stripped">
+	<caption>orders一覧</caption>
+	<tr>
+		<th>order_id</th>
+		<th>user_id</th>
+		<th>送り先名</th>
+		<th></th>
+		<th>注文日時</th>
+	</tr>
+	<% @orders.each do |orders| %>
+	<tr>
+		<td><%= orders.id %></td>
+		<td><%= orders.user_id %></td>
+		<td><%= orders.first_name %></td>
+		<td><%= orders.last_name %></td>
+		<td><%= orders.created_at %></td>
+	</tr>
+	<% end %>
+</table>
 
 <table class="table table-stripped">
 	<caption>order_items一覧</caption>

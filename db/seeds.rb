@@ -66,6 +66,8 @@ UserItem.create(user_id: '1', item_id: '1', quantity: '1')
 UserItem.create(user_id: '1', item_id: '2', quantity: '3')
 UserItem.create(user_id: '1', item_id: '3', quantity: '1')
 UserItem.create(user_id: '1', item_id: '4', quantity: '1')
+UserItem.create(user_id: '2', item_id: '2', quantity: '3')
+
 
 
 # 下記Users, Adminテーブルはdeviseによって作成されているためこのような記述が必要です
