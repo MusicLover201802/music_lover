@@ -30,19 +30,19 @@
 						<td> </td>
 					</tr>
 				</tbody>
+			<% end %>
+			</table>
 				<thoot>
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
 						<td>購入金額合計：</td>
-						<td><%= user_item.item.price %> <!-- カート内合計金額を導き出す　やりかた不明 --></td>
+						<td><<!-- カート内合計金額を導き出す　やりかた不明 --></td>
 					</tr>
 				</thoot>
-			</table>
-			<% end %>
 			<%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
-			<%= link_to "レジへ進む", lovers_orders_new_path, class: "btn btn-info" %>
+			<%= link_to "レジへ進む", new_lovers_order_path, class: "btn btn-info" %>
 		</div>
 	</div>
 </div>
