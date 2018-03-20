@@ -1,2 +1,7 @@
 /tmp/cache/*
 !/tmp/.gitkeep
+
+/log/development.log
+
+*.log
+*.sqlite3
