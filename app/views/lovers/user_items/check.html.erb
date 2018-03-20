@@ -50,6 +50,8 @@
 		<th>送り先名</th>
 		<th></th>
 		<th>注文日時</th>
+		<th>ステータス</th>
+		<th>支払い方法</th>
 	</tr>
 	<% @orders.each do |orders| %>
 	<tr>
@@ -57,7 +59,9 @@
 		<td><%= orders.user_id %></td>
 		<td><%= orders.first_name %></td>
 		<td><%= orders.last_name %></td>
-		<td><%= orders.created_at %></td>
+		<td><%= orders.created_at.to_s(:created_at) %></td>
+		<td><%= orders.status %></td>
+		<td><%= orders.payment %></td>
 	</tr>
 	<% end %>
 </table>

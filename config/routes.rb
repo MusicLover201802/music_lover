@@ -26,7 +26,8 @@ Rails.application.routes.draw do
       get '/items/', to: 'items#index'
       get '/items/:id', to: 'items#show'
 
-      get '/genres/:id', to: 'genres#show'
+      ###　genreのパスがitemのshowと被っていた為as以降を付け足しました ###
+      get '/genres/:id', to: 'genres#show', as: 'genres'
 
       resources :users, only: [:show, :edit, :update]
       get '/users/:id/retire', to: 'users#retire'
@@ -62,6 +63,5 @@ Rails.application.routes.draw do
 
 
   get '/admins/:id', to: 'admin/admins#show', as: 'show_admin'
-    
 
 end

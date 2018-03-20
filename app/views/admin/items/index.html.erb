@@ -1,6 +1,33 @@
-<div class="top-blank">
-    <%= render "layouts/admin/header" %>
+<%= render "layouts/admin/header" %>
+
+<div class="contener">
+    <div class="row btn-margin-top">
+        <div class="col-xs-3" style="text-align: center;">
+            <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+        </div>
+    </div>
+
+    <div class="row btn-margin-top" >
+        <div class="col-xs-6 col-xs-offset-8" style="text-align: right">
+        <%= render 'layouts/admin/top' %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3" style="text-align: right;">
+            <h2><strong>商品一覧</strong></h2>
+        </div>
+    </div>
 </div>
+
+<div class="contener">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <h4>検索バー</h4>
+        </div>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-sm-12">
@@ -8,7 +35,7 @@
             <thead>
                <tr>
         	　　 <th>ジャケット</th>
-        	　　 <th>CD名</th>
+        	　　 <th>商品名</th>
         	　　 <th>アーティスト名</th>
         	　　 <th>ジャンル</th>
         	　　 <th>レーベル</th>
@@ -17,17 +44,18 @@
         	　　 <th>発売日</th>
                </tr>
             </thead>
+
             <% @items.each do |item| %>
             <tbody>
                <tr>
-                <td><span><%#= item.jacket_image_id %></span></td>
-                <td><span><%= item.item_name %></span></td>
-                <td><span><%= item.artist_name %></span></td>
-                <td><span><%= item.genre_id %></span></td>
-                <td><span><%= item.label_name %></span></td>
-                <td><span><%= item.price %>円</span></td>
-                <td><span><%= item.stock %>枚</span></td>
-                <td><span><%= item.release_date %></span></td>
+                <td><%#= item.jacket_image_id %></td>
+                <td><%= link_to item.item_name, admin_item_path(item) %></td>
+                <td><%= item.artist_name %></td>
+                <td><%= item.genre_id %></td>
+                <td><%= item.label_name %></td>
+                <td><%= item.price %>円</td>
+                <td><%= item.stock %>枚</td>
+                <td><%= item.release_date %></td>
             <% end %>
                </tr>
             </tbody>
@@ -36,5 +64,5 @@
 </div>
 
 <div class="text-center">
-    <%= paginate @items %>
+    <%#= paginate @items %>
 </div>

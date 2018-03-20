@@ -1,0 +1,26 @@
+<fieldset>
+
+	<div>ディスク名</div>
+	<%= f.text_field :disc_name %>
+	<div>ディスクNo.</div>
+	<%= f.text_field :disc_num %>
+</div>
+
+<div><h4>トラック情報</h4></div>
+<%= f.fields_for :tracks do |fff| %>　<!-- フォーム3はじまり -->
+<div class="row">
+	<div class="col-xs-2 field">
+		<%= fff.label :track_num, "No." %>
+		<%= fff.text_field :track_num %>
+	</div>
+	<div class="col-xs-8 field">
+		<%= fff.label :track_name, "曲名" %>
+		<%= fff.text_field :track_name %>
+		<%= fff.link_to_remove "取り消し", class: "btn btn-xs btn-danger" %>
+	</div>
+</div>
+<%#= fff.text_field :track_time %>
+<% end %>　<!-- フォーム3おわり -->
+
+<%= f.link_to_add "トラック追加", :tracks, class: "btn btn-primary" %>
+</fieldset>
