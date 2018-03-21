@@ -5,13 +5,15 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-
-     # binding.pry # ブレークポイントを設定
-
-
+    @items = Item.all
+    genres = Item.find_by_genre_id(params[:id])
+    @genre = Genre.find_by_id(genres)
+    # binding.pry
+    
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -23,18 +25,18 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-
-    discs = @item.discs
-    discs.each do |disc|
-      
-
-     binding.pry # ブレークポイントを設定
-
     @item.save
     redirect_to admin_items_path
   end
 
   def update
+    item = Item.find(params[:id])
+
+    binding.pry
+
+
+    item.update(item_params)
+    redirect_to admin_items_path
   end
 
   def destroy
@@ -48,6 +50,7 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
       params.require(:item).permit(
+        :id,
         :item_name,
         :artist_name,
         :artist_name_kana,
@@ -58,9 +61,9 @@ class Admin::ItemsController < ApplicationController
         :release_date,
         :purchase_flag,
         :admin_id,
-        discs_attributes: [:id, :disc_num, :item_id, :disc_name, :_destroy,
-          tracks_attributes: [:id, :track_num, :track_name, :disc_id, :_destroy]]
-        )
+        :jacket_image, {
+        discs_attributes: [:id, :disc_num, :item_id, :disc_name, :_destroy, {
+          tracks_attributes: [:id, :track_num, :track_name, :disc_id, :_destroy] } ] })
     end
 
 end
