@@ -7,14 +7,14 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<table class="table">
-				<thread>
+<!-- 			<table class="table">
+				<thead>
 					<tr>
 						新しい送り先を登録する
 					</tr>
-				</thread>
+				</thead>
 				<tbody>
-					<tr>
+					<tr> -->
 						<%= form_for @new_destination, url:lovers_destinations_path do |n| %>
 	              			<div class="field col-xs-6">
 	                		<%= n.label :last_name, "姓"%><br />
@@ -63,9 +63,9 @@
 							<%= n.submit '登録する', class: 'btn btn-primary' %>
 
 						<% end %>
-					</tr>
+				<!-- 	</tr>
 				</tbody>
-			</table>
+			</table> -->
 
 			<table class="table">
 				<thread>
@@ -103,6 +103,8 @@
 											<td><%= d.postal_code %></td>
 											<td><%= d.prefecture %><%= d.city %><%= d.building %> </td>
 											<td><%= d.phone_number %></td>
+											<td><%= link_to "ここに送る", new_lovers_order_path(id:d.id), class: 'btn btn-danger' %>
+											<td><%= link_to "削除", lovers_destination_path(id:d.id), method: :delete, class: 'btn btn-danger' %>
 										</tr>
 									</tbody>
 								</table>

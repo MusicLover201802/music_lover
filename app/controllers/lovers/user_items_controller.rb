@@ -24,17 +24,8 @@ before_action :get_current_cart
       @neworder = Order.new(order_params)
       @neworder.user_id = current_user.id
 
-
-
-        @neworder.last_name = @user.last_name
-        @neworder.first_name = @user.first_name
-        @neworder.last_name_kana = @user.last_name_kana
-        @neworder.first_name_kana = @user.first_name_kana
-        @neworder.postal_code = @user.postal_code
-        @neworder.prefecture = @user.prefecture
-        @neworder.city = @user.city
-        @neworder.phone_number = @user.phone_number
-
+      binding.pry
+      
       @neworder.save
   end
 
@@ -73,7 +64,7 @@ before_action :get_current_cart
 
   private
   def order_params
-    params.require(:order).permit(:payment, :user_id)
+    params.require(:order).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number, :payment, :user_id)
   end
 
 
