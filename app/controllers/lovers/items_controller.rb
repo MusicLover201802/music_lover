@@ -8,5 +8,6 @@ class Lovers::ItemsController < ApplicationController
   	@items = Item.all
   	genres = Item.find_by_genre_id(params[:id])
   	@genre = Genre.find_by_id(genres)
+
   end
 end

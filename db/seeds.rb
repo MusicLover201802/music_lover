@@ -7,16 +7,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # メンバーへ：下記は削除しないでください（開発中にこれらのテストデータを復元・追加する場面が想定されるため）フカイ
-Destination.create(last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '別の送り先その１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', user_id: '1')
-Destination.create(last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '別の送り先その２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', user_id: '2')
-Destination.create(last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '別の送り先その３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', user_id: '3')
-Destination.create(last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '別の送り先その４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', user_id: '4')
 
-Disc.create(disc_name: '藤岡弘、ザ・ベスト[Disc1]', disc_num: '1', item_id: '1')
-Disc.create(disc_name: '藤岡弘、ザ・ベスト[Disc2]', disc_num: '2', item_id: '1')
-Disc.create(disc_name: 'モーニング娘。ザ・ベスト', disc_num: '1', item_id: '2')
-Disc.create(disc_name: '暗闇坂むささび変化[Single]', disc_num: '1', item_id: '3')
-Disc.create(disc_name: 'To Pimp A Butterfly', disc_num: '1', item_id: '4')
+# 下記Users, Adminテーブルはdeviseによって作成されているためこのような記述が必要です
+# また下記と同じデータを持つレコードが存在する状態でrake db:seedを実行するとエラーになるため、
+# コメントアウト化してあります（フカイ）
+
+user = User.new(email:'1@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '渋谷区１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+user.save!
+user = User.new(email:'2@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+user.save!
+user = User.new(email:'3@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '渋谷区３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+user.save!
+user = User.new(email:'4@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '渋谷区４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
+user.save!
+
+admin = Admin.new(email:'5@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'サノ')
+admin.save!
+admin = Admin.new(email:'6@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ハタ')
+admin.save!
+admin = Admin.new(email:'7@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ヒラバヤシ')
+admin.save!
+admin = Admin.new(email:'8@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'フカイ')
+admin.save!
 
 Genre.create(genre_name:'昭和歌謡')
 Genre.create(genre_name:'Pops')
@@ -28,13 +40,11 @@ Item.create(item_name: 'モーニング娘。ザ・ベスト', artist_name: 'モ
 Item.create(item_name: 'はっぴぃえんど[Single]', artist_name: 'はっぴぃえんど', artist_name_kana: 'ハッピィエンド', genre_id: '3', price: '2000', label_name: 'Sony', stock: '100', release_date: '20180310', purchase_flag: 'true', admin_id: '1')
 Item.create(item_name: 'To Pinp A Butterfly', artist_name: 'Kendrick Lamar', artist_name_kana: 'ケンドリックラマー', genre_id: '4', price: '3000', label_name: 'AfterMath', stock: '100', release_date: '20170531', purchase_flag: 'true', admin_id: '1')
 
-OrderItem.create(item_id:'1',quantity: '1', price:'3000', order_id:'1')
-OrderItem.create(item_id:'2',quantity: '3', price:'2500', order_id:'1')
-OrderItem.create(item_id:'4',quantity: '1', price:'3000', order_id:'2')
-
-Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
-Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
-Order.create(user_id:'2',last_name: 'ミュージック崎', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区2', building:'railsビル', phone_number: 'xxx-xxxx-xxxx', payment:'クレジットカード', status:'発送済')
+Disc.create(disc_name: '藤岡弘、ザ・ベスト[Disc1]', disc_num: '1', item_id: '1')
+Disc.create(disc_name: '藤岡弘、ザ・ベスト[Disc2]', disc_num: '2', item_id: '1')
+Disc.create(disc_name: 'モーニング娘。ザ・ベスト', disc_num: '1', item_id: '2')
+Disc.create(disc_name: '暗闇坂むささび変化[Single]', disc_num: '1', item_id: '3')
+Disc.create(disc_name: 'To Pimp A Butterfly', disc_num: '1', item_id: '4')
 
 Track.create(disc_id: '1',track_name:'ライダーの誇り　〜近頃の奴らは車だのなんだのとしゃらくせえ〜',track_num: '1')
 Track.create(disc_id: '1',track_name:'藤岡、怒りの百烈ライダーキック！！',track_num: '2')
@@ -61,34 +71,22 @@ Track.create(disc_id: '5',track_name:'You Aint Gotta Lie(Momma said)',track_num:
 Track.create(disc_id: '5',track_name:'i',track_num: '15')
 Track.create(disc_id: '5',track_name:'Mortal Man',track_num: '16')
 
+Destination.create(last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '別の送り先その１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', user_id: '1')
+Destination.create(last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '別の送り先その２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', user_id: '2')
+Destination.create(last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '別の送り先その３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', user_id: '3')
+Destination.create(last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '別の送り先その４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', user_id: '4')
+
+OrderItem.create(item_id:'1',quantity: '1', price:'3000', order_id:'1')
+OrderItem.create(item_id:'2',quantity: '3', price:'2500', order_id:'1')
+OrderItem.create(item_id:'4',quantity: '1', price:'3000', order_id:'2')
+
+Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
+Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
+Order.create(user_id:'2',last_name: 'ミュージック崎', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区2', building:'railsビル', phone_number: 'xxx-xxxx-xxxx', payment:'クレジットカード', status:'発送済')
 
 UserItem.create(user_id: '1', item_id: '1', quantity: '1')
 UserItem.create(user_id: '1', item_id: '2', quantity: '3')
 UserItem.create(user_id: '1', item_id: '3', quantity: '1')
 UserItem.create(user_id: '1', item_id: '4', quantity: '1')
 UserItem.create(user_id: '2', item_id: '2', quantity: '3')
-
-
-
-# 下記Users, Adminテーブルはdeviseによって作成されているためこのような記述が必要です
-# また下記と同じデータを持つレコードが存在する状態でrake db:seedを実行するとエラーになるため、
-# コメントアウト化してあります（フカイ）
-
- # user = User.new(email:'1@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '01', city: '渋谷区１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
- # user.save!
- # user = User.new(email:'2@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック崎	', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '01', city: '渋谷区２', building:'Railsビル', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
- # user.save!
- # user = User.new(email:'3@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック原	', first_name: 'ラバー美', last_name_kana: 'ミュージックハラ', first_name_kana: 'ラバーミ', postal_code: '0000000', prefecture: '01', city: '渋谷区３', building:'ruby荘', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
- # user.save!
- # user = User.new(email:'4@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック沼	', first_name: 'ラバー太', last_name_kana: 'ミュージックヌマ', first_name_kana: 'ラバータ', postal_code: '0000000', prefecture: '01', city: '渋谷区４', building:'cssコーポ', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
- # user.save!
-
-  #admin = Admin.new(email:'5@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'サノ')
-  #admin.save!
-  #admin = Admin.new(email:'6@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ハタ')
-  #admin.save!
-  #admin = Admin.new(email:'7@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'ヒラバヤシ')
-  #admin.save!
-  #admin = Admin.new(email:'8@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'フカイ')
-  #admin.save!
 
