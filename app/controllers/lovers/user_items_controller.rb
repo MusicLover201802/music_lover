@@ -24,6 +24,8 @@ before_action :get_current_cart
       @neworder = Order.new(order_params)
       @neworder.user_id = current_user.id
 
+
+
         @neworder.last_name = @user.last_name
         @neworder.first_name = @user.first_name
         @neworder.last_name_kana = @user.last_name_kana

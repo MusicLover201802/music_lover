@@ -65,7 +65,6 @@ gem 'seed-fu'
 
 group :development do
   gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'hirb'
   gem 'hirb-unicode'
   # さのが追加
