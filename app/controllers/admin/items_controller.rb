@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.all.reverse_order
   end
 
   def show
@@ -31,10 +31,6 @@ class Admin::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-
-    binding.pry
-
-
     item.update(item_params)
     redirect_to admin_items_path
   end
