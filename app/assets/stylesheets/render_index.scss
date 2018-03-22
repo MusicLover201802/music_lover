@@ -1,0 +1,63 @@
+// Variables
+$regal-blue: #034378;
+$san-juan: #2d4e68;
+$bermuda: #77d7b9;
+$white: #fff;
+$black: #000;
+$open-sans: 'Open Sans',
+sans-serif;
+// clear-fix mixin
+@mixin cf {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+// Base styles
+.card {
+  // float: left;
+  display: inline-block;
+  padding: 0 1.7rem;
+  .wrapper {
+    background-color: $white;
+    min-height: 150px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
+    &:hover {
+      .data {
+        transform: translateY(0);
+      }
+    }
+  }
+  .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(200px + 1em));
+    transition: transform 0.3s;
+    .content {
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+// hover style
+.example-1 {
+  .content {
+    background-color: rgba($black, 0.1);
+    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
+  }
+}

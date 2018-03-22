@@ -1,2 +1,14 @@
-<h1>Lovers::End#end</h1>
-<p>Find me in app/views/lovers/end/end.html.erb</p>
+<%= render "layouts/footer" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<h2>ご購入ありがとうございました。<br>
+				またのご利用をお待ちしております。
+			</h2>
+			<p><%= link_to "Topページに戻る", lovers_root_path %></p>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/footer'%>

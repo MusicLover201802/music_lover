@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314071226) do
+ActiveRecord::Schema.define(version: 20180321055134) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180314071226) do
     t.integer "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "jacket_image_id"
     t.index ["admin_id"], name: "index_items_on_admin_id"
     t.index ["artist_name"], name: "index_items_on_artist_name"
     t.index ["artist_name_kana"], name: "index_items_on_artist_name_kana"
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(version: 20180314071226) do
     t.string "building"
     t.string "phone_number", null: false
     t.string "payment", null: false
-    t.string "status", null: false
+    t.string "status", default: "商品準備中", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["first_name"], name: "index_orders_on_first_name"
@@ -158,9 +159,9 @@ ActiveRecord::Schema.define(version: 20180314071226) do
     t.string "city", null: false
     t.string "building"
     t.string "phone_number", null: false
-    t.boolean "retire_flag", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "retire_flag", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["first_name_kana"], name: "index_users_on_first_name_kana"

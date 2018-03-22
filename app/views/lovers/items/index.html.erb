@@ -1,2 +1,50 @@
-<h1>Lovers::Items#index</h1>
-<p>Find me in app/views/lovers/items/index.html.erb</p>
+<%= render 'layouts/header'%>
+<div class="row">
+<%= render 'layouts/Lsidebar' %>
+
+	<!-- main -->
+	<div class="col-xs-6" style="text-align: center">
+		<h4>商品検索</h4>
+		  <%= form_tag(lovers_items_path) do %>
+    		<p>
+		  	  <%= text_field_tag :search %>
+	  		  <%= submit_tag "Search", :name => nil %>
+			</p>
+		  <% end %>
+
+		<h2 class="row headline",　style="text-align: center">商品一覧</h2>
+
+		<div class="row item-index" style="text-align: center">
+		  <% @items.each do |i| %>
+			<div class="example-1 card" style="margin: 20px 0 20px">
+				<div class="wrapper">
+					<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '150', height: '150'%>
+					<div class="data">
+						<div class="content">
+							<span class="index_artist"><%= i.artist_name %></span>
+							<h5 class="index_item_name">
+								<%= link_to i.item_name, lovers_path(i) %></h4>
+							<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
+							<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
+							<tr class="index_item_detail">
+							  <% if i.stock == 0 %>
+								  <p style="color: red">入荷待ち</p>
+								<% elseif i.stock < 5 %>
+								  <p>残り僅か</p>
+								<% else i.stock >= 10 %>
+								  <p>在庫有り</p>
+							  <% end %>
+							</tr>
+						</div>
+					</div>
+				</div>
+			</div>
+		  <% end %>
+
+		<%#= paginate @item, class: "pagenate"%>
+		</div>
+	</div>
+
+<%= render 'layouts/Rsidebar' %>
+</div>
+<%= render 'layouts/footer'%>

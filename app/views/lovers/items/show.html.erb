@@ -1,2 +1,50 @@
-<h1>Lovers::Items#show</h1>
-<p>Find me in app/views/lovers/items/show.html.erb</p>
+<%= render 'layouts/header'%>
+	<div class="row">
+		<%= render 'layouts/Lsidebar' %>
+
+		<!-- main -->
+		<div class="col-xs-6">
+			<h2 class="row headline",　style="text-align: center"><strong>商品詳細</strong></h2>
+
+			<div class="col-xs-4" style="text-align: center">
+				<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
+			</div>
+
+
+			<div class="col-xs-5" style="text-align: left">
+				<ul class="item_detail" style="list-style: none">
+					<li style="font-size: 10px"><strong>商品名</strong></li>
+					  <li class="indent" style="padding-bottom: 10px"><%= @item.item_name %></li>
+					<li style="font-size: 10px"><strong>アーティスト</strong></li>
+					  <li class="indent" style="padding-bottom: 10px"><%= @item.artist_name %></li>
+					<li style="font-size: 10px"><strong>レーベル</strong></li>
+					  <li class="indent" style="padding-bottom: 10px"><%= @item.label_name %></li>
+					<li style="font-size: 10px"><strong>価格</strong></li>
+					  <li class="indent" style="padding-bottom: 10px">￥<%= @item.price.to_s(:delimited) %></li>
+					<li style="font-size: 10px"><strong>ジャンル</strong></li>
+					  <li class="indent"><%= @item.genre.genre_name %></li>
+				</ul>
+
+				<h4 style="padding-top: 20px"><strong>収録曲</strong></h4>
+					<% @item.tracks.each do |it| %>
+				<ul style="list-style: none">
+					<li><%= it.track_num %>. <%= it.track_name %></li>
+					<% end %>
+				</ul>
+			</div>
+
+			<div class="col-xs-3" style="text-align: center">
+				<!-- カートに入れるボタン：深井追記 -->
+				<%= form_for @new_order, url:lovers_user_items_path do |n| %>
+				<%= n.hidden_field :item_id %>
+				<%= n.number_field :quantity %>
+				<%= n.submit 'カートに入れる', class:'btn btn-primary' %>
+				<% end %>
+				<!-- 深井追記ここまで -->
+				<button class="btn btn-danger">売り切れ</button>
+				<button class="btn btn-default">近日発売</button>
+			</div>
+		</div>
+		<%= render 'layouts/Rsidebar' %>
+	</div>
+<%= render 'layouts/footer'%>
