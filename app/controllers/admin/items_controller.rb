@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.all.reverse_order
   end
 
   def show
@@ -8,8 +8,6 @@ class Admin::ItemsController < ApplicationController
     @items = Item.all
     genres = Item.find_by_genre_id(params[:id])
     @genre = Genre.find_by_id(genres)
-    # binding.pry
-    
   end
 
   def edit
@@ -20,7 +18,6 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
     discs = @item.discs.build
     tracks = discs.tracks.build
-    # 2.times { tracks }
   end
 
   def create
@@ -31,10 +28,6 @@ class Admin::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-
-    binding.pry
-
-
     item.update(item_params)
     redirect_to admin_items_path
   end

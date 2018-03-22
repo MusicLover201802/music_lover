@@ -28,7 +28,6 @@ before_action :get_current_cart
     @user = User.find(current_user.id)
     @user_items = @user.user_items
     @user_items.each do |user_items|  #カート中身を1レコードずつ削除していく
-      binding.pry
       user_items.destroy
     end
     redirect_to lovers_end_path
@@ -38,36 +37,36 @@ before_action :get_current_cart
   def update
     item = UserItem.find(params[:id])
     item.update(quantity_params)
-
     item.save
     redirect_to lovers_user_item_path(current_user.id)
   end
 
-# カートの中身を新規に生成するアクション 作成中
-  def add_item
-    @add_item = UserItem.new(add_item_params)
-    @add_item.user_id = current_user.id
-
-    @add_item.save
-    redirect_to  lovers_user_item_path(current_user.id)
+  # カートの中身を新規に生成するアクション 作成中
+  def create
+    @new_order = UserItem.new(add_item_params)
+    @new_order.user_id = current_user.id
+    # binding.pry
+    @new_order.save
+    redirect_to lovers_user_item_path(current_user.id)
   end
 
 
   def show
   end
 
+
 private
 
-  def user_item_params
-    params.require(:user_item).permit(:id)
-  end
+  # def user_item_params
+  #   params.require(:user_item).permit(:id)
+  # end
 
   def quantity_params
     params.require(:user_item).permit(:quantity)
   end
 
   def add_item_params
-    params.requre(:user_item).permit(:item_id)
+    params.require(:user_item).permit(:quantity, :item_id)
   end
 
 end
