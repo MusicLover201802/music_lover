@@ -56,17 +56,33 @@ class Lovers::OrdersController < ApplicationController
 	end
 
 
-	# 購入履歴(Orders)を保存する処理
+	# 購入アクション①：在庫から注文数を引き、０未満にならないことを確認したあとで購入履歴(Orders)を保存する処理
+	# ０未満になった場合は、その回の注文を他の商品も含めて無効にし、カート画面に遷移させる
+
 	def create
+	    ActiveRecord::Base.transaction do
+	    	@user = User.find(current_user.id)
+    		@user_items = UserItem.where(user_id: current_user.id)
+
+		 	@user_items.each do |user_items| #1レコードごとに、itemsテーブルのstockカラム - カートの中の数量 を実行し、save
+	        	user_items.item.stock -= user_items.quantity
+	        	user_items.item.save!
+	       	end
+	    end
+
 	    @neworder = Order.new(order_params)
 	    @neworder.user_id = current_user.id
 	    @neworder.save
 	    redirect_to lovers_orders_orderitems_save_path
+
+	    rescue ActiveRecord::RecordInvalid
+	    redirect_to lovers_user_item_path(current_user.id)
 	end
 
-	# 購入明細(Order_items)を保存する処理
-	# order_idは、カレントユーザーの直近の注文idを取ってくるよう設定しました
-	# 流れ：①過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡しています
+
+	# 購入アクション②：購入明細(Order_items)を保存する処理
+	# order_idは、カレントユーザーの直近の注文idを取ってくるよう設定した
+	# 流れ：①過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡す
 	def orderitems_save
 	 	@user_items = UserItem.where(user_id: current_user.id)
 	    past_order = Order.order("created_at DESC").find_by(user_id: current_user.id)
@@ -77,7 +93,7 @@ class Lovers::OrdersController < ApplicationController
 	    								  order_id: past_order.id)
 	    	@neworderitem.save
 	    end
-	  	redirect_to lovers_user_items_cart_stock_path
+        redirect_to lovers_user_items_cart_destroy_path
 	end
 
 
