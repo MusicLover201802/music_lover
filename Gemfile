@@ -62,6 +62,7 @@ gem 'jquery-rails'
 gem 'enum_help'
 gem 'kakurenbo-puti'
 gem 'seed-fu'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :development do
   gem 'pry-rails'
