@@ -28,17 +28,18 @@
             <thead>
                <tr>
         	　　 <th>ユーザーID</th>
-        	　　 <th>CD名</th>
-        	　　 <th>アーティスト名</th>
-        	　　 <th>ジャンル</th>
-        	　　 <th>レーベル</th>
+        	　　 <th>性</th>
+        	　　 <th>名</th>
+        	　　 <th>セイ</th>
+        	　　 <th>メイ</th>
                </tr>
             </thead>
             <% @users.each do |u| %>
             <tbody>
                <tr>
                 <td><%= u.id %></td>
-                <td><%= u.last_name %></td>
+            <td><%= link_to u.last_name, admin_user_path(u) %></td>
+                <!-- <td><%= u.last_name %></td> -->
                 <td><%= u.first_name %></td>
                 <td><%= u.last_name_kana %></td>
                 <td><%= u.first_name_kana %></td>

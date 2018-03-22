@@ -67,5 +67,11 @@ group :development do
   gem 'pry-rails'
   gem 'hirb'
   gem 'hirb-unicode'
+  # さのが追加
+  gem 'pry-byebug'
+  gem 'nested_form_fields'
+  gem 'cocoon'
+  gem "nested_form"
+  gem 'jquery-turbolinks'
 end
 

@@ -13,5 +13,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= require nested_form_fields
+//= require cocoon
+//= require jquery_nested_form

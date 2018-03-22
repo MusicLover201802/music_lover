@@ -1,17 +1,16 @@
 <div class="col-xs-3 side-bar" style="background-color: #ffe69c">
 	<ul class="genre-nav" style="text-align: center">
 		<h3>ジャンル</h3>
-		<li><%= link_to "POP", lovers_items_path,as: :index %></li>
-		<li><%= link_to "ROCK", lovers_items_path,as: :index %></li>
-		<li><%= link_to "JAZZ", lovers_items_path,as: :index %></li>
-		<li><%= link_to "IDOL", lovers_items_path,as: :index %></li>
-		<li><%= link_to "R&B", lovers_items_path,as: :index %></li>
+		<% @items.each do |i| %>
+		<li class="genre_list">
+			<%= link_to i.genre.genre_name, lovers_genres_path(i) %></li>
+		<% end %>
 		<br>
-		<li><%= link_to "一覧", lovers_items_path,as: :index %></li>
+		<li class="genre_list"><%= link_to "一覧", lovers_items_path %></li>
 	</ul>
 	<div class="banner-box" style="text-align: center">
-		<img class="banner" src="/Thailand.jpg" width="300" height="80">
-		<img class="banner" src="/samurai.jpg" width="300" height="80" vspace="10">
-		<img class="banner" src="/progate.jpg" width="300" height="80">
+		<img class="banner col-xs-10 col-xs-offset-1" src="/Thailand.jpg" width="300" height="80">
+		<img class="banner col-xs-10 col-xs-offset-1" src="/samurai.jpg" width="300" height="80" vspace="10">
+		<img class="banner col-xs-10 col-xs-offset-1" src="/progate.jpg" width="300" height="80">
 	</div>
 </div>
