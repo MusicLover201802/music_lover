@@ -90,5 +90,3 @@ UserItem.create(user_id: '1', item_id: '3', quantity: '1')
 UserItem.create(user_id: '1', item_id: '4', quantity: '1')
 UserItem.create(user_id: '2', item_id: '2', quantity: '3')
 UserItem.create(user_id: '2', item_id: '4', quantity: '2')
-
-

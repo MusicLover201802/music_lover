@@ -32,7 +32,8 @@
 				  <% @orders.each do |order| %>
 					<div class="panel panel-warning">
 						<div class="panel-heading clearfix">
-							<span style="float: left"><%= order.created_at %></span>
+							<span style="float: left">
+								<%= link_to order.created_at, lovers_order_path(params[:id]) %></span>
 							<span style="float: right;"><%= order.status %></span>
 						</div>
 						<div class="panel-body" style="padding: 15px 15px 0 15px">
