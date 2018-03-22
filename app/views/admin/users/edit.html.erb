@@ -69,6 +69,12 @@
 				<%= f.email_field :email, autofocus: true, autocomplete: "off", size: 65 %>
 			</div>
 
+			<div class="field col-xs-12">
+				<%= f.label :retire_flag %><br />
+				<%= f.select :retire_flag, [['退会', true], ['アクティブ', false]] %>
+
+			</div>
+
 			<div class="col-xs-5">
 				<div>
 					<%= f.submit "Update User", class: "btn btn-warning", style: "margin: 30px" %>
