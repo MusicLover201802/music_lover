@@ -62,10 +62,17 @@ gem 'jquery-rails'
 gem 'enum_help'
 gem 'kakurenbo-puti'
 gem 'seed-fu'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :development do
   gem 'pry-rails'
   gem 'hirb'
   gem 'hirb-unicode'
+  # さのが追加
+  gem 'pry-byebug'
+  gem 'nested_form_fields'
+  gem 'cocoon'
+  gem "nested_form"
+  gem 'jquery-turbolinks'
 end
 

@@ -1,7 +1,7 @@
 <%= render 'layouts/header'%>
 <div class="row">
 	<div class="col-xs-3" style="text-align: right">
-		<h2><strong>マイページ</strong></h2>
+		<h2 style="margin-top: 40px"><strong>マイページ</strong></h2>
 	</div>
 </div>
 <div class="row">
@@ -14,11 +14,12 @@
 			</thread>
 			<tbody>
 				<tr>
-					<th>名前太郎<!-- <%#= user.name(current_user) %> --></th>
-					<th>様</th>
-					<th><%= link_to edit_user_registration_path do %>
-							<button class="btn btn-primary">お客様情報編集</button>
-						<% end %></th>
+					<th width="100px"><%= current_user.last_name %></th>
+					<th width="100px"><%= current_user.first_name %></th>
+					<th width="150px">様</th>
+					<th width="50px"><%= link_to edit_user_registration_path do %>
+					  <button class="btn btn-primary">お客様情報編集</button>
+					  <% end %></th>
 				</tr>
 			</tbody>
 		</table>
@@ -28,33 +29,40 @@
 			</thread>
 			<tbody>
 				<td>
+				  <% @orders.each do |order| %>
 					<div class="panel panel-warning">
-						<div class="panel-heading">
-							<span>yyyy/mm/dd</span>
-							<span>Status</span>
+						<div class="panel-heading clearfix">
+							<span style="float: left"><%= order.created_at %></span>
+							<span style="float: right;"><%= order.status %></span>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" style="padding: 15px 15px 0 15px">
 							<table class="table">
 								<tbody>
 									<tr>
-										<td>画像</td>
-										<td>title</td>
-										<td>Artist</td>
-										<td>￥0,000</td>
-										<td>n枚</td>
-										<td>￥0,000</td>
+									  <% sum = 0 %>
+					  					<% order.order_items.each do |i| %>
+										<td><%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_s.png", width: '20', height: '20'%></td>
+										<td><%= i.item.item_name %></td>
+										<td><%= i.item.artist_name %></td>
+										<td>￥<%= i.price.to_s(:delimited) %></td>
+										<td><%= i.quantity %></td>
+										<% sub_total = i.price * i.quantity %>
+										<% sum = sum + sub_total %>
+										<td>￥<%= sub_total.to_s(:delimited) %></td>
 									</tr>
+					  				  <% end %>
 									<td>
 										<td></td>
 										<td></td>
 										<td></td>
-										<td></td>
-										<td>合計金額</td>
+										<td>合計</td>
+										<td>￥<%= sum.to_s(:delimited)  %></td>
 									</td>
 								</tbody>
 							</table>
 						</div>
 					</div>
+				  <% end %>
 				</td>
 			</tbody>
 		</table>
@@ -66,3 +74,6 @@
 			<!-- 論理削除実装時　#外す -->
 			<%#= link_to "退会", lovers_user_path(current_user), method: :patch %>
 		</button>
+	</div>
+</div>
+<%= render 'layouts/footer'%>
