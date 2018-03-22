@@ -8,8 +8,6 @@ class Admin::ItemsController < ApplicationController
     @items = Item.all
     genres = Item.find_by_genre_id(params[:id])
     @genre = Genre.find_by_id(genres)
-    # binding.pry
-    
   end
 
   def edit
@@ -20,7 +18,6 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
     discs = @item.discs.build
     tracks = discs.tracks.build
-    # 2.times { tracks }
   end
 
   def create

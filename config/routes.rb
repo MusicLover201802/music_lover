@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
       get '/user_items/check', to: 'user_items#check'
       get '/user_items/cart_stock', to: 'user_items#cart_stock'
-      get '/user_items/order_save', to: 'user_items#order_save'
       get '/user_items/orderitems_save', to: 'user_items#orderitems_save'
       get '/user_items/cart_destroy', to: 'user_items#cart_destroy'
       resources :user_items, only: [:show, :create, :destroy, :update]
@@ -64,6 +63,5 @@ Rails.application.routes.draw do
 
 
   get '/admins/:id', to: 'admin/admins#show', as: 'show_admin'
-    
 
 end
