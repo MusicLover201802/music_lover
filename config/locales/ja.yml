@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      Genre: ジャンル
+      item: 商品
+    attributes:
+      genre:
+        genre_name: あ
+      item:
+        item_name: 商品名
+        artist_name: アーティスト名
+        artist_name_kana: アーティスト名(カナ)
+        genre_id: ジャンルID
+        price: 値段
+        label_name: レーベル名
+        stock: 在庫
+        release_date: 発売日
+        admin_id: 登録者ID
+      item/discs:
+        disc_name: ディスク名
