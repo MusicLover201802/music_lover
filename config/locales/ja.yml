@@ -1,11 +1,10 @@
 ja:
   activerecord:
     models:
-      Genre: ジャンル
+      genre: ジャンル
       item: 商品
+      disc: ディスク
     attributes:
-      genre:
-        genre_name: あ
       item:
         item_name: 商品名
         artist_name: アーティスト名
@@ -18,3 +17,7 @@ ja:
         admin_id: 登録者ID
       item/discs:
         disc_name: ディスク名
+        disc_num: ディスクNo.
+      item/discs/tracks:
+        track_name: 曲名
+        track_num: 曲No.

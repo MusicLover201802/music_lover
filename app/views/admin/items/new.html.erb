@@ -34,7 +34,7 @@
 			<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
 			<%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", class: "user-edit-form" %>
 		</div>
-		<div class="col-xs-3" style="margin-bottom: 50px;">
+		<div class="col-xs-3" style="margin-bottom: 30px;">
 			<div><h4>商品情報</h4></div>
 			<div class="field">
 				<div>商品名</div>
@@ -77,7 +77,7 @@
 
 	<div class="row">
 		<div class="col-xs-4 col-xs-offset-4">
-			<div class="row btn-margin-top">
+			<div class="row">
 				<div class="actions col-xs-6">
 					<%= f.submit "商品追加", class: "btn btn-primary btn-block col-xs-12" %>
 				</div>

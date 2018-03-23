@@ -16,9 +16,8 @@ class Item < ApplicationRecord
 	validates :artist_name_kana, presence: true
 	validates :genre_id, presence: true
 	validates :price, presence: true
-	validates :stock, presence: true
 	validates :release_date, presence: true
 	validates :admin_id, presence: true
 
-
+	validates :stock, numericality: { greater_than_or_equal_to: 0 }
 end

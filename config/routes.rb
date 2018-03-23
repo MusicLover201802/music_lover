@@ -13,14 +13,16 @@ Rails.application.routes.draw do
 
       get '/user_items/check', to: 'user_items#check'
       get '/user_items/cart_stock', to: 'user_items#cart_stock'
-      get '/user_items/orderitems_save', to: 'user_items#orderitems_save'
+      # get '/user_items/orderitems_save', to: 'user_items#orderitems_save'
       get '/user_items/cart_destroy', to: 'user_items#cart_destroy'
+
       resources :user_items, only: [:show, :create, :destroy, :update]
 
       get '/end', to: 'end#end'
 
       resources :destinations, only: [:new, :create, :destroy]
 
+      get '/orders/orderitems_save', to: 'orders#orderitems_save'
       resources :orders, only: [:new, :show, :create]
 
       get '/items/', to: 'items#index'

@@ -48,72 +48,28 @@
 				<div class="">商品送付先</div>
 				<%= link_to '送り先の変更はこちら', new_lovers_destination_path, class: 'btn btn-default' %>
 				<div class="line"> </div>
-				<%= @neworder.last_name %> <%= @neworder.first_name %><br>
 				<%= @neworder.postal_code %><br>
-				<%= @neworder.prefecture %><%= @neworder.city %><br>
-				<%= @neworder.building %><br>
+				<%= @neworder.prefecture %> <%= @neworder.city %> <%= @neworder.building %><br>
 				<%= @neworder.phone_number %>
+				<%= @neworder.last_name %> <%= @neworder.first_name %>様<br>
 
-
-				<%= form_for @neworder, url: lovers_user_items_path do |f| %>
-	              			<div class="field col-xs-6">
-	                		<%= f.label :last_name, "姓"%><br />
-	             			<%= f.text_field :last_name %>
-							</div>
-
-	              			<div class="field col-xs-6">
-			                <%= f.label :first_name, "名"%><br />
-			               	<%= f.text_field :first_name %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= f.label :last_name_kana, "姓（カナ）"%><br />
-							<%= f.text_field :last_name_kana %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= f.label :first_name_kana, "名（カナ）"%><br />
-							<%= f.text_field :first_name_kana %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= f.label :postal_code, "郵便番号"%><br />
-							<%= f.text_field :postal_code %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= f.label :prefecture, "都道府県"%><br />
-							<%= f.text_field :prefecture %>
-							</div>
-
-	              			<div class="field col-xs-12">
-	                		<%= f.label :city, "市区町村名・番地"%><br />
-							<%= f.text_field :city %>
-							</div>
-
-	              			<div class="field col-xs-12">
-	                		<%= f.label :building, "マンション・アパート名"%><br />
-							<%= f.text_field :building %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= f.label :phone_number, "電話番号"%><br />
-							<%= f.text_field :phone_number %>
-
-			</div>
-
-			<!-- 支払い方法選択 -->
-			<div class="">
-				<div class="">支払い方法</div>
-				<%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'} %>
-				<%= f.submit '購入履歴保存',  class: 'col-xs-3 btn btn-danger' %>
-				<%end%>
-				<div class="line"> </div>
-			</div>
+				<%= form_for @neworder, url: lovers_orders_path do |f| %>
+         			<%= f.hidden_field :last_name %>
+	               	<%= f.hidden_field :first_name %>
+					<%= f.hidden_field :last_name_kana %>
+					<%= f.hidden_field :first_name_kana %>
+					<%= f.hidden_field :postal_code %>
+					<%= f.hidden_field :prefecture %>
+					<%= f.hidden_field :city %>
+					<%= f.hidden_field :building %>
+					<%= f.hidden_field :phone_number %>
+					<%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'} %>
+			<%= f.submit '購入を確定する', class: 'col-xs-3 btn btn-danger' %>
+				<% end %>
+				<br/>
 
 			<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs- btn btn-default' %><br>
-			<%= link_to '在庫減数', lovers_user_items_cart_stock_path, class: 'col-xs-3 btn btn-danger' %>
-			<%= link_to '購入明細保存', lovers_user_items_orderitems_save_path, class: 'col-xs-3 btn btn-danger' %>
+
 			<%= link_to 'カート内削除', lovers_user_items_cart_destroy_path, class: 'col-xs-3 btn btn-danger' %>
 
 		</div>
