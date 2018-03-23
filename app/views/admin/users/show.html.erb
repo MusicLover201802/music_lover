@@ -44,6 +44,11 @@
 					<tr>
 						<th>メール</th>
 						<th><%= @user.email %></th>
+					</tr>
+					<tr>
+						<th>フラグ</th>
+						<th><%= @user.retire_flag ? "退会済" : "アクティブ" %></th>
+					</tr>
 				</tbody>
 			</table>
 

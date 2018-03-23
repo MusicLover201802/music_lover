@@ -51,6 +51,10 @@ class Admin::Admins::RegistrationsController < Devise::RegistrationsController
      devise_parameter_sanitizer.permit(:account_update, keys: [:admin_name])
    end
 
+   def update_resource(resource, params)
+     resource.update_without_password(params)
+   end
+
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)
@@ -62,7 +66,7 @@ class Admin::Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
    def after_update_path_for(resource)
-      admin_top_path
+      show_admin_path(resource)
     end
 
 end
