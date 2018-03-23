@@ -41,25 +41,30 @@
 				<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
 			</div>
 
-			<div class="col-xs-5 col-xs-offset-1" style="text-align: left">
+			<div class="col-xs-3" style="text-align: left">
 				<ul class="item_detail" style="list-style: none">
-					<li style="font-size: 10px"><strong>商品名</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.item_name %></li>
-					<li style="font-size: 10px"><strong>アーティスト</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.artist_name %></li>
-					<li style="font-size: 10px"><strong>レーベル</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.label_name %></li>
-					<li style="font-size: 10px"><strong>価格</strong></li>
-					  <li class="indent" style="padding-bottom: 10px">￥<%= @item.price.to_s(:delimited) %></li>
-					<li style="font-size: 10px"><strong>ジャンル</strong></li>
+					<li style="font-size: 20px"><strong>商品名</strong></li>
+					  <li class="indent" style="padding-bottom: 20px"><%= @item.item_name %></li>
+					<li style="font-size: 20px"><strong>アーティスト</strong></li>
+					  <li class="indent" style="padding-bottom: 20px"><%= @item.artist_name %></li>
+					<li style="font-size: 20px"><strong>レーベル</strong></li>
+					  <li class="indent" style="padding-bottom: 20px"><%= @item.label_name %></li>
+					<li style="font-size: 20px"><strong>価格</strong></li>
+					  <li class="indent" style="padding-bottom: 20px">￥<%= @item.price.to_s(:delimited) %></li>
+					<li style="font-size: 20px"><strong>ジャンル</strong></li>
 					  <li class="indent"><%= @item.genre.genre_name %></li>
+					 <li style="font-size: 20px"><strong>在庫</strong></li>
+					  <li class="indent"><%= @item.stock %></li>
 				</ul>
-
+			</div>
+				<div class="col-xs-4">
+					
 				<h4 style="padding-top: 20px"><strong>収録曲</strong></h4>
 					<% @item.tracks.each do |it| %>
 				<ul style="list-style: none">
 					<li><%= it.track_num %>. <%= it.track_name %></li>
 					<% end %>
+<<<<<<< HEAD
 				</ul>
 			</div>
 =======
@@ -180,3 +185,6 @@
 
 </div>
 >>>>>>> Stashed changes
+=======
+				</div>
+>>>>>>> f028c53b62550b814cd31e08bb5359120b2f7b2c

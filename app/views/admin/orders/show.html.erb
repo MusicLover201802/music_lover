@@ -52,9 +52,12 @@
 			</div>
 			<div class="panel-footer text-right">小計￥<%= sub_total.to_s(:delimited) %></div>
 		</div>
-	  <% end %>
-	</div>
 
+		<% sum = sum + sum %>
+		<div class="text-right">仮合計￥<%= sum.to_s(:delimited) %></div>
+			  <% end %>
+	</div>
+<%= link_to "編集", edit_admin_order_path(@order.id), class: "btn btn-primary btn-xs" %>
 
 	<div class="col-xs-6 col-xs-offset-3">
 		<table class="whole col-xs-12">
