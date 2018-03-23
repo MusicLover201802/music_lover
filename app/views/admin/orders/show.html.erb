@@ -1,67 +1,75 @@
-    <%= render "layouts/admin/header" %>
+<%= render "layouts/admin/header" %>
 
 <div class="contener">
-    <div class="row">
-        <div class="col-xs-3" style="text-align: right;">
-            <h2><strong>購入詳細</strong></h2>
-        </div>
-        <div class="col-xs-6">
-            <%= link_to "内容編集", edit_admin_order_path, class: "btn btn-primary btn-default btn-margin-top" %>
-        </div>
-    </div>
-</div>
-
-<!-- パクリ -->
-<div class="container">
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
-			<table class="whole col-xs-12 ">
-				<tr>
-					<th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana%>  様</td>
-				</tr>
-				<tr>
-					<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
-				</tr>
-				<tr>
-					<th>注文状況</th><td><%= @order.status %></td>
-				</tr>
-				<tr>
-					<th>購入金額合計</th><td></td>
-				</tr>
-				<tr>
-					<th>お支払い方法</th><td><%= @order.payment %></td>
-				</tr>
-				<tr>
-					<th>購入内容</th><td>
-					<table class="items-table">
-						<tr>
-							<th>商品名</th><td>    </td>
-						</tr>
-						<tr>
-							<th>アーティスト名</th><td>   </td>
-						</tr>
-						<tr>
-							<th>単価</th><td>   </td>
-						</tr>
-						<tr>
-							<th>数量</th><td>   </td>
-						</tr>
-						<tr>
-							<th>小計</th><td>    </td>
-						</tr>
-					</table></td>
-				</tr>
-				<tr>
-					<th>商品送付先</th>
-					<td>
-					<%= @order.postal_code %><br>
-					<%= @order.prefecture %><%= @order.city %><br>
-					<%= @order.building %><br>
-					<%= @order.phone_number %>
-					</td>
-				<tr>
-			</table>
-			<%= link_to '戻る', :back , class: 'btn btn-default' %>
+	<div class="row btn-margin-top">
+		<div class="col-xs-3" style="text-align: center;">
+			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
 		</div>
+	</div>
+
+<div class="row">
+	<div class="col-xs-3" style="text-align: right">
+		<h2 style="margin-top: 40px"><strong>購入詳細</strong></h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<table class="whole col-xs-12">
+			<tr>
+				<th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
+			</tr>
+			<tr>
+				<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
+			</tr>
+			<tr>
+				<th>注文状況</th><td><%= @order.status %></td>
+			</tr>
+			<tr>
+				<th>購入金額合計</th><td></td>
+			</tr>
+			<tr>
+				<th>お支払い方法</th><td><%= @order.payment %></td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
+	  <% @order.order_items.each do |i| %>
+		<div class="panel panel-default">
+			<div class="panel-body" style="padding: 15px 15px 0 15px">
+			<% sum = 0 %>
+				<table>
+					<tbody>
+						<tr>
+							<td width="400"><%=i.item.item_name %></td>
+							<td width="200"><%=i.item.artist_name %></td>
+							<td width="150">￥<%= i.price.to_s(:delimited) %></td>
+							<td width="50"><%= i.quantity %>枚</td>
+							<% sub_total = i.price * i.quantity %>
+							<% sum = sum + sub_total %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer text-right">小計￥<%= sub_total.to_s(:delimited) %></div>
+		</div>
+
+		<% sum = sum + sum %>
+		<div class="text-right">仮合計￥<%= sum.to_s(:delimited) %></div>
+			  <% end %>
+	</div>
+<%= link_to "編集", edit_admin_order_path(@order.id), class: "btn btn-primary btn-xs" %>
+
+	<div class="col-xs-6 col-xs-offset-3">
+		<table class="whole col-xs-12">
+		<tr>
+			<th>商品送付先</th>
+			<td>
+			<%= @order.postal_code %><br>
+			<%= @order.prefecture %><%= @order.city %><br>
+			<%= @order.building %><br>
+			<%= @order.phone_number %>
+			</td>
+		</tr>
+		</table>
 	</div>
 </div>

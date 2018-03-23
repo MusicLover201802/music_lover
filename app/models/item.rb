@@ -11,6 +11,8 @@ class Item < ApplicationRecord
 
 	attachment :jacket_image
 
+
+end
 	validates :item_name, presence: true
 	validates :artist_name, presence: true
 	validates :artist_name_kana, presence: true
