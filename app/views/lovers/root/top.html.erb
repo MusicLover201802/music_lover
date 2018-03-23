@@ -1,2 +1,44 @@
-<h1>Lovers::Root#top</h1>
-<p>Find me in app/views/lovers/root/top.html.erb</p>
+		<script>
+			$(document).ready(function(){
+				$('.bxslider').bxSlider();
+			});
+		</script>
+
+	<body>
+			<!-- header -->
+		<%= render 'layouts/header'%>
+			<div class="row">
+			<!-- L sidebar -->
+		<%= render 'layouts/Lsidebar' %>
+			<!-- main -->
+				<div class="col-xs-6">
+					<h4 style="text-align: center">商品検索</h4>
+					<%= form_tag(lovers_items_path) do %>
+			    	  <p><%= text_field_tag :search %>
+				  		<%= submit_tag "Search", :name => nil %>
+					  </p>
+					<% end %>
+					<!-- 見出し -->
+					<div class="row pop">
+						<img class="BANANA col-xs-8 col-xs-offset-2" src="/infratop.png">
+						<img class="BANANA col-xs-8 col-xs-offset-2" src="/wcp.png">
+					</div>
+
+					<!-- pickup -->
+					<div class="row pickup" style="text-align: center">
+						<h2>今月のPick Up</h2>
+	 					<ul class="bxslider">
+							<li><img src="/yuki.jpg" class="pickup"></li>
+							<li><img src="/ange_rave.jpg" class="pickup"></li>
+					  		<li><img src="/grieva.jpg" class="pickup"></li>
+							<!-- <li><img src="/bake.jpg" class="pickup"></li> -->
+						</ul>
+					</div>
+				</div>
+			<!-- R sidebar -->
+			<%= render 'layouts/Rsidebar' %>
+			</div>
+		</div>
+	<!-- footer -->
+<%= render 'layouts/footer'%>
+	</body>

@@ -1,2 +1,55 @@
-<h1>Lovers::UserItems#show</h1>
-<p>Find me in app/views/lovers/user_items/show.html.erb</p>
+<%= render 'layouts/header'%><!-- header -->
+
+<h1 style="text-align: center">*カート内容表示画面*</h1>  <!-- 完成したらこの行は削除する -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<h1>ショッピングカート</h1>
+			<table class="table table-stripped">
+				<thead>
+					<tr>
+						<th>商品画像</th>
+						<th>商品名/アーティスト名</th>
+						<th>単価</th>
+						<th>数量</th>
+						<th>   </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user_items.each do |u_i| %>
+					<tr>
+						<td> <!-- attachment_image_tag予定地 --></td>
+						<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
+						<td><%= u_i.item.price %></td>   <!-- 余裕があれば、金額形式で表記する -->
+
+						<td><%= u_i.item.price * u_i.quantity %>  </td>
+						<td><%= link_to "削除", lovers_user_item_path(u_i.id), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}  %></td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				</tbody>
+			</table>
+					<%= form_for u_i, url:lovers_user_item_path , method: :patch do |f| %>
+							<%= f.number_field :quantity, min:0  %>
+							<%= f.hidden_field :id  %>
+							<%= f.submit '更新' %>
+					<% end %>
+							<% end %>
+
+				<thoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>購入金額合計：</td>
+						<td><<!-- カート内合計金額を導き出す　やりかた不明 --></td>
+					</tr>
+				</thoot>
+			<%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
+			<%= link_to "レジへ進む", new_lovers_order_path, class: "btn btn-info" %>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/footer'%>
+

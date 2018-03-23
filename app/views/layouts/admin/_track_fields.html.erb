@@ -1,0 +1,11 @@
+<div class="nested-fields">
+	<div class="col-xs-1 field">
+		<%= f.label :track_num, "No." %>
+		<%= f.text_field :track_num %>
+	</div>
+	<div class="col-xs-5 field">
+		<%= f.label :track_name, "曲名" %>
+		<%= f.text_field :track_name %>
+	</div>
+	<%= link_to_remove_association "remove task", ff %>
+</div>

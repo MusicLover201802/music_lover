@@ -1,2 +1,102 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<%= render 'layouts/admin/header' %>
+
+
+<div class="contener">
+	<div class="row btn-margin-top">
+		<div class="col-xs-3" style="text-align: center;">
+			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4" style="text-align: right;">
+			<h2><strong>ユーザー情報編集</strong></h2>
+		</div>
+	</div>
+</div>
+
+<div class="contener ad-margin-user">
+	<div class="row">
+		<%= form_for @user, :url => admin_user_path do |f| %>
+		<div class="col-xs-offset-3 col-xs-6">
+
+			<div class="field col-xs-6">
+				<%= f.label :last_name, "姓"%><br />
+				<%= f.text_field :last_name, autofocus: true, autocomplete: "off", size: 30 %>
+			</div>
+
+			<div class="field col-xs-6">
+				<%= f.label :first_name, "名" %><br />
+				<%= f.text_field :first_name, autofocus: true, autocomplete: "off", size: 27 %>
+			</div>
+
+			<div class="field col-xs-6">
+				<%= f.label :last_name_kana,"セイ" %><br />
+				<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "off", size: 30 %>
+			</div>
+
+			<div class="field col-xs-6">
+				<%= f.label :first_name_kana,"メイ" %><br />
+				<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "off", size: 27 %>
+			</div>
+
+			<div class="field col-xs-12">
+				<%= f.label :postal_code,"郵便番号" %><i> 例)1234567</i><br />
+				<%= f.text_field :postal_code, autofocus: true, autocomplete: "off", size: 30 %>
+			</div>
+
+			<div class="field col-xs-6">
+				<%= f.label :prefecture,"都道府県" %><br />
+				<%= f.text_field :prefecture, autofocus: true, autocomplete: "off", size: 30 %>
+			</div>
+
+			<div class="field col-xs-6">
+				<%= f.label :city,"市区町村" %><br />
+				<%= f.text_field :city, autofocus: true, autocomplete: "off", size: 27 %>
+			</div>
+
+			<div class="field col-xs-12">
+				<%= f.label :building,"建物マンション名" %><br />
+				<%= f.text_field :building, autofocus: true, autocomplete: "off", size: 65 %>
+			</div>
+
+			<div class="field col-xs-12">
+				<%= f.label :phone_number,"電話番号" %><i> 例)0312345678</i><br />
+				<%= f.telephone_field :phone_number, autofocus: true, autocomplete: "off", size: 30 %>
+			</div>
+
+			<div class="field col-xs-12">
+				<%= f.label :email %><br />
+				<%= f.email_field :email, autofocus: true, autocomplete: "off", size: 65 %>
+			</div>
+
+			<div class="field col-xs-12">
+				<%= f.label :retire_flag %><br />
+				<%= f.select :retire_flag, [['退会', true], ['アクティブ', false]] %>
+
+			</div>
+
+			<div class="col-xs-5">
+				<div>
+					<%= f.submit "Update User", class: "btn btn-warning", style: "margin: 30px" %>
+				</div>
+			</div>
+
+
+			<% end %>
+
+			<div class="col-xs-12">
+				<span>
+					<%#= link_to '削除', admin_item_path(@item), method: :delete, class: "btn btn-danger" %>
+				</span>
+				<span>
+				</span>
+			</div>
+
+		</div>
+
+
+
+		
+	</div>
+</div>
+

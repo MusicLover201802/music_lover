@@ -1,3 +1,29 @@
-// Place all the styles related to the lovers/orders controller here.
+// Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.line {
+	height: 2px;
+	background-color: #BDBDBD;
+}
+
+
+p {
+	vertical-align: center;
+}
+
+table.whole tr {
+	border-bottom: 1px solid #BDBDBD;
+	height: 60px;
+}
+
+table.items-table {
+	border: 1px solid #BDBDBD;
+	border-radius: 1em;
+	margin: 5px 0px;
+}
+
+table.items-table tr {
+	border-bottom: 0px solid #BDBDBD;
+	height: 0px;
+}

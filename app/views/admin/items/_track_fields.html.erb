@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-xs-6 field">
+		<%= f.label :track_num, "No." %>
+		<%= f.text_field :track_num %>
+	</div>
+	<div class="col-xs-6 field">
+		<%= f.label :track_name, "曲名" %>
+		<%= f.text_field :track_name %>
+		<%= f.hidden_field :_destroy %>
+		<div>
+		<%= link_to "削除", '#', class: "remove_fields" %>
+		</div>
+	</div>
+</div>
