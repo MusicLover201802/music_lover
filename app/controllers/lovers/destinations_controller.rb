@@ -19,10 +19,17 @@ class Lovers::DestinationsController < ApplicationController
 	end
 
 
-
-	private
+  private
 	def dest_params
-		params.require(:destination).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number)
+		params.require(:destination).permit(:last_name,
+											:first_name,
+											:last_name_kana,
+											:first_name_kana,
+											:postal_code,
+											:prefecture,
+											:city,
+											:building,
+											:phone_number)
 	end
 
 end

@@ -4,99 +4,76 @@
 
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2" style="background-color:red;">
-     <!-- refile機能の実装まだです -->
-     <input type="file">
+<!-- main -->
+<div class="contener">
+	<%= form_for @item, :url => admin_items_path do |f| %>　<!-- フォーム1はじまり -->
+
+	<% if @item.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<ul>
+			<% @item.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div coass="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
+			<%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", class: "user-edit-form" %>
+		</div>
+		<div class="col-xs-3" style="margin-bottom: 30px;">
+			<div><h4>商品情報</h4></div>
+			<div class="field">
+				<div>商品名</div>
+				<%= f.text_field :item_name, class: 'col-xs-12' %>
+				<div>アーティスト名</div>
+				<%= f.text_field :artist_name, class: 'col-xs-12' %>
+				<div>アーティスト名(カナ)</div>
+				<%= f.text_field :artist_name_kana, class: 'col-xs-12' %>
+				<div>ジャンルID</div>
+				<%#= f.collection_select(:genre_id, Genre.all, :id, :genre_name, :prompt => true) %>
+				<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_name), { :prompt => true } %>
+				<div>値段</div>
+				<%= f.text_field :price, class: 'col-xs-12' %>
+				<div>レーベル名</div>
+				<%= f.text_field :label_name, class: 'col-xs-12' %>
+				<div>在庫数</div>
+				<%= f.text_field :stock, class: 'col-xs-12' %>
+				<div>発売日</div>
+				<%= f.date_field :release_date, class: 'col-xs-12' %>
+				<div>登録者id</div>
+				<%#= f.collection_select(:admin_id, Admin.all, :id, :admin_name, :prompt => true) %>
+				<%= f.select :admin_id, options_from_collection_for_select(Admin.all, :id, :admin_name), { :prompt => true } %>
+				<%#= f.text_field :admin_id, class: 'col-xs-12' %>
+				<div>購入フラグ</div>
+				<%= f.check_box :purchase_flag %>
+			</div>
+		</div>
 
 
-    </div>
-    <div class="col-sm-5" style="background-color:lightblue;">
 
-<%= form_for @item, :url => admin_items_path do |f| %>
+		<div class="col-xs-4">
+			<div class="field">
+				<%= f.fields_for :discs do |ff| %> <!-- フォーム2はじまり -->
+				<%= render "disc_fields", f: ff %>
+				<% end %>　<!-- フォーム2おわり -->
+				<%= link_to_add_fields "Disc追加", f, :discs, class: "btn btn-primary btn-margin-top" %>
+			</div>
+		</div>
+	</div>
 
-  <h6>CD/アルバム名</h6>
-   <%= f.text_field :item_name, :size=>"90x10" %>
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<div class="row">
+				<div class="actions col-xs-6">
+					<%= f.submit "商品追加", class: "btn btn-primary btn-block col-xs-12" %>
+				</div>
+			</div>
+			<% end %>　<!-- フォーム1おわり -->
 
-  <h6>アーティスト名</h6>
-   <%= f.text_field :artist_name, :size=>"90x10" %>
-
-  <h6>アーティスト名・カナ</h6>
-   <%= f.text_field :artist_name_kana, :size=>"90x10" %>
-
-   <h6>レーベル名</h6>
-   <%= f.text_field :label_name, :size=>"90x10" %>
-
-   <h6>ジャンル名</h6>
-<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :size=>"90x10" %>
-
-   <h6>単価</h6>
-   <%= f.text_field :stock %>
-
-   <h6>発売日</h6>
-   <%= f.date_field :release_date  %>
-
-<!-- 今日の日付を取得する記述方法あるようですがわかりませんでした -->
-   <h6>商品登録日</h6>
-   <%= f.date_field :created_at  %>
-
-   <h6>購入</h6>
-<input type="radio" name="q1" value="可"> 可能
-<input type="radio" name="q1" value="不可"> 不可
-</p>
-
-
-
-
-
-
- <% end %>
-<!--     <p>
-  <label for="kanso">CD/アルバム名</label><br>
-  <textarea id="item_name" name="item_name" cols="40" rows="2" placeholder="CD/アルバム名"></textarea>
-  </p>
-
-    <p>
-  <label for="artist_name">アーティスト名</label><br>
-  <textarea id="artist_name" name="artist_name" cols="40" rows="2" placeholder="アーティスト名"></textarea>
-  </p>
-  <p>
-  <label for="artist_name_kana">アーティスト名・カナ</label><br>
-  <textarea id="artist_name_kana" name="artist_name_kana" cols="40" rows="2" placeholder="アーティスト名・カナ"></textarea>
-  </p>
-  <p>
-  <label for="label_name">レーベル名</label><br>
-  <textarea id="label_name" name="label_name" cols="40" rows="2" placeholder="レーベル名"></textarea>
-  </p>
-  <p>
-  <label for="price">単価</label><br>
-  <textarea id="price" name="price" cols="40" rows="1" placeholder="単価"></textarea>
-  </p>
-  <p>
-  <label for="stock">在庫数</label><br>
-  <textarea id="stock" name="stock" cols="40" rows="1" placeholder="在庫数"></textarea>
-  </p> -->
- </div>
-    <div class="col-sm-5" style="background-color:yellow;">
-<%= form_for [@item, @track] do |f| %>
-
-  <h6>トラックNo. / 曲名 / 時間</h6>
-   <%= f.text_field :track_num, :size=>"10x10" %>
-   <%= f.text_field :track_name, :size=>"50x10" %>
-<!-- ↓カラム名を収録時間に直す必要あり -->
-   <%= f.text_field :track_num, :size=>"20x10" %>
-  <h6>アーティスト名</h6>
-   <%= f.text_field :artist_name, :size=>"90x10" %>
-
-  <h6>アーティスト名・カナ</h6>
-   <%= f.text_field :artist_name_kana, :size=>"90x10" %>
-
-   <h6>レーベル名</h6>
-   <%= f.text_field :label_name, :size=>"90x10" %>
-    <%= f.submit 'Post' %>
- <% end %>
-    </div>
-
-  </div>
+		</div>
+	</div>
 </div>
+>>>>>>> 4a7087bef627135175c39cc68227e18cfde45ec6

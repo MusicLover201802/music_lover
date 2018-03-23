@@ -2,70 +2,66 @@
 class Lovers::UserItemsController < ApplicationController
 before_action :get_current_cart
 
+  def check #進捗確認用　開発終了したら削除します
+    @order_items = OrderItem.all
+    @orders = Order.all
+    @items = Item.all
+  end
+
   # カートの中身全取得 → @user_items変数に格納
   def get_current_cart
     @user = User.find(current_user.id)
-    @user_items = @user.user_items
+    @user_items = UserItem.where(user_id: current_user.id)
   end
 
-
-  #注文数に応じて在庫を減らすアクション
-  def cart_stock
-    @user_items.each do |user_items| #1レコードごとに、itemsテーブルのstockカラム - カートの中の数量 を実行し、save
-    user_items.item.stock -= user_items.quantity
-    user_items.item.save
-    end
-    redirect_to lovers_end_path
+  def show
   end
 
-
-  # 購入履歴を保存する処理　送り先をデフォルトにしない場合の設定はこれからです
-  def create
-      @neworder = Order.new(order_params)
-      @neworder.user_id = current_user.id
-
-      binding.pry
-      
-      @neworder.save
-  end
-
-  # 購入明細を保存する処理
-  # order_idは、カレントユーザーの直近の注文idを取ってくるよう設定しました
-  # 流れ：①過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡しています
-  def orderitems_save
-    past_order = Order.order("created_at DESC").find_by(user_id: current_user.id)
-    @user_items.each do |user_items| # カートの中身1レコードごとにorder_itemsテーブルのインスタンスをnew → save
-      @neworderitem = OrderItem.new(item_id: user_items.item_id, quantity: user_items.quantity, price: user_items.item.price, order_id: past_order.id)
-      @neworderitem.save
-    end
-  redirect_to lovers_end_path
-  end
-
-  #カートの中身を空にするアクション
+  # 購入アクション③カートの中身を空にするアクション
   def cart_destroy
+    @user = User.find(current_user.id)
+    @user_items = @user.user_items
     @user_items.each do |user_items|  #カート中身を1レコードずつ削除していく
       user_items.destroy
     end
     redirect_to lovers_end_path
   end
 
-  def check #進捗確認用　開発終了したら削除します
-    @order_items = OrderItem.all
-    @orders = Order.all
-  end
-
-  def show
-  end
-
-
+  # カート画面から、カート内数量を→更新するアクション
   def update
+    item = UserItem.find_by(user_item_params)
+    item.update(quantity_params)
+    item.save
+    redirect_to lovers_user_item_path(current_user.id)
+  end
+
+  # 商品詳細から、商品をカートに入れる
+  def create
+    @new_order = UserItem.new(add_item_params)
+    @new_order.user_id = current_user.id
+    @new_order.save
+    redirect_to lovers_user_item_path(current_user.id)
+  end
+
+  # カート画面から、カートの中身を削除するアクション
+  def destroy
+    item = UserItem.find_by(params[:id])
+    item.destroy
+    redirect_to lovers_user_item_path(current_user.id)
   end
 
 
-  private
-  def order_params
-    params.require(:order).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number, :payment, :user_id)
+private
+  def user_item_params
+    params.require(:user_item).permit(:id)
   end
 
+  def quantity_params
+    params.require(:user_item).permit(:quantity)
+  end
+
+  def add_item_params
+    params.require(:user_item).permit(:quantity, :item_id)
+  end
 
 end

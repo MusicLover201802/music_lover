@@ -12,11 +12,14 @@ class Item < ApplicationRecord
 	attachment :jacket_image
 
 
-	  def self.search(search) #self.でクラスメソッドとしている
-    if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
-      Item.where(["item_name like ?", "artist_name like ?", "%#{search}%"])
-    else
-      Item.all #全て表示。
-    end
 end
+	validates :item_name, presence: true
+	validates :artist_name, presence: true
+	validates :artist_name_kana, presence: true
+	validates :genre_id, presence: true
+	validates :price, presence: true
+	validates :release_date, presence: true
+	validates :admin_id, presence: true
+
+	validates :stock, numericality: { greater_than_or_equal_to: 0 }
 end

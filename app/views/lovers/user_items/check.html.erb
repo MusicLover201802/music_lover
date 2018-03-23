@@ -1,7 +1,7 @@
 <h1>開発状況確認用viewページ</h1>
 
 <table class="table table-stripped">
-	<caption> カートの中身</caption>
+	<caption> 商品一覧</caption>
 	<tr>
 		<th>商品画像</th>
 		<th>商品名/アーティスト名</th>
@@ -9,22 +9,23 @@
 		<th>数量</th>
 		<th>小計</th>
 	</tr>
-	<% @user_items.each do |user_item| %>
+	<% @items.each do |user_item| %>
 	<tr>
 		<td> <!-- attachment_image_tag予定地 --></td>
-		<td><%= user_item.item.item_name %> / <%= user_item.item.artist_name %></td>
-		<td><%= user_item.item.price %></td>   <!-- 余裕があれば、金額形式で表記する -->
-		<td><%= user_item.quantity%></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
-		<td><%= user_item.item.price * user_item.quantity %>  </td>
+		<td><%= user_item.item_name %> / <%= user_item.artist_name %></td>
+		<td><%= user_item.price %></td>   <!-- 余裕があれば、金額形式で表記する -->
+		<td><%= user_item.stock %></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
+ <td></td>
 	</tr>
 	<% end %>
 </table>
 
 <table class="table table-stripped">
-	<cation>購入内容</cation>
+	<cation>カート中身</cation>
 	<thead>
 		<tr>
-			<th>商品画像</th>
+			<th>user_item_id</th>
+			<th>item_id</th>
 			<th>商品名/アーティスト名</th>
 			<th>在庫</th>
 			<th>   </th>
@@ -33,7 +34,8 @@
 	<tbody>
 		<% @user_items.each do |user_item| %>
 		<tr>
-			<td> <!-- attachment_image_tag予定地 --></td>
+			<td><%= user_item.id %></td>
+			<td><%= user_item.item.id %></td>
 			<td><%= user_item.item.item_name %> / <%= user_item.item.artist_name %></td>
 			<td><%= user_item.item.stock %></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
 			<td> </td>
