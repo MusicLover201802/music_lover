@@ -30,6 +30,7 @@ admin.save!
 admin = Admin.new(email:'8@gmail.com', password:'vvvvvv',sign_in_count:'0', admin_name:'フカイ')
 admin.save!
 
+
 Genre.create(genre_name:'昭和歌謡')
 Genre.create(genre_name:'Pops')
 Genre.create(genre_name:'Rock')
@@ -80,6 +81,7 @@ OrderItem.create(item_id:'1',quantity: '1', price:'3000', order_id:'1')
 OrderItem.create(item_id:'2',quantity: '3', price:'2500', order_id:'1')
 OrderItem.create(item_id:'4',quantity: '1', price:'3000', order_id:'2')
 
+
 Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '北海道', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
 Order.create(user_id:'1',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '北海道', city: 'ML氏送り先1', building:'htmlハイツ', phone_number: 'xxx-xxxx-xxxx', payment:'銀行振込', status:'商品準備中')
 Order.create(user_id:'2',last_name: 'ミュージック崎', first_name: 'ラバー郎', last_name_kana: 'ミュージックサキ', first_name_kana: 'ラバーロウ', postal_code: '0000000', prefecture: '北海道', city: '渋谷区2', building:'railsビル', phone_number: 'xxx-xxxx-xxxx', payment:'クレジットカード', status:'発送済')
@@ -89,4 +91,4 @@ UserItem.create(user_id: '1', item_id: '2', quantity: '3')
 UserItem.create(user_id: '1', item_id: '3', quantity: '1')
 UserItem.create(user_id: '1', item_id: '4', quantity: '1')
 UserItem.create(user_id: '2', item_id: '2', quantity: '3')
-
+UserItem.create(user_id: '2', item_id: '4', quantity: '2')

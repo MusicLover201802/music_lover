@@ -46,6 +46,15 @@
 
 			<div class="col-xs-3" style="text-align: center">
 				<% if @item.release_date > Date.today.to_time %>
+
+				<!-- カートに入れるボタン：深井追記 -->
+				<%= form_for @new_order, url:lovers_user_items_path do |n| %>
+				<%= n.hidden_field :item_id %>
+				<%= n.number_field :quantity %>
+				<%= n.submit 'カートに入れる', class:'btn btn-primary' %>
+				<% end %>
+				<!-- 深井追記ここまで -->
+				<button class="btn btn-danger">売り切れ</button>
 				<button class="btn btn-default">近日発売</button>
 				<% elsif @item.stock == 0 %>
 				<button class="btn btn-danger">売り切れ</button>

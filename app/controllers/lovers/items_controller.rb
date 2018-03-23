@@ -10,4 +10,5 @@ class Lovers::ItemsController < ApplicationController
   	@item  = Item.find(params[:id])
   	@items = Item.all
   end
+
 end
