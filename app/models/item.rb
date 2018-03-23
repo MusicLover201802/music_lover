@@ -11,4 +11,6 @@ class Item < ApplicationRecord
 
 	attachment :jacket_image
 
+	### 検索 ###
+
 end

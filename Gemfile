@@ -65,7 +65,6 @@ gem 'seed-fu'
 
 group :development do
   gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'hirb'
   gem 'hirb-unicode'
   # さのが追加
@@ -74,5 +73,7 @@ group :development do
   gem 'cocoon'
   gem "nested_form"
   gem 'jquery-turbolinks'
+  gem 'ransack'
+  gem 'kaminari'
 end
 

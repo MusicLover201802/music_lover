@@ -19,19 +19,23 @@ before_action :get_current_cart
   end
 
 
-  # 購入履歴を保存する処理　これから開発します
-  def order_save
-    @user_items.each do |user_items|
-      @neworder = Order.new
-      @neworder = user_items
+  # 購入履歴を保存する処理　送り先をデフォルトにしない場合の設定はこれからです
+  def create
+      @neworder = Order.new(order_params)
+      @neworder.user_id = current_user.id
+
+      binding.pry
+      
       @neworder.save
-    end
   end
 
-  # 購入明細を保存する処理　order_idをどう割り当てるか要検討
+  # 購入明細を保存する処理
+  # order_idは、カレントユーザーの直近の注文idを取ってくるよう設定しました
+  # 流れ：①過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡しています
   def orderitems_save
+    past_order = Order.order("created_at DESC").find_by(user_id: current_user.id)
     @user_items.each do |user_items| # カートの中身1レコードごとにorder_itemsテーブルのインスタンスをnew → save
-      @neworderitem = OrderItem.new(item_id: user_items.item_id, quantity: user_items.quantity, price: user_items.item.price, order_id: 7)
+      @neworderitem = OrderItem.new(item_id: user_items.item_id, quantity: user_items.quantity, price: user_items.item.price, order_id: past_order.id)
       @neworderitem.save
     end
   redirect_to lovers_end_path
@@ -47,6 +51,7 @@ before_action :get_current_cart
 
   def check #進捗確認用　開発終了したら削除します
     @order_items = OrderItem.all
+    @orders = Order.all
   end
 
   def show
@@ -54,6 +59,12 @@ before_action :get_current_cart
 
 
   def update
+  end
+
+
+  private
+  def order_params
+    params.require(:order).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number, :payment, :user_id)
   end
 
 

@@ -1,12 +1,13 @@
 class Lovers::ItemsController < ApplicationController
   def index
   	@items = Item.all
+
+    @search = Item.ransack(params[:q])
+    @item = @search.result.page(params[:page])
   end
 
   def show
   	@item  = Item.find(params[:id])
   	@items = Item.all
-  	genres = Item.find_by_genre_id(params[:id])
-  	@genre = Genre.find_by_id(genres)
   end
 end

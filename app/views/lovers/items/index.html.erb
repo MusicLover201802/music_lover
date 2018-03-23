@@ -1,17 +1,24 @@
 <%= render 'layouts/header'%>
-<div class="row">
 <%= render 'layouts/Lsidebar' %>
 
-	<!-- main -->
+<!-- main -->
 	<div class="col-xs-6" style="text-align: center">
-		<h4>商品検索</h4>
-		  <%= form_tag(lovers_items_path) do %>
-    		<p>
-		  	  <%= text_field_tag :search %>
-	  		  <%= submit_tag "Search", :name => nil %>
-			</p>
-		  <% end %>
 
+  <!-- 検索バー -->
+		<h4>商品検索</h4>
+		<div>
+
+
+			<%= search_form_for @search, :url => lovers_items_path do |f| %>
+			<%#= f.label :item_name_or_artist_name_cont %>
+			<%= f.search_field :item_name_cont %>
+			<%= f.submit "検索" %>
+			<% end %>
+
+
+		</div>
+
+  <!-- アイテム一覧 -->
 		<h2 class="row headline",　style="text-align: center">商品一覧</h2>
 
 		<div class="row item-index" style="text-align: center">
@@ -19,18 +26,18 @@
 			<div class="example-1 card" style="margin: 20px 0 20px">
 				<div class="wrapper">
 
-					<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '150', height: '150'%>
+					<%= attachment_image_tag i, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '150', height: '150'%>
 					<div class="data">
 						<div class="content">
 							<span class="index_artist"><%= i.artist_name %></span>
 							<h5 class="index_item_name">
-								<%= link_to i.item_name, lovers_path(i) %></h4>
+								<%= link_to i.item_name, lovers_path(i) %></h5>
 							<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
 							<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
 							<tr class="index_item_detail">
 							  <% if i.stock == 0 %>
 								  <p style="color: red">入荷待ち</p>
-								<% elseif i.stock < 5 %>
+								<% elsif i.stock < 5 %>
 								  <p>残り僅か</p>
 								<% else i.stock >= 10 %>
 								  <p>在庫有り</p>
@@ -46,6 +53,6 @@
 		</div>
 	</div>
 
+
 <%= render 'layouts/Rsidebar' %>
-</div>
 <%= render 'layouts/footer'%>
