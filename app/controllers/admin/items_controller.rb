@@ -22,7 +22,6 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
      if @item.save
     redirect_to admin_items_path
     redirect_to user_path(current_user)
