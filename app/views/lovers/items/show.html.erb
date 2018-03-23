@@ -1,39 +1,52 @@
 <%= render 'layouts/header'%>
-	<div class="row">
-		<%= render 'layouts/Lsidebar' %>
+	<%= render 'layouts/Lsidebar' %>
+
 
 		<!-- main -->
 		<div class="col-xs-6">
 			<h2 class="row headline",　style="text-align: center"><strong>商品詳細</strong></h2>
 
 			<div class="col-xs-4" style="text-align: center">
-				<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
+				<%= attachment_image_tag @item, :jacket_image, format: 'png',
+					class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
 			</div>
-
 
 			<div class="col-xs-5" style="text-align: left">
 				<ul class="item_detail" style="list-style: none">
 					<li style="font-size: 10px"><strong>商品名</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.item_name %></li>
+					<li class="indent" style="padding-bottom: 10px"><%= @item.item_name %></li>
+
 					<li style="font-size: 10px"><strong>アーティスト</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.artist_name %></li>
+					<li class="indent" style="padding-bottom: 10px"><%= @item.artist_name %></li>
+
 					<li style="font-size: 10px"><strong>レーベル</strong></li>
-					  <li class="indent" style="padding-bottom: 10px"><%= @item.label_name %></li>
+					<li class="indent" style="padding-bottom: 10px"><%= @item.label_name %></li>
+
 					<li style="font-size: 10px"><strong>価格</strong></li>
-					  <li class="indent" style="padding-bottom: 10px">￥<%= @item.price.to_s(:delimited) %></li>
+					<li class="indent" style="padding-bottom: 10px">￥<%= @item.price.to_s(:delimited) %></li>
+
 					<li style="font-size: 10px"><strong>ジャンル</strong></li>
-					  <li class="indent"><%= @item.genre.genre_name %></li>
+					<li class="indent"><%= @item.genre.genre_name %></li>
 				</ul>
 
-				<h4 style="padding-top: 20px"><strong>収録曲</strong></h4>
-					<% @item.tracks.each do |it| %>
-				<ul style="list-style: none">
-					<li><%= it.track_num %>. <%= it.track_name %></li>
-					<% end %>
-				</ul>
+				<div class="row">
+					<div class="track-box" style="margin-bottom: 20px">
+						<h4 style="padding: 20px"><strong>収録曲</strong></h4>
+						  <% @item.discs.each do |id| %>
+						<ul style="list-style: none">
+							<li style="padding-bottom: 10px"><br><strong><%= id.disc_name %></strong></li>
+						  	  <% id.tracks.each do |it| %>
+							<li class="indent" style="font-size: 12px"><strong><%= it.track_num %>. </strong><%= it.track_name %></li>
+							  <% end %>
+						  <% end %>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-xs-3" style="text-align: center">
+				<% if @item.release_date > Date.today.to_time %>
+
 				<!-- カートに入れるボタン：深井追記 -->
 				<%= form_for @new_order, url:lovers_user_items_path do |n| %>
 				<%= n.hidden_field :item_id %>
@@ -43,8 +56,12 @@
 				<!-- 深井追記ここまで -->
 				<button class="btn btn-danger">売り切れ</button>
 				<button class="btn btn-default">近日発売</button>
+				<% elsif @item.stock == 0 %>
+				<button class="btn btn-danger">売り切れ</button>
+				<% else %>
+				<button class="btn btn-primary">カートに入れる</button>
+				<% end %>
 			</div>
 		</div>
-		<%= render 'layouts/Rsidebar' %>
-	</div>
+	<%= render 'layouts/Rsidebar' %>
 <%= render 'layouts/footer'%>

@@ -16,10 +16,9 @@ class Lovers::Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    super
-    @user = current_admin
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   # def update
@@ -46,6 +45,7 @@ class Lovers::Users::RegistrationsController < Devise::RegistrationsController
 
 
    protected
+
   ### アカウント編集後のリダイレクト ###
   def after_update_path_for(resource)
     lovers_user_path(resource)
@@ -62,14 +62,12 @@ class Lovers::Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
-  ### サインアップ時のカラム追加 ###
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :last_name_kana, :first_name, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number])
-  end
-
-  ### アカウント編集のカラム追加 ###
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [:last_name, :last_name_kana, :first_name, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number])
+    added_attrs = [:last_name, :last_name_kana, :first_name, :first_name_kana, :postal_code, :prefecture, :city, :building, :phone_number]
+    ### サインアップ時のカラム追加 ###
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    ### アカウント編集のカラム追加 ###
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
   # def configure_permitted_parameters

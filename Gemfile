@@ -74,6 +74,8 @@ group :development do
   gem 'cocoon'
   gem "nested_form"
   gem 'jquery-turbolinks'
+  gem 'ransack'
+  gem 'kaminari'
   gem 'rails-i18n'
 end
 
