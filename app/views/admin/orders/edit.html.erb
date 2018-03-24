@@ -7,77 +7,75 @@
 		</div>
 	</div>
 
-<div class="row">
-	<div class="col-xs-3" style="text-align: right">
-		<h2 style="margin-top: 40px"><strong>購入詳細</strong></h2>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
-		<table class="whole col-xs-12">
-			<tr>
-				<th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
-			</tr>
-			<tr>
-				<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
-			</tr>
-		</table>
-
-
-
-
-			<%= form_for @order, :url => admin_order_path do |o| %>
-
-				<div>注文状況</div>
-				<%= o.select :status, ['発送前', '発送準備中', '発送済'], {include_blank: '注文状況を選択'}  %>
-				<div>お支払い方法</div>
-				<%= o.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'}  %>
-			<div width="256">商品送付先</div>
-			<div>郵便番号</div>
-			<%= o.text_field :postal_code %><br>
-			<div>都道府県</div>
-			<%= o.select :prefecture, Destination.prefectures.keys.to_a,{} %>
-			<div>市区町村</div>
-			<%= o.text_field :city %><br>
-			<div>住所</div>
-			<%= o.text_field :building %><br>
-			<div>電話番号</div>
-			<%= o.text_field :phone_number %>
-
-
-
-
-	</div>
-
-</div>
-	
-
-	  
-		<div class="panel panel-default">
-			<div class="panel-body" style="padding: 15px 15px 0 15px">
-				<table>
-					<tbody>
-					<% @order.items.each do |item| %>
-						<tr>
-							<td width="400"><%= item.item_name %></td>
-							<td width="200"><%= item.artist_name %></td>
-			  <% end %>
-	  <%= o.fields_for :order_items do |i| %>
-							<td width="50"><%= i.number_field :quantity %>枚</td>
-					<% end %>
-							
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			
+	<div class="row">
+		<div class="col-xs-3" style="text-align: right">
+			<h2 style="margin-top: 40px"><strong>購入詳細編集</strong></h2>
 		</div>
-
-		
 	</div>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<table class="whole col-xs-12">
+				<tr>
+					<th width="256">購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
+				</tr>
+				<tr>
+					<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
+				</tr>
+			</table>
 
-		<%= o.submit "更新" %>
-			<% end %>
+			<%= form_for @order, :url => admin_order_path do |o| %>　<!-- フォーム始まり -->
+			<table class="whole col-xs-12">
+				<tr>
+					<th width="256"><div>注文状況</div></th>
+					<td><%= o.select :status, ['発送前', '発送準備中', '発送済','キャンセル'], {include_blank: '注文状況を選択'}  %></td>
+				</tr>
+				<tr>
+					<th><div>お支払い方法</div></th>
+					<td><%= o.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'}  %></td>
+				</tr>
+				<tr>
+					<th><h3>商品送付先</h3><br><div style="padding-bottom: 20px">郵便番号</div></th>
+					<td  style="padding-top: 55px"><%= o.text_field :postal_code %><br></td>
+				</tr>
+				<tr>
+					<th><div>都道府県</div></th>
+					<td><%= o.select :prefecture, Destination.prefectures.keys.to_a,{} %></td>
+				</tr>
+				<tr>
+					<th><div>市区町村</div></th>
+					<td><%= o.text_field :city %><br></td>
+				</tr>
+				<tr>
+					<th><div>住所</div></th>
+					<td><%= o.text_field :building %><br></td>
+				</tr>
+				<tr>
+					<th><div>電話番号</div></th>
+					<td><%= o.text_field :phone_number %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
+		<div class="panel panel-default">
+			<div class="panel-body" style="padding: 15px 15px 15px 15px">
+				<div class="col-xs-5">
+					<% @order.items.each do |item| %>
+					<div><%= item.item_name %></div>
+					<%= item.artist_name %><br>
+					<br>
+					<% end %>
+				</div>
+				<div class="col-xs-3">
+					<%= o.fields_for :order_items do |i| %>
+					<div><%= i.number_field :quantity %>枚</div><br><br>
+					<% end %>
+			</div>
+		</div>
+	</div>
+	<div style="margin-bottom: 40px"><%= o.submit "更新", class: "btn btn-primary btn-block" %></div>
+			<% end %> <!-- フォーム終わり -->
+</div>
 
 
 
