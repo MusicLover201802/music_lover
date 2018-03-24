@@ -3,7 +3,7 @@
 <div class="contener">
 	<div class="row btn-margin-top">
 		<div class="col-xs-3" style="text-align: center;">
-			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+			<%= link_to "Back", admin_top_path, class: "btn btn-primary btn-xs" %>
 		</div>
 	</div>
 
@@ -19,7 +19,7 @@
 				<th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
 			</tr>
 			<tr>
-				<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
+				<th>購入日時</th><td><%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
 			</tr>
 			<tr>
 				<th>注文状況</th><td><%= @order.status %></td>
@@ -63,7 +63,8 @@
 				<th width="231" style="padding-bottom: 50px">商品送付先</th>
 				<td style="padding-bottom: 50px">
 				<strong>郵便番号</strong> : <%= @order.postal_code %><br>
-				<strong>住所</strong> : <%= Destination.prefectures.keys[@order.prefecture] %><%= @order.city %><br>
+				<% binding.pry %>
+				<strong>住所</strong> : <%= @order.prefecture %><%= @order.city %><br>
 				<strong>建物名</strong> : <%= @order.building %><br>
 				<strong>電話番号</strong> : <%= @order.phone_number %>
 				</td>

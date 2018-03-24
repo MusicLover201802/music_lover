@@ -16,7 +16,13 @@
 <div class="contener">
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-            <h4>検索バー</h4>
+    <!-- 検索バー -->
+        <%= search_form_for @search, :url => admin_orders_path do |f| %>
+        <%= f.label :status_cont, "配送状況検索" %><br>
+        <%= f.search_field :status_cont, :placeholder => "配送状況" %>
+        <%= f.submit "検索" %>
+        <% end %>
+
         </div>
     </div>
 </div>
@@ -33,7 +39,7 @@
             　　 <th>STATUS</th>
                </tr>
             </thead>
-            <% @orders.each do |order| %>
+            <% @selects.each do |order| %>
             <tbody>
                <tr>
                 <td><%= order.id %></td>
@@ -45,6 +51,6 @@
                </tr>
             </tbody>
         </table>
-       <%= paginate @orders %>
+       <%= paginate @selects %>
     </div>
 </div>

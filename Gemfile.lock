@@ -307,8 +307,8 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.5)
-  ransack
   rails-i18n
+  ransack
   refile!
   refile-mini_magick
   sass-rails (~> 5.0)
