@@ -1,19 +1,19 @@
+<div><h4>DISC情報</h4></div>
 <div class="field">
-			<div class="btn-margin-top"><h4>DISC情報</h4></div>
-
-	<div>ディスク名</div>
-	<%= f.text_field :disc_name %>
 	<div>ディスクNo.</div>
 	<%= f.text_field :disc_num %>
+	<div>ディスク名</div>
+	<%= f.text_field :disc_name, class: 'col-xs-7' %>
 
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "削除", '#', class: "remove_fields" %>
 </div>
 
 <div class="btn-margin-top"><h4>トラック情報</h4></div>
-<%= f.fields_for :tracks do |fff| %>　<!-- フォーム3はじまり -->
-<%= render "track_fields", f: fff %>
-<% end %>　<!-- フォーム3おわり -->
-
-<%= link_to_add_fields "トラック追加", f, :tracks, class: "btn btn-xs btn-danger" %>
+	<%= f.fields_for :tracks do |fff| %>　<!-- フォーム3はじまり -->
+	<%= render "track_fields", f: fff %>
+	<% end %>　<!-- フォーム3おわり -->
+	<div style="margin-bottom: 30px">
+		<%= link_to_add_fields "トラック追加", f, :tracks, class: "btn btn-xs btn-danger" %>
+	</div>
 </div>

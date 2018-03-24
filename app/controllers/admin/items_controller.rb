@@ -5,7 +5,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find_by_id(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -19,10 +19,8 @@ class Admin::ItemsController < ApplicationController
   def create
 
     @item = Item.new(item_params)
-    # binding.pry
      if @item.save
     redirect_to admin_items_path
-    redirect_to user_path(current_user)
     else
     @items = Item.all.reverse_order
     render :new

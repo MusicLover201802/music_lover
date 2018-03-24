@@ -25,18 +25,15 @@
 				<th>注文状況</th><td><%= @order.status %></td>
 			</tr>
 			<tr>
-				<th>購入金額合計</th><td></td>
-			</tr>
-			<tr>
 				<th>お支払い方法</th><td><%= @order.payment %></td>
 			</tr>
 		</table>
 	</div>
 	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
+	<% sum = 0 %>
 	  <% @order.order_items.each do |i| %>
 		<div class="panel panel-default">
 			<div class="panel-body" style="padding: 15px 15px 0 15px">
-			<% sum = 0 %>
 				<table>
 					<tbody>
 						<tr>
@@ -52,24 +49,25 @@
 			</div>
 			<div class="panel-footer text-right">小計￥<%= sub_total.to_s(:delimited) %></div>
 		</div>
-
-		<% sum = sum + sum %>
-		<div class="text-right">仮合計￥<%= sum.to_s(:delimited) %></div>
-			  <% end %>
+	  <% end %>
+	  <table class="table whole col-xs-12">
+		<tr class="warning">
+			<th width="248" style="padding-top: 20px">購入金額合計</th><td style="padding-top: 20px">￥<%= sum.to_s(:delimited) %></td>
+		</tr>
+	  </table>
 	</div>
 <%= link_to "編集", edit_admin_order_path(@order.id), class: "btn btn-primary btn-xs" %>
-
-	<div class="col-xs-6 col-xs-offset-3">
+	<div class="col-xs-6 col-xs-offset-3" style="margin-bottom: 40px">
 		<table class="whole col-xs-12">
-		<tr>
-			<th>商品送付先</th>
-			<td>
-			<%= @order.postal_code %><br>
-			<%= @order.prefecture %><%= @order.city %><br>
-			<%= @order.building %><br>
-			<%= @order.phone_number %>
-			</td>
-		</tr>
+			<tr>
+				<th width="256">商品送付先</th>
+				<td style="padding-bottom: 20px">
+				<%= @order.postal_code %><br>
+				<%= @order.prefecture %><%= @order.city %><br>
+				<%= @order.building %><br>
+				<%= @order.phone_number %>
+				</td>
+			</tr>
 		</table>
 	</div>
 </div>

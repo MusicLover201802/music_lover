@@ -1,22 +1,83 @@
-<div class="top-blank">
-<%= render "layouts/admin/header" %>
+<%= render 'layouts/admin/header' %>
+
+
+<div class="contener">
+	<div class="row btn-margin-top">
+		<div class="col-xs-3" style="text-align: center;">
+			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3" style="text-align: right;">
+			<h2><strong>商品追加</strong></h2>
+		</div>
+	</div>
 </div>
-<%= link_to 'Back', :back %>
 
-<h3 class="section-title section-title-sm left">
-<span>商品編集</span>
-</h3>
+<!-- main -->
+<div class="contener">
+	<%= form_for @item, :url => admin_item_path do |f| %>　<!-- フォーム1はじまり -->
+	<div coass="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
+			<%= f.attachment_field :jacket_image, placeholder: "ジャケット画像", class: "user-edit-form" %>
+		</div>
+		<div class="col-xs-3" style="margin-bottom: 50px;">
+			<div><h4>商品情報</h4></div>
+			<div class="field">
+				<div>商品名</div>
+				<%= f.text_field :item_name, class: 'col-xs-12' %>
+				<div>アーティスト名</div>
+				<%= f.text_field :artist_name, class: 'col-xs-12' %>
+				<div>アーティスト名(カナ)</div>
+				<%= f.text_field :artist_name_kana, class: 'col-xs-12' %>
+				<div>ジャンルID</div>
+				<%#= f.collection_select(:genre_id, Genre.all, :id, :genre_name, :prompt => true) %>
+				<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_name), { :prompt => true } %>
+				<div>値段</div>
+				<%= f.text_field :price, class: 'col-xs-12' %>
+				<div>レーベル名</div>
+				<%= f.text_field :label_name, class: 'col-xs-12' %>
+				<div>在庫数</div>
+				<%= f.text_field :stock, class: 'col-xs-12' %>
+				<div>発売日</div>
+				<%= f.date_field :release_date, class: 'col-xs-12' %>
+				<div>登録者id</div>
+				<%#= f.collection_select(:admin_id, Admin.all, :id, :admin_name, :prompt => true) %>
+				<%= f.select :admin_id, options_from_collection_for_select(Admin.all, :id, :admin_name), { :prompt => true } %>
+				<%#= f.text_field :admin_id, class: 'col-xs-12' %>
+				<div>購入フラグ</div>
+				<%= f.check_box :purchase_flag %>
+			</div>
+		</div>
 
 
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2" style="background-color:red;">
-     <!-- refile機能の実装まだ -->
-     <input type="file">
-    </div>
-    <div class="col-sm-4" style="background-color:blue;">Blue</div>
-    <div class="col-sm-6" style="background-color:yellow;">Yellow</div>
-  </div>
+		<div class="col-xs-5">
+			<div class="field">
+				<%= f.fields_for :discs do |ff| %> <!-- フォーム2はじまり -->
+				<%= render "disc_fields", f: ff %>
+				<% end %>　<!-- フォーム2おわり -->
+				<%#= link_to_add_fields "Disc追加", f, :discs, class: "btn btn-primary btn-margin-top" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-5 col-xs-offset-5">
+			
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<div class="row btn-margin-top">
+				<div class="actions col-xs-6" style="margin-bottom: 100px">
+					<%= f.submit "編集", class: "btn btn-primary btn-block col-xs-12" %>
+				</div>
+			</div>
+			<% end %>　<!-- フォーム1おわり -->
+
+		</div>
+	</div>
 </div>
-<footer style="background-color:gray">Footer</footer>
