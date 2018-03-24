@@ -5,9 +5,6 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.all
-    genres = Item.find_by_genre_id(params[:id])
-    @genre = Genre.find_by_id(genres)
   end
 
   def edit
@@ -24,7 +21,6 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
      if @item.save
     redirect_to admin_items_path
-    redirect_to user_path(current_user)
     else
     @items = Item.all.reverse_order
     render :new
