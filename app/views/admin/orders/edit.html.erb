@@ -19,11 +19,20 @@
 					<th width="256">購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
 				</tr>
 				<tr>
-					<th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td>
+					<th>購入日時</th><td><%= @order.created_at.strftime('%Y年%m月%d日 %H:%M')%></td>
 				</tr>
 			</table>
 
-			<%= form_for @order, :url => admin_order_path do |o| %>　<!-- フォーム始まり -->
+			<% if @order.errors.any? %>
+			    <h3>入力した内容にエラーが<%= @order.errors.count %>件あります</h3>
+			    <ul>
+			      <% @order.errors.full_messages.each do |message| %>
+			      	<li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  <% end %>
+
+			<%= form_for @order, :url => admin_order_path do |o| %><!-- フォーム始まり -->
 			<table class="whole col-xs-12">
 				<tr>
 					<th width="256"><div>注文状況</div></th>
@@ -59,16 +68,17 @@
 	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
 		<div class="panel panel-default">
 			<div class="panel-body" style="padding: 15px 15px 15px 15px">
-				<div class="col-xs-5">
+				<div class="col-xs-8">
 					<% @order.items.each do |item| %>
-					<div><%= item.item_name %></div>
+					<div style="margin-bottom: 5px"><strong>[ 商品名 ]</strong><br><%= item.item_name %></div>
+					 <strong>[ アーティスト名 ]</strong><br>
 					<%= item.artist_name %><br>
 					<br>
 					<% end %>
 				</div>
-				<div class="col-xs-3">
+				<div class="col-xs-4">
 					<%= o.fields_for :order_items do |i| %>
-					<div><%= i.number_field :quantity %>枚</div><br><br>
+					<div style="padding-bottom: 40px"><br><%= i.number_field :quantity %>枚</div><br>
 					<% end %>
 			</div>
 		</div>
@@ -76,8 +86,3 @@
 	<div style="margin-bottom: 40px"><%= o.submit "更新", class: "btn btn-primary btn-block" %></div>
 			<% end %> <!-- フォーム終わり -->
 </div>
-
-
-
-
-

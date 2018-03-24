@@ -21,3 +21,9 @@ ja:
       item/discs/tracks:
         track_name: 曲名
         track_num: 曲No.
+      order:
+        building: 建物名
+        phone_number: 電話番号
+        city: 住所
+        postal_code: 郵便番号
+

@@ -27,11 +27,12 @@
         <table id="foo-table" class="table table-bordered">
             <thead>
                <tr>
-        	　　 <th>ユーザーID</th>
-        	　　 <th>性</th>
-        	　　 <th>名</th>
-        	　　 <th>セイ</th>
-        	　　 <th>メイ</th>
+            　　 <th width="90">ユーザーID</th>
+            　　 <th>姓</th>
+            　　 <th>名</th>
+            　　 <th>セイ</th>
+            　　 <th>メイ</th>
+                <th>フラグ</th>
                </tr>
             </thead>
             <% @users.each do |u| %>
@@ -43,6 +44,7 @@
                 <td><%= u.first_name %></td>
                 <td><%= u.last_name_kana %></td>
                 <td><%= u.first_name_kana %></td>
+                <td><%= u.retire_flag ? "退会済" : "アクティブ" %></td>
             <% end %>
                </tr>
             </tbody>
@@ -51,5 +53,5 @@
 </div>
 
 <div class="text-center">
-    <%#= paginate @users %>
+    <%= paginate @users %>
 </div>
