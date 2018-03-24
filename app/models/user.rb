@@ -8,7 +8,49 @@ class User < ApplicationRecord
   has_many :user_items
   has_many :orders
 
-  	enum prefecture: {  北海道: 0,
+### ユーザー情報のバリデーション ###
+  validates :last_name,	presence: true
+  validates :last_name_kana, presence: true,
+  			format: { with: /\A[ァ-ンー－]+\z/}
+  validates :first_name, presence: true
+  validates :first_name_kana, presence: true,
+  			format: { with: /\A[ァ-ンー－]+\z/}
+  validates :postal_code, presence: true,
+  			format: { with: /\A\d{7}\z/ }
+  validates :prefecture, presence: true
+  validates :city, presence: true
+  validates :phone_number, presence: true,
+  			uniqueness: true,
+  			format: { with: /\A\d{10}\z|^\d{11}\z/ }
+  validates :email, presence: true,
+  			uniqueness: true,
+  			format: { with: /\A\S+@\S+\.\S+\z/ }
+
+
+### kakurenbo-puti ###
+
+soft_deletable
+
+###emailに関する検証を一旦削除###
+  _validators.delete(:email)
+  _validate_callbacks.each do |callback|
+  	if callback.raw_filter.respond_to? :attributes
+  		callback.raw_filter.attributes.delete :email
+  	end
+  end
+
+###emailのバリデーションを再定義###
+  validates :email, presence: true
+  validates_format_of :email, with: Devise.email_regexp, if: :email_changed?
+  validates_uniqueness_of :email, scope: :soft_destroyed_at, if: :email_changed?
+
+###論理削除済みユーザーのログイン不可設定###
+  def self.find_for_authentication(warden_conditions)
+  	without_soft_destroyed.where(email: warden_conditions[:email]).first
+  end
+
+### 都道府県用 enum ###
+  enum prefecture: {  北海道: 0,
 						青森県: 1,
 						岩手県: 2,
 						宮城県: 3,
@@ -56,6 +98,4 @@ class User < ApplicationRecord
 						鹿児島県: 45,
 						沖縄県: 46
 					}
-
-
 end

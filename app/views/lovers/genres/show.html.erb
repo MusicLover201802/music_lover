@@ -1,40 +1,50 @@
 <%= render 'layouts/header'%>
 <%= render 'layouts/Lsidebar' %>
 
-	<!-- main -->
-	<div class="col-xs-6" style="text-align: center">
-		<h4>商品検索</h4>
-		  <%= form_tag(lovers_items_path) do %>
-    		<p>
-		  	  <%= text_field_tag :search %>
-	  		  <%= submit_tag "Search", :name => nil %>
-			</p>
-		  <% end %>
+<div class="col-xs-6" style="text-align: center">
 
-		<h2 class="row headline",　style="text-align: center"><%= @genre.genre_name %></h2>
+	<!-- 検索バー -->
+	<div class="row" style="margin-top: 20px">
+	  <%= search_form_for @search, :url => lovers_items_path do |f| %>
+		<%= f.label :item_name_or_artist_name_cont_any, "商品検索" %><br>
+		<%= f.search_field :item_name_or_artist_name_cont_any, :placeholder => "アーティスト名 or 商品名" %>
+		<%= f.submit "検索" %>
+	  <% end %>
+	</div>
 
-		<div class="row item-index" style="text-align: center">
-		  <% @item.each do |i| %>
-			<div class="example-1 card" style="margin: 20px 0 20px">
-				<div class="wrapper">
-					<%= attachment_image_tag i, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
-					<div class="data">
-						<div class="content">
-							<span class="index_artist"><%= i.artist_name %></span>
-							<h5 class="index_item_name">
-								<%= link_to i.item_name, lovers_path(i) %></h4>
-							<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
-							<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
-							<tr class="index_item_detail"><%= i.stock %></tr>
-						</div>
+	<!-- 見出し -->
+	<h2 class="row headline",　style="text-align: center"><%= @genre.genre_name %></h2>
+
+	<!-- アイテム一覧 -->
+	<div class="row item-index" style="text-align: center">
+	  <% @item.each do |i| %>
+		<div class="example-1 card" style="margin: 20px 0 20px">
+			<div class="wrapper">
+				<%= attachment_image_tag i, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '150', height: '150'%>
+				<div class="data">
+					<div class="content">
+						<span class="index_artist"><%= i.artist_name %></span>
+						<h5 class="index_item_name"><%= link_to i.item_name, lovers_path(i) %></h5>
+						<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
+						<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
+						<tr class="index_item_detail">
+						  <% if i.stock == 0 %>
+							  <p style="color: red">入荷待ち</p>
+						  <% elsif i.stock < 10 %>
+							  <p>残り僅か</p>
+						  <% else %>
+							  <p>在庫有り</p>
+						  <% end %>
+						</tr>
 					</div>
 				</div>
 			</div>
-		  <% end %>
-
-		<%#---<%= paginate @なんちゃら, class: "pagenate"%>
 		</div>
+	  <% end %>
+
+	<%#---<%= paginate @なんちゃら, class: "pagenate"%>
 	</div>
+</div>
 
 <%= render 'layouts/Rsidebar' %>
 <%= render 'layouts/footer'%>
