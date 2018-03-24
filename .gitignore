@@ -1,8 +1,7 @@
 /tmp/cache/*
 !/tmp/.gitkeep
 
-log/development.log
-db/development.sqlite3
-log/
 /log/development.log
 
+*.log
+*.sqlite3

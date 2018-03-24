@@ -1,17 +1,14 @@
 class Lovers::ItemsController < ApplicationController
   def index
-  	@items     = Item.all
-    @item      = Item.page(params[:page]).reverse_order
+  	@items = Item.all
 
-  	### 検索用 ###
-    @search    = Item.ransack(params[:q])
-    @selects   = @search.result.page(params[:page]).reverse_order
+    @search = Item.ransack(params[:q])
+    @item = @search.result.page(params[:page])
   end
 
   def show
-  	@item      = Item.find(params[:id])
-  	@items     = Item.all
-  	@new_order = UserItem.new(:item_id => params[:id])
+  	@item  = Item.find(params[:id])
+  	@items = Item.all
   end
 
 end
