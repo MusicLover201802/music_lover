@@ -29,9 +29,9 @@ before_action :get_current_cart
 
   # カート画面から、カート内数量を→更新するアクション
   def update
-    item = UserItem.find_by(user_item_params)
-    item.update(quantity_params)
-    item.save
+    @new_order = UserItem.find_by(user_item_params)
+    @new_order.update(quantity_params)
+    @new_order.save
     redirect_to lovers_user_item_path(current_user.id)
   end
 
@@ -45,7 +45,8 @@ before_action :get_current_cart
 
   # カート画面から、カートの中身を削除するアクション
   def destroy
-    item = UserItem.find_by(params[:id])
+    item = UserItem.find(params[:id])
+    binding.pry
     item.destroy
     redirect_to lovers_user_item_path(current_user.id)
   end

@@ -1,32 +1,130 @@
-<!-- render ヘッダーの共通テンプレート ここへ -->
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
-			<h1>購入履歴</h1>
-			<table class="whole col-xs-12 ">
-				<tr><th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana%>  様</td></tr>
-				<tr><th>購入日時</th><td><%= @order.created_at.to_s(:created_at) %></td></tr>
-				<tr><th>注文状況</th><td><%= @order.status %></td></tr>
-				<tr><th>購入金額合計</th><td></td></tr>
-				<tr><th>お支払い方法</th><td><%= @order.payment %></td></tr>
-				<tr><th>購入内容</th><td>
-					<table class="items-table">
-						<tr><th>商品名</th><td>    </td></tr>
-						<tr><th>アーティスト名</th><td>   </td></tr>
-						<tr><th>単価</th><td>   </td></tr>
-						<tr><th>数量</th><td>   </td></tr>
-						<tr><th>小計</th><td>    </td></tr>
-					</table></td></tr>
-				<tr><th>商品送付先</th>
-						<td>
-						<%= @order.postal_code %><br>
-						<%= @order.prefecture %><%= @order.city %><br>
-						<%= @order.building %><br>
-						<%= @order.phone_number %>
-						</td><tr>
-			</table>
-			<%= link_to '戻る', :back , class: 'btn btn-default' %>
-		</div>
+<%= render 'layouts/header'%>
+<div class="row">
+	<div class="col-xs-3" style="text-align: right">
+		<h2 style="margin-top: 40px"><strong>購入履歴詳細</strong></h2>
 	</div>
 </div>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<table class="table">
+			<thread>
+				<tr>
+					ご注文日時
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th width="100px"><%= @orders.created_at.to_s(:created_at) %></th>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table">
+			<thread>
+				<tr>
+					お支払い方法
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th width="100px"><%= @orders.payment %></th>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table">
+			<thread>
+				<tr>
+					ご注文合計金額
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th width="100px"><%= @orders.created_at.to_s(:created_at) %></th>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table">
+			<thread>
+				<tr>
+					発送状況
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th width="100px"><%= @orders.status %></th>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<table class="table">
+			<thread>
+				<tr>ご購入内容</tr>
+			</thread>
+			<tbody>
+				<td>
+					<% @orders.order_items.each do |i| %>
+					<div class="panel panel-warning">
+						<div class="panel-heading clearfix">
+						</div>
+						<div class="panel-body" style="padding: 15px 15px 0 15px">
+							<table class="table">
+								<tbody>
+									<% sum = 0 %>
+									<div class="row">
+										<tr class="col-xs-10">
+											<tr> <th>商品名 </th> <td><%= i.item.item_name %></td> </tr>
+											<tr> <th>アーティスト名 </th> <td><%= i.item.artist_name %></td> </tr>
+											<tr> <th>単価 </th> <td>￥<%= i.price.to_s(:delimited) %></td> </tr>
+											<tr> <th>数量 </th> <td><%= i.quantity %></td> </tr>
+											<tr> <th>小計</th> <td><% sub_total = i.price * i.quantity %> ¥<%= sub_total.to_s(:delimited) %> </td> </tr>
+										</tr>
+									</div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<% end %>
+				</td>
+			</tbody>
+		</table>
+
+		<table class="table">
+			<thread>
+				<tr>
+					発送先
+				</tr>
+			</thread>
+			<tbody>
+				<tr>
+					<th><%= @orders.last_name %>  <%= @orders.first_name %> 様<br/>
+					〒<%= @orders.postal_code %>  <%= @orders.prefecture %><%= @orders.city %><%= @orders.building %><br/>
+					<%= @orders.phone_number %></th>
+				</tr>
+			</tbody>
+		</table>
+    	<%= link_to '購入履歴一覧に戻る', lovers_user_path(current_user),  class: 'btn btn-default' %>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-9">
+		<button class="btn btn-default">退会
+			<!-- 論理削除実装時　#外す -->
+			<%#= link_to "退会", lovers_user_path(current_user), method: :patch %>
+		</button>
+	</div>
+</div>
+<%= render 'layouts/footer'%>
+
+
+
+
+
+
+
+
+
