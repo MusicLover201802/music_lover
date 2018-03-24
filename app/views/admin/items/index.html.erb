@@ -1,68 +1,70 @@
-<div class="top-blank">
-    <%= render "layouts/admin/header" %>
-</div>
-<div class="row btn-margin-top" >
-    <div class="col-xs-9">
-    </div>
-    <%= render 'layouts/admin/top' %>
-</div>
+<%= render "layouts/admin/header" %>
+
+<div class="contener">
+    <div class="row btn-margin-top">
+        <div class="col-xs-3" style="text-align: center;">
             <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
         </div>
     </div>
+
+    <div class="row btn-margin-top" >
+        <div class="col-xs-6 col-xs-offset-6" style="text-align: right">
+            <%= render 'layouts/admin/top' %>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-3" style="text-align: right;">
             <h2><strong>商品一覧</strong></h2>
         </div>
     </div>
 </div>
+
 <div class="contener">
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-                    <div class="col-xs-6" style="text-align: center">
-            <p>商品検索</p>
-            <%= form_tag(admin_items_path) do %>
-              <p>
-                <%= text_field_tag :search %>
-                <%= submit_tag "Search", :name => nil %>
-              </p>
-            <% end %>
+            <h4>検索バー</h4>
         </div>
     </div>
 </div>
 
+
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
+    <div class="col-sm-12">
         <table id="foo-table" class="table table-bordered">
             <thead>
                <tr>
-            　　 <th>ジャケット</th>
-            　　 <th>CD名</th>
-            　　 <th>アーティスト名</th>
-            　　 <th>ジャンル</th>
-            　　 <th>レーベル</th>
-            　　 <th>価格</th>
-            　　 <th>在庫</th>
-            　　 <th>発売日</th>
-               </tr>
-            </thead>
-            <% @items.each do |item| %>
-            <tbody>
-               <tr>
-                <td><span><%#= item.jacket_image_id %></span></td>
-                <td><span><%= item.item_name %></span></td>
-                <td><span><%= item.artist_name %></span></td>
-                <td><span><%= item.genre_id %></span></td>
-                <td><span><%= item.label_name %></span></td>
-                <td><span><%= item.price %>円</span></td>
-                <td><span><%= item.stock %>枚</span></td>
-                <td><span><%= item.release_date %></span></td>
-            <% end %>
-               </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                 　　 <th>ジャケット</th>
+                 　　 <th>商品名</th>
+                 　　 <th>アーティスト名</th>
+                 　　 <th>ジャンル</th>
+                 　　 <th>レーベル</th>
+                 　　 <th>価格</th>
+                 　　 <th>在庫</th>
+                 　　 <th>発売日</th>
+             </tr>
+         </thead>
 
+         <% @items.each do |item| %>
+         <tbody>
+           <tr>
+            <!-- <td><%#= item.jacket_image_id %></td> -->
+            <td>
+                <%= attachment_image_tag item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '50', height: '50'%>
+            </td>
+            <td><%= link_to item.item_name, admin_item_path(item) %></td>
+            <td><%= item.artist_name %></td>
+            <td><%= item.genre.genre_name %></td>
+            <td><%= item.label_name %></td>
+            <td><%= item.price %>円</td>
+            <td><%= item.stock %>枚</td>
+            <td><%= item.release_date %></td>
+            <% end %>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
 
 <div class="text-center">
     <%#= paginate @items %>
