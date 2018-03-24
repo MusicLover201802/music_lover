@@ -1,23 +1,25 @@
-		<script>
-			$(document).ready(function(){
-				$('.bxslider').bxSlider();
-			});
-		</script>
+<script>
+	$(document).ready(function(){
+		$('.bxslider').bxSlider();
+	});
+</script>
+<body>
 
-	<body>
+<%= render 'layouts/header'%>
+<%= render 'layouts/Lsidebar' %>
 
-<%= render 'layouts/header'%><!-- header -->
-<%= render 'layouts/Lsidebar' %><!-- L sidebar -->
+	<div class="col-xs-6" style="text-align: center">
 
-<!-- main -->
-	<div class="col-xs-6">
-		<h4 style="text-align: center">商品検索</h4>
-		<%= form_tag(lovers_items_path) do %>
-    	  <p><%= text_field_tag :search %>
-	  		<%= submit_tag "Search", :name => nil %>
-		  </p>
-		<% end %>
-		<!-- 見出し -->
+		<!-- 検索バー -->
+		<div class="row" style="margin-top: 40px">
+			<%= search_form_for @search, :url => lovers_items_path do |f| %>
+			<%= f.label :item_name_or_artist_name_cont_any, "商品検索" %><br>
+			<%= f.search_field :item_name_or_artist_name_cont_any, :placeholder => "アーティスト名 or 商品名" %>
+			<%= f.submit "検索" %>
+			<% end %>
+		</div>
+
+		<!-- 広告フェイク -->
 		<div class="row pop">
 			<img class="BANANA col-xs-8 col-xs-offset-2" src="/infratop.png">
 			<img class="BANANA col-xs-8 col-xs-offset-2" src="/wcp.png">
@@ -30,10 +32,9 @@
 				<li><img src="/yuki.jpg" class="pickup"></li>
 				<li><img src="/ange_rave.jpg" class="pickup"></li>
 		  		<li><img src="/grieva.jpg" class="pickup"></li>
-				<!-- <li><img src="/bake.jpg" class="pickup"></li> -->
 			</ul>
 		</div>
 	</div>
-<%= render 'layouts/Rsidebar' %><!-- R sidebar -->
-<%= render 'layouts/footer'%><!-- footer -->
-</body>
+
+<%= render 'layouts/Rsidebar' %>
+<%= render 'layouts/footer'%>
