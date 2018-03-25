@@ -46,7 +46,7 @@ before_action :get_current_cart
   # カート画面から、カートの中身を削除するアクション
   def destroy
     item = UserItem.find(params[:id])
-    binding.pry
+    # binding.pry
     item.destroy
     redirect_to lovers_user_item_path(current_user.id)
   end

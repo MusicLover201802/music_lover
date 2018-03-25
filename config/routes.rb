@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
       resources :users, only: [:show, :edit, :update]
 
-      ### 論理削除の為にgetからpatchへ、更にpathを追記しました ###
+      ### 論理削除の為に追記しました ###
+      get '/retire', to: 'end#retire', as: 'retire'
       patch '/users/:id/retire', to: 'users#retire', as: 'user_retire'
 
       ### sign_upでエラーを起こして更新すると発生するルーティングエラー回避の為、以下を追記 ###

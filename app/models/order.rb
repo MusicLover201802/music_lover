@@ -54,4 +54,9 @@ class Order < ApplicationRecord
 							鹿児島県: 45,
 							沖縄県: 46
 						}
+
+	validates :postal_code, presence: true
+	validates :city, presence: true
+	validates :building, presence: true
+	validates :phone_number, presence: true
 end
