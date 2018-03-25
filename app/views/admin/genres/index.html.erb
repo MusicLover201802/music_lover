@@ -29,7 +29,7 @@
 							<tr>
 							    <td><span><%= f.text_field :genre_name, class: 'col-xs-11' %></span></td>
 							    <td><div style="margin: 2px"><span><%= f.submit 'Update',class: "btn btn-success" %></span></div></td>
-							    <td><div style="margin: 2px"><%= link_to "Destroy", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, data:{confirm: "Can I delete it？" } %></div></td>
+							    <td><div style="margin: 2px"><%= link_to "Destroy", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, data:{confirm: "本当に削除しますか？" } %></div></td>
 						     </tr>
 						</table>
 					</tbody>
