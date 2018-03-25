@@ -56,7 +56,7 @@
             <td><%= item.artist_name %></td>
             <td><%= item.genre.genre_name %></td>
             <td><%= item.label_name %></td>
-            <td><%= item.price %>円</td>
+            <td><%= item.price.to_s(:delimited) %>円</td>
             <td><%= item.stock %>枚</td>
             <td><%= item.release_date %></td>
             <% end %>

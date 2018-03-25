@@ -1,9 +1,13 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.page(params[:page]).per(5)
+    # @orders = Order.page(params[:page]).per(5).reverse_order
+
+        ### 検索用 ###
+    @search = Order.ransack(params[:q])
+    @selects = @search.result.page(params[:page]).reverse_order
   end
 
-   def create
+  def create
     @order = Order.new(order_params)
     @order.save
     redirect_to admin_orders_path
@@ -18,10 +22,15 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-      order = Order.find(params[:id])
-      order.update(order_params)
+      @order = Order.find(params[:id])
+      if @order.update(order_params)
       redirect_to admin_orders_path
+      else
+      render action: :edit
+      end
   end
+
+
 
   private
 
