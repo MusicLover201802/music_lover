@@ -32,7 +32,13 @@ Rails.application.routes.draw do
       get '/genres/:id', to: 'genres#show', as: 'genres'
 
       resources :users, only: [:show, :edit, :update]
-      get '/users/:id/retire', to: 'users#retire'
+
+      ### 論理削除の為に追記しました ###
+      get '/retire', to: 'end#retire', as: 'retire'
+      patch '/users/:id/retire', to: 'users#retire', as: 'user_retire'
+
+      ### sign_upでエラーを起こして更新すると発生するルーティングエラー回避の為、以下を追記 ###
+      get '/users', to: redirect("lovers/users/sign_up")
     end
 
 
@@ -41,7 +47,7 @@ Rails.application.routes.draw do
       get '/top', to: 'root#top'
 
       resources :users, only: [:index, :show, :edit, :update]
-      get '/users/:id/retire', to: 'users#retire'
+      patch '/users/:id/retire', to: 'users#retire'
 
       resources :items
 
