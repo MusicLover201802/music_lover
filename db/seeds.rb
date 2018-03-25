@@ -8,9 +8,11 @@
 
 # メンバーへ：下記は削除しないでください（開発中にこれらのテストデータを復元・追加する場面が想定されるため）フカイ
 
+
 # 下記Users, Adminテーブルはdeviseによって作成されているためこのような記述が必要です
 # また下記と同じデータを持つレコードが存在する状態でrake db:seedを実行するとエラーになるため、
 # コメントアウト化してあります（フカイ）
+
 
 user = User.new(email:'1@gmail.com', password:'vvvvvv',sign_in_count:'0',last_name: 'ミュージック田', first_name: 'ラバー子', last_name_kana: 'ミュージックダ', first_name_kana: 'ラバーコ', postal_code: '0000000', prefecture: '北海道', city: '渋谷区１', building:'MYSQL摩天楼', phone_number: 'xxx-xxxx-xxxx', retire_flag:'false')
 user.save!

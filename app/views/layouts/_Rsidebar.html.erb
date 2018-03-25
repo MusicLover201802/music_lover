@@ -1,10 +1,58 @@
-<span class="col-xs-3 side-bar" style="background-color: #ffe69c">
-	<ul style="list-style: none">
-		<li><%= link_to "", lovers_items_path,as: :index %></li>
-		<li><%= link_to "", lovers_items_path,as: :index %></li>
-		<li><%= link_to "", lovers_items_path,as: :index %></li>
-		<li><%= link_to "", lovers_items_path,as: :index %></li>
-		<li><%= link_to "", lovers_items_path,as: :index %></li>
-	</ul>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<style>
+	#maps{
+		width: 280px;
+		height: 250px;
+		display: inline-block;
+	}
+	p {
+		text-align: left;
+	}
+</style>
+</head>
+	<span class="col-xs-3 side-bar" style="background-color: #ffe69c">
+		<body>
+			<h3>Music Lover 神南店</h3></br>
+			<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCI4eDVtnB8doxgtD5jV_H_9hZzkSi2DSE&callback=initMap" async></script>
+			<script>
+				function initMap() {
+					var mapPosition = {lat: 35.662980, lng: 139.699625}
+					var mapArea = document.getElementById('maps');
+					var mapOptions = {
+						center: mapPosition,
+						zoom: 16,
+					};
+					var map = new google.maps.Map(mapArea, mapOptions);
+					var markerOptions = {
+						map: map,
+						position: mapPosition,
+					};
+					var marker = new google.maps.Marker(markerOptions);
+				}
+			</script>
+			<div id="maps"></div>
+			<p>住所：<br/>
+			〒150-0041 <br/>
+			東京都渋谷区神南1丁目19番11号 </br>
+			パークウェースクエア2 4階 </br>
+			※各線渋谷駅より徒歩8分</p>
+			<p>TEL:03-6868-8470</p>
+			<p>営業時間: 11:00~22:00</p>
+			<p>定休日無し（年末年始をのぞく）</p>
+		</body>
+	</span>
+</html>
+
+
+<!-- 
+<ul style="list-style: none">
+	<li><%= link_to "", lovers_items_path,as: :index %></li>
+	<li><%= link_to "", lovers_items_path,as: :index %></li>
+	<li><%= link_to "", lovers_items_path,as: :index %></li>
+	<li><%= link_to "", lovers_items_path,as: :index %></li>
+	<li><%= link_to "", lovers_items_path,as: :index %></li>
+</ul>
 <%= link_to "", lovers_items_path,as: :index  %>
-</span>
+</span> -->

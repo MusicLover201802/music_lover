@@ -1,14 +1,13 @@
-<%= render "layouts/footer" %>
+<%= render 'layouts/header' %>
 
-<div class="container">
-	<div class="row">
-		<div class="col-xs-6">
-			<h2>ご購入ありがとうございました。<br>
-				またのご利用をお待ちしております。
-			</h2>
-			<p><%= link_to "Topページに戻る", lovers_root_path %></p>
-		</div>
+<div class="col-xs-6 col-xs-offset-3" style="text-align: center">
+	<div style="margin-top: 120px ">
+		<img class="SeeYou" src="/no_ongaku.png" width="200" height="200" >
 	</div>
+	<h2>ご購入ありがとうございました。<br>
+		またのご利用をお待ちしております。
+	</h2>
+	<p><%= link_to "Topページに戻る", lovers_root_path %></p>
 </div>
 
 <%= render 'layouts/footer'%>

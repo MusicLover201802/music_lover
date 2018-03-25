@@ -1,96 +1,111 @@
 <%= render 'layouts/header'%>
-<div class="row">
+<div class="col-xs-12">
 	<div class="col-xs-3" style="margin-top: 40px">
-		<h2><strong>マイページ</strong></h2>
+		<h2 style="margin-left: 60px"><strong>マイページ</strong></h2>
 	</div>
 </div>
-<div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
-		<table class="table">
-			<thread>
-				<tr>お名前</tr>
-			</thread>
-			<tbody>
-				<tr>
-					<th class="indent" width="100px"><%= current_user.last_name %> <%= current_user.first_name %> 様</th>
-					<th width="50px"><%= link_to edit_user_registration_path do %>
-					  <button class="btn btn-primary">お客様情報編集</button>
-					  <% end %>
-					</th>
-				</tr>
-			</tbody>
-		</table>
-		<table class="table">
-			<thread>
-				<tr>住所</tr>
-			</thread>
-			<tbody>
-				<tr>
-					<th class="indent"><%= current_user.prefecture %>
-						<%= current_user.city %>
-						<%= current_user.building %>
-					</th>
-				</tr>
-			</tbody>
-		</table>
-		<table class="table">
-			<thread>
-				<tr>ご購入履歴</tr>
-			</thread>
-			<tbody>
-				<td>
-				  <% if @orders.blank? %>
-					<h3　class="indent">※購入履歴はありません※</h3>
-				  <% else %>
+<div class="col-xs-6 col-xs-offset-3">
 
-				  <% @orders.each do |order| %>
-					<div class="panel panel-warning">
-						<div class="panel-heading clearfix">
-							<span style="float: left">
-								<%= link_to order.created_at.to_s(:created_at), lovers_order_path(params[:id]) %></span>
-							<span style="float: right;"><%= order.status %></span>
-						</div>
-						<div class="panel-body" style="padding: 15px 15px 0 15px">
-							<table class="table">
-								<tbody>
-									<tr>
-									  <% sum = 0 %>
-					  					<% order.order_items.each do |i| %>
-										<td><%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_s.png", width: '20', height: '20'%></td>
-										<td><%= i.item.item_name %></td>
-										<td><%= i.item.artist_name %></td>
-										<td>￥<%= i.price.to_s(:delimited) %></td>
-										<td><%= i.quantity %></td>
-										<% sub_total = i.price * i.quantity %>
-										<% sum = sum + sub_total %>
-										<td>￥<%= sub_total.to_s(:delimited) %></td>
-									</tr>
-					  				  <% end %>
-									<td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>合計</td>
-										<td>￥<%= sum.to_s(:delimited)  %></td>
-									</td>
-								</tbody>
-							</table>
-						</div>
+	<!-- お客様情報 -->
+	<table class="table">
+		<thread><tr>お名前</tr></thread>
+		<tbody>
+			<tr>
+				<th class="indent" width="100px">
+				  <%= current_user.last_name %> <%= current_user.first_name %> 様</th>
+				<th width="50px">
+				  <%= link_to edit_user_registration_path do %>
+					<button class="btn btn-primary">お客様情報編集</button>
+				  <% end %>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table">
+		<thread><tr>住所</tr></thread>
+		<tbody>
+			<tr>
+				<th class="indent">
+				  <%= current_user.prefecture %>
+				  <%= current_user.city %>
+				  <%= current_user.building %>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!-- 購入履歴 -->
+	<table class="table">
+		<thread><tr>ご購入履歴</tr></thread>
+		<tbody>
+			<td>
+			  <!-- 購入履歴の有無で条件分岐 -->
+
+			  <!-- 履歴がない場合 -->
+			  <% if @orders.blank? %>
+				<h3　class="indent">※購入履歴はありません※</h3>
+
+			  <% else %>
+			  <!-- 履歴がある場合 -->
+
+			  <% @orders.each do |order| %>
+				<div class="panel panel-warning">
+					<div class="panel-heading clearfix">
+						<span style="float: left">
+							<%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), lovers_order_path(params[:id]) %></span>
+						<span style="float: right;"><%= order.status %></span>
 					</div>
-				  <% end %>
-				  <% end %>
-				</td>
-			</tbody>
-		</table>
+					<div class="panel-body" style="padding: 15px 15px 0 15px">
+						<table class="table">
+							<tbody>
+							  <% sum = 0 %><!-- 初期値を設定 -->
+				  			  <% order.order_items.each do |i| %>
+								<tr>
+									<td><%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_s.png", width: '20', height: '20'%></td>
+									<td><%= i.item.item_name %></td>
+									<td><%= i.item.artist_name %></td>
+									<td>￥<%= i.price.to_s(:delimited) %></td>
+									<td><%= i.quantity %></td>
+									<!-- sub_totalに計算式を代入 -->
+									<% sub_total = i.price * i.quantity %>
+									<!-- sum = 初期値 + 小計 -->
+									<% sum = sum + sub_total %>
+									<!-- 小計 -->
+									<td>￥<%= sub_total.to_s(:delimited) %></td>
+								<!-- 合計の前までに繰り返しを止める -->
+			  				  <% end %>
+								</tr>
+								<td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>合計</td>
+									<!-- 繰り返された分の sum を全部足した結果 -->
+									<td>￥<%= sum.to_s(:delimited)  %></td>
+								</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			  <% end %>
+			  <% end %>
+			</td>
+		</tbody>
+	</table>
+</div>
+
+<div class="col-xs-12" style="margin-bottom: 60px">
+	<div class="col-xs-6 col-xs-offset-3" style="padding-left: 20px">
+	　　<%= link_to "戻る", lovers_root_path %>
+	</div>
+
+	<!-- 論理削除 -->
+	<div class="col-xs-2" style="padding-right: 0">
+	  <%= link_to lovers_user_retire_path(current_user), method: :patch do %>
+		<button class="btn btn-default">退会</button>
+	  <% end %>
 	</div>
 </div>
-<div class="row" style="margin-bottom: 60px">
-	<div class="col-xs-6 col-xs-offset-3" style="padding-left: 20px"><%= link_to "戻る", lovers_root_path %></div>
-	<div class="col-xs-3">
-		<button class="btn btn-default">退会
-			<!-- 論理削除実装時　#外す -->
-			<%#= link_to "退会", lovers_user_path(current_user), method: :patch %>
-		</button>
-	</div>
-</div>
+
 <%= render 'layouts/footer'%>
