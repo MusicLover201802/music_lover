@@ -1,6 +1,7 @@
 class Lovers::RootController < ApplicationController
   def top
-  	@items = Item.all
+  	@items  = Item.all
+  	@genres = Genre.all
 
   	### 検索用 ###
     @search    = Item.ransack(params[:q])

@@ -18,11 +18,25 @@
 					</tr>
 				</thead>
 
+
+		  <!-- カートの中身の有無で条件分岐 -->
+
+			  <!-- 中身がない場合 -->
+				  <% if @user_items.blank? %>
+				<tbody>
+				</tbody>
+			</table>
+					<h3 style="text-align: center">※カートが空です。商品を選んでください※</h3>
+					<h3 style="text-align: center"><%= link_to "商品一覧", lovers_items_path %></h3>
+
+			  <% else %>
+			  <!-- 中身がある場合 -->
+
 			  <% sum = 0 %>
 			  <% @user_items.each do |u_i| %>
 				<tbody>
 					<tr>
-						<td><%= attachment_image_tag @item, :jacket_image, format: 'png',
+						<td><%= attachment_image_tag u_i.item, :jacket_image, format: 'jpg',
 							class: "center-block", fallback: "/no_image_s.png", width: '80', height: '80'%></td>
 						<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
 						<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
@@ -57,6 +71,7 @@
 			  <%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
 			  <%= link_to "レジへ進む", new_lovers_order_path, class: "btn btn-info" %>
 			</div>
+			<% end %>
 		</div>
 	</div>
 

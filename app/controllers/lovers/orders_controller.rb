@@ -53,6 +53,7 @@ class Lovers::OrdersController < ApplicationController
 
 	def show
 		@orders = Order.find_by(params[:id])
+    	@order  = Order.find(params[:id])
 	end
 
 

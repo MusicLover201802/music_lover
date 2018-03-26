@@ -3,6 +3,15 @@
 		<%= link_to lovers_root_path do %>
 			<img class="Logo" src="/ml_logo1.png" width="90" height="90">
 		<% end %>
+
+			<!-- notice -->
+		<% if flash[:notice] %>
+		  <i class="alert" style="color: green">
+		    <%= flash[:notice] %>
+		  </i>
+		<% end %>
+
+
 		<span class="nav-box">
 			<div class="collapse navbar-collapse navbar-right" style="line-height: 90px" id="navbarEexample7">
 		      　　<ul class="nav navbar-nav" style="margin-right: 80px">
@@ -19,16 +28,16 @@
 	                <li class="navlink" aria-hidden="true" style="color: #9d9d9d"><img src="/sign_out.png" width="25" height="25"> ログアウト</li>
 		            	<% end %>
 		            		<!-- カートが空だったら、空のアイコン -->
-		            		<%# if @user_items.blank? %>
-				            	<%#= link_to lovers_user_item_path(current_user.id) do %>
-			        			<!-- <img class="Cart" src="/cart_blank.png" width="40" height="40"> -->
-				            	<%# end %>
+		            		<% if @user_items.blank? %>
+				            	<%= link_to lovers_user_item_path(current_user.id) do %>
+			        			<img class="Cart" src="/cart_blank.png" width="40" height="40">
+				            	<% end %>
 				            <!-- それ以外は入ってるアイコン -->
-				            <%# else %>
+				            <% else %>
 				            	<%= link_to lovers_user_item_path(current_user.id) do %>
 			        			<img class="Cart" src="/cart1.png" width="40" height="40">
 				            	<% end %>
-				           	<%# end %>
+				           	<% end %>
 		        <!-- ログイン前 -->
 		        <% else %>
 		        	<li style="padding-right: 30px">こんにちは ゲスト さん</li>
