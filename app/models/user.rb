@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :user_items
   has_many :orders
 
+  attachment :jacket_image
+
 ### ユーザー情報のバリデーション ###
   validates :last_name,	presence: true
   validates :last_name_kana, presence: true,
