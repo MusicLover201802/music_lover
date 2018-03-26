@@ -1,7 +1,13 @@
 class Admin::ItemsController < ApplicationController
+
+    before_action :authenticate_admin!
+
   def index
     # @items = Item.all.reverse_order
-    @items = Item.page(params[:page]).per(5).reverse_order
+    #@items = Item.page(params[:page]).per(5).reverse_order
+            ### 検索用 ###
+    @search = Item.ransack(params[:q])
+    @selects = @search.result.page(params[:page]).per(5).reverse_order
 
   end
 

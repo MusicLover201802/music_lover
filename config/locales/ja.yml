@@ -40,3 +40,5 @@ ja:
         city: 住所
         postal_code: 郵便番号
 
+      admin:
+        admin_name: 名前

@@ -12,17 +12,18 @@
 			<h2 style="margin-top: 40px"><strong>購入詳細編集</strong></h2>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
-
 			<% if @order.errors.any? %>
-			    <h3>入力した内容にエラーが<%= @order.errors.count %>件あります</h3>
-				    <ul>
-				      	<% @order.errors.full_messages.each do |message| %>
-				      	<li><%= message %></li>
-				      <% end %>
-				    </ul>
-			  <% end %>
+				<div id="error_explanation" class="alert alert-danger">
+				<ul>
+					<% @order.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+				</div>
+			<% end %>
 		</div>
 
 		<div class="col-xs-10 col-xs-offset-2">
@@ -65,11 +66,11 @@
 					<td><%= o.select :prefecture, Destination.prefectures.keys.to_a,{} %></td>
 				</tr>
 				<tr>
-					<th><div>市区町村</div></th>
+					<th><div>住所</div></th>
 					<td><%= o.text_field :city %><br></td>
 				</tr>
 				<tr>
-					<th><div>住所</div></th>
+					<th><div>建物名</div></th>
 					<td><%= o.text_field :building %><br></td>
 				</tr>
 				<tr>
