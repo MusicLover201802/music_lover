@@ -8,7 +8,7 @@
     </div>
 
     <div class="row btn-margin-top" >
-        <div class="col-xs-7 col-xs-offset-8" style="text-align: right">
+        <div class="col-xs-5 col-xs-offset-7" style="text-align: right">
             <%= render 'layouts/admin/top' %>
         </div>
     </div>
@@ -20,12 +20,13 @@
     </div>
 </div>
 
-<div class="contener">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <h4>検索バー</h4>
-        </div>
-    </div>
+<!-- 検索バー -->
+<div class="text-center">
+    <%= search_form_for @search, :url => admin_items_path do |f| %>
+        <%= f.label :item_name_or_artist_name_cont_any, "商品名・アーティスト名検索" %><br>
+        <%= f.search_field :item_name_or_artist_name_cont_any, :placeholder => "商品・アーティスト名" %>
+        <%= f.submit "検索" %>
+    <% end %>
 </div>
 
 
@@ -42,10 +43,11 @@
                  　　 <th>価格</th>
                  　　 <th>在庫</th>
                  　　 <th>発売日</th>
+                     <th>フラグ</th>
              </tr>
          </thead>
 
-         <% @items.each do |item| %>
+         <% @selects.each do |item| %>
          <tbody>
            <tr>
             <!-- <td><%#= item.jacket_image_id %></td> -->
@@ -59,6 +61,7 @@
             <td><%= item.price.to_s(:delimited) %>円</td>
             <td><%= item.stock %>枚</td>
             <td><%= item.release_date %></td>
+            <td><%= item.purchase_flag ? '発売中' : '未発売' %></td>
             <% end %>
         </tr>
     </tbody>
@@ -67,5 +70,5 @@
 </div>
 
 <div class="text-center">
-    <%#= paginate @items %>
+    <%= paginate @selects %>
 </div>

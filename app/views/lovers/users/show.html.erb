@@ -49,7 +49,7 @@
 			  <% else %>
 			  <!-- 履歴がある場合 -->
 
-			  <% @order.each do |order| %>
+			  <% @orders.each do |order| %>
 				<div class="panel panel-warning">
 					<div class="panel-heading clearfix">
 						<span style="float: left">
@@ -89,14 +89,14 @@
 					</div>
 				</div>
 			  <% end %>
+	<div style="text-align: center">
+	  <%= paginate @page, class: "pagenate"%>
+	</div>
 	  		<% end %>
 			</td>
 		</tbody>
 	</table>
 
-	<div style="text-align: center">
-	  <%= paginate @order, class: "pagenate"%>
-	</div>
 </div>
 
 <div class="col-xs-12" style="margin-bottom: 60px">
