@@ -31,7 +31,7 @@
 					<div class="content">
 						<span class="index_artist"><%= i.artist_name %></span>
 						<h5 class="index_item_name"><%= link_to i.item_name, lovers_path(i) %></h5>
-						<tr class="index_item_detail"><%= link_to i.genre.genre_name, lovers_genres_path(i) %></tr>
+						<tr class="index_item_detail"><%= link_to_unless_current i.genre.genre_name, lovers_genres_path(i.genre.id) %></tr>
 						<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
 						<tr class="index_item_detail">
 						  <% if i.stock == 0 %>
@@ -47,9 +47,10 @@
 			</div>
 		</div>
 	  <% end %>
-
+	</div>
 	  <!-- kaminari -->
-	<%= paginate @item, class: "pagenate"%>
+	<div class="row">
+		<%= paginate @item, class: "pagenate"%>
 	</div>
 </div>
 

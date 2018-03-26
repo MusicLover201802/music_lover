@@ -32,6 +32,7 @@ ja:
         city:            市区町村
         phone_number:    電話番号
         password:        パスワード
+        prefecture:      建物名
 
       order:
         building: 建物名

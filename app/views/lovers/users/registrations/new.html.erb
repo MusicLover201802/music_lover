@@ -39,7 +39,7 @@
 
               <div class="field col-xs-6">
                 <%= f.label :prefecture,"都道府県" %><br />
-                <%= f.select :prefecture, User.prefectures.keys.to_a,{} %>
+                <%= f.select :prefecture, User.prefectures.keys.to_a,{include_blank: '選択してください'} %>
               </div>
 
               <div class="field col-xs-6">

@@ -1,84 +1,81 @@
 <%= render 'layouts/header'%><!-- header -->
 
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
+	<div class="row" style="margin-top: 40px">
+		<div class="col-xs-6 col-xs-offset-3" style="margin-bottom: 80px">
 			<!-- 購入内容一覧 -->
-
-			<table class="table table-stripped">
-				<h2>購入内容</h2>
-				<thead>
-					<tr>
-						<th>商品画像</th>
-						<th>商品名/アーティスト名</th>
-						<th>単価</th>
-						<th width="10">数量</th>
-						<th>小計</th>
-						<th>   </th>
-					</tr>
-				</thead>
-				<tbody>
-					<% sum = 0 %>
-					<% @user_items.each do |user_item| %>
-					<tr>
-						<td><%= attachment_image_tag @item, :jacket_image, format: 'jpg',
-					class: "center-block", fallback: "/no_image_m.png", width: '80', height: '80'%></td>
-						<td><%= user_item.item.item_name %> / <%= user_item.item.artist_name %></td>
-						<td>￥<%= user_item.item.price.to_s(:delimited) %></td>
-						<td><%= user_item.quantity%></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
-						<% sub_total = user_item.item.price * user_item.quantity %>
-						<td>￥<%= sub_total.to_s(:delimited) %></td>
-						<td> </td>
-						<td> </td>
-						<td> </td>
-					</tr>
-				</tbody>
-				<% sum += sub_total %>
-				<% end %>
-			</table>
-
-			<table class="table">
-				<thread">
-					<tr class="danger">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><h3>購入合計金額：</h3></td>
-						<td><h3>￥<%= sum.to_s(:delimited) %>-</h3></td>
-					</tr>
-				</thread>
-			</table>
-
-
-			<!-- 商品送付先-->
-			<!-- 支払い方法選択 -->
-			<div class="col-xs-12" style="margin-bottom: 60px">
-				<h4>商品送付先</h4>
-				<%= link_to '送り先の変更はこちら', new_lovers_destination_path, class: 'btn btn-default' %>
-				<div class="line"> </div>
-				<%= @neworder.postal_code %><br>
-				<%= @neworder.prefecture %> <%= @neworder.city %> <%= @neworder.building %><br>
-				<%= @neworder.phone_number %>
-				<%= @neworder.last_name %> <%= @neworder.first_name %>様<br>
-
-				<%= form_for @neworder, url: lovers_orders_path do |f| %>
-         			<%= f.hidden_field :last_name %>
-	               	<%= f.hidden_field :first_name %>
-					<%= f.hidden_field :last_name_kana %>
-					<%= f.hidden_field :first_name_kana %>
-					<%= f.hidden_field :postal_code %>
-					<%= f.hidden_field :prefecture %>
-					<%= f.hidden_field :city %>
-					<%= f.hidden_field :building %>
-					<%= f.hidden_field :phone_number %>
-					<%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'} %>
-				<%= f.submit '購入を確定する', class: 'col-xs-3 btn btn-danger' %>
+			<div class="col-xs-12" style="padding: 0">
+				<span style="font-size: 30px">購入内容</span>
+				<table class="table table-stripped">
+					<thead></thead>
+					<tbody>
+						<% sum = 0 %>
+						<% @user_items.each do |u_i| %>
+						<tr>
+							<td><%= attachment_image_tag u_i.item, :jacket_image, format: 'jpg',
+						class: "center-block", fallback: "/no_image_m.png", width: '80', height: '80'%></td>
+							<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
+							<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
+							<td><%= u_i.quantity%></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
+							<% sub_total = u_i.item.price * u_i.quantity %>
+							<td>￥<%= sub_total.to_s(:delimited) %></td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+						</tr>
+					</tbody>
+					<% sum += sub_total %>
 					<% end %>
-					<br/>
+				</table>
 
-				<%= link_to 'カートに戻る', lovers_user_item_path(current_user), class: 'col-xs- btn btn-default' %><br>
+				<table class="table">
+					<thread>
+						<tr class="danger">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><h3>購入合計金額：</h3></td>
+							<td><h3>￥<%= sum.to_s(:delimited) %>-</h3></td>
+						</tr>
+					</thread>
+				</table>
+			</div>
 
-				<%= link_to 'カート内削除', lovers_user_items_cart_destroy_path, class: 'col-xs-3 btn btn-danger' %>
+			<div style="margin-top: 10px">
+				<span style="font-size: 30px">商品送付先</span>
+				<%= link_to '送り先の変更はこちら', new_lovers_destination_path, class: 'btn btn-default' %>
+				<div class="line" style="margin: 10px 0"></div>
+					<div class="indent"><%= @neworder.last_name %> <%= @neworder.first_name %>様</div>
+					<div class="indent"><%= @neworder.postal_code %></div>
+					<div class="indent"><%= @neworder.prefecture %> <%= @neworder.city %> <%= @neworder.building %></div>
+					<div class="indent"><%= @neworder.phone_number %></div>
 
+					<%= form_for @neworder, url: lovers_orders_path do |f| %>
+	         			<%= f.hidden_field :last_name %>
+		               	<%= f.hidden_field :first_name %>
+						<%= f.hidden_field :last_name_kana %>
+						<%= f.hidden_field :first_name_kana %>
+						<%= f.hidden_field :postal_code %>
+						<%= f.hidden_field :prefecture %>
+						<%= f.hidden_field :city %>
+						<%= f.hidden_field :building %>
+						<%= f.hidden_field :phone_number %>
+				</div>
+				<div class="row" style="margin: 10px 0">
+					<span style="font-size: 30px">お支払い方法</span>
+					<p class="line" style="margin: 10px 0"></p>
+						<div class="indent"><%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: '支払い方法を選択'} %></div>
+						<%= f.submit '購入を確定する', class: 'col-xs-12 btn btn-info' %>
+					<% end %>
+				</div>
+
+				<div class="row" style="padding: 0 15px">
+					<%= link_to lovers_user_item_path(current_user) do %>
+					<button class="btn btn-default col-xs-3">カートに戻る</button>
+					<% end %>
+					<%= link_to lovers_user_items_cart_destroy_path do %>
+					 <button class="btn btn-danger col-xs-3">カート内削除</button>
+					 <% end %>
+				</div>
 			</div>
 		</div>
 	</div>

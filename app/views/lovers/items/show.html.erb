@@ -45,21 +45,21 @@
 			</div>
 
 			<div class="col-xs-3" style="text-align: center">
+				<!-- (発売日時が現在日時よりも先の場合) -->
 				<% if @item.release_date > Date.today.to_time %>
-				<button class="btn btn-danger">売り切れ</button>
-				<button class="btn btn-default">近日発売</button>
+					<button class="btn btn-default">近日発売</button>
 
+				<!-- 在庫が0個の場合 -->
 				<% elsif @item.stock == 0 %>
-				<button class="btn btn-danger">売り切れ</button>
+					<button class="btn btn-danger">売り切れ</button>
 
+				<!-- そのほかの場合 -->
 				<% else %>
-				<!-- カートに入れるボタン：深井追記 -->
-				<%= form_for @new_order, url:lovers_user_items_path do |n| %>
-				<%= n.hidden_field :item_id %>
-				<%= n.number_field :quantity %>
-				<%= n.submit 'カートに入れる', class:'btn btn-primary' %>
-				<% end %>
-				<!-- 深井追記ここまで -->
+					<%= form_for @new_order, url:lovers_user_items_path do |n| %>
+					<%= n.hidden_field :item_id %>
+					<%= n.number_field :quantity %>
+					<%= n.submit 'カートに入れる', class:'btn btn-primary' %>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

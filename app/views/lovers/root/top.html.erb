@@ -21,7 +21,6 @@
 
 		<!-- 広告フェイク -->
 		<div class="row pop">
-			<img class="BANANA col-xs-8 col-xs-offset-2" src="/infratop.png">
 			<img class="BANANA col-xs-8 col-xs-offset-2" src="/wcp.png">
 		</div>
 
@@ -29,9 +28,12 @@
 		<div class="row pickup" style="text-align: center">
 			<h2>今月のPick Up</h2>
 				<ul class="bxslider">
-				<li><img src="/yuki.jpg" class="pickup"></li>
-				<li><img src="/ange_rave.jpg" class="pickup"></li>
-		  		<li><img src="/grieva.jpg" class="pickup"></li>
+				<%= link_to '/lovers/items/2' do %>
+				<li><img src="/yuki.jpg" class="pickup"></li><% end %>
+				<%= link_to '/lovers/items/1' do %>
+				<li><img src="/ange_rave.jpg" class="pickup"></li><% end %>
+				<%= link_to '/lovers/items/5' do %>
+		  		<li><img src="/grieva.jpg" class="pickup"></li><% end %>
 			</ul>
 		</div>
 	</div>
