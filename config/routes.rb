@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       patch '/users/:id/retire', to: 'users#retire'
 
       resources :items
+      patch '/items/:id/retire', to: 'items#retire'
 
       resources :orders, only: [:index, :show, :edit, :create, :update]
 

@@ -1,18 +1,13 @@
 class Admin::UsersController < ApplicationController
 
-      before_action :authenticate_admin!
-
   def index
-    #@users = User.page(params[:page]).per(5).reverse_order
-            ### 検索用 ###
-    @search = User.ransack(params[:q])
-    @selects = @search.result.page(params[:page]).per(5).reverse_order
+    @users = User.page(params[:page]).per(5).reverse_order
   end
 
   def show
     @user = User.find(params[:id])
     @orders = Order.where(user_id: params[:id]).order("created_at").reverse_order
-end
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -21,7 +16,7 @@ end
   def update
     @user = User.find(params[:id])
     if@user.update(user_params)
-    redirect_to admin_users_path
+    redirect_to admin_users_path, notice: "ユーザー情報の編集が完了しました"
     else
     render action: :edit
     end
@@ -43,7 +38,6 @@ private
       :city,
       :building,
       :phone_number,
-      :retire_flag,
       )
   end
 

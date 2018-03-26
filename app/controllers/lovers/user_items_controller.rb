@@ -15,12 +15,18 @@ before_action :get_current_cart!
 
   # 購入アクション③カートの中身を空にするアクション
   def cart_destroy
+    path = Rails.application.routes.recognize_path(request.referer)
     @user = User.find(current_user.id)
     @user_items = @user.user_items
     @user_items.each do |user_items|  #カート中身を1レコードずつ削除していく
-      user_items.destroy
+    user_items.destroy
     end
-    redirect_to lovers_end_path
+
+    if path[:controller] == 'lovers/orders' && path[:action] == 'orderitems_save'
+      redirect_to lovers_end_path
+    else path[:controller] == 'lovers/user_items' && path[:action] == 'cart_destroy'
+      redirect_to lovers_user_item_path(current_user)
+    end
   end
 
   # カート画面から、カート内数量を→更新するアクション

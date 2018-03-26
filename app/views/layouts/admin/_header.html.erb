@@ -1,11 +1,21 @@
 <div class="navbar-inverse navbar-fixed-top">
-  <div class="row side-blank">
+  <div class="row side-black">
     <div class="col-xs-2">
       <%= link_to admin_top_path do %>
         <img src="/ml_logo2.png" width="90" height="90" >
       <% end %>
     </div>
-      <div class="col-xs-9 col-xs-offset-1 navnav">
+
+          <!-- notice -->
+     <div class="col-xs-5 flash-msg">
+        <% if flash[:notice] %>
+          <i class="alert" style="color: white">
+            <%= flash[:notice] %>
+          </i>
+        <% end %>
+     </div>
+
+      <div class="col-xs-5 navnav">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
             <span class="sr-only">Toggle navigation</span>

@@ -5,6 +5,4 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :items
-
-  validates :admin_name, presence: true
 end
