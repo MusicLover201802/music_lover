@@ -22,7 +22,7 @@
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>姓 名</th>
+						<th>姓名</th>
 						<th><%= @user.last_name %><%= @user.first_name %></th>
 					</tr>
 					<tr>
@@ -30,12 +30,12 @@
 						<th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
 					</tr>
 					<tr>
-						<th>郵便番号</th>
+						<th>〒</th>
 						<th><%= @user.postal_code %></th>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<th><%= @user.prefecture %><%= @user.city %><%= @user.building %></th>
+						<th><%= @user.prefecture %></th>
 					</tr>
 					<tr>
 						<th>電話</th>
@@ -80,7 +80,7 @@
 					<div class="panel panel-warning">
 						<div class="panel-heading clearfix">
 							<span style="float: left">
-								<%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), edit_admin_order_path(order.id) %></span>
+								<%= link_to order.created_at.to_s(:created_at), edit_admin_order_path(order.id) %></span>
 							<span style="float: right;"><%= order.status %></span>
 						</div>
 						<div class="panel-body" style="padding: 15px 15px 0 15px">
@@ -118,3 +118,4 @@
 		</div>
 	</div>
 </div>
+

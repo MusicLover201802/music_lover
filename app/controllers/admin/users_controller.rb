@@ -1,12 +1,7 @@
 class Admin::UsersController < ApplicationController
 
-      before_action :authenticate_admin!
-
   def index
-    #@users = User.page(params[:page]).per(5).reverse_order
-            ### 検索用 ###
-    @search = User.ransack(params[:q])
-    @selects = @search.result.page(params[:page]).per(5).reverse_order
+    @users = User.page(params[:page]).per(5).reverse_order
   end
 
   def show
@@ -43,7 +38,6 @@ private
       :city,
       :building,
       :phone_number,
-      :retire_flag,
       )
   end
 

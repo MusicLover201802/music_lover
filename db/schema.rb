@@ -82,11 +82,13 @@ ActiveRecord::Schema.define(version: 20180325122929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "jacket_image_id"
+    t.datetime "soft_destroyed_at"
     t.index ["admin_id"], name: "index_items_on_admin_id"
     t.index ["artist_name"], name: "index_items_on_artist_name"
     t.index ["artist_name_kana"], name: "index_items_on_artist_name_kana"
     t.index ["genre_id"], name: "index_items_on_genre_id"
     t.index ["item_name"], name: "index_items_on_item_name"
+    t.index ["soft_destroyed_at"], name: "index_items_on_soft_destroyed_at"
   end
 
   create_table "order_items", force: :cascade do |t|

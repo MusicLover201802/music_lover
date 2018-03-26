@@ -1,13 +1,10 @@
 class Admin::OrdersController < ApplicationController
-
-    before_action :authenticate_admin!
-
   def index
-    @orders = Order.page(params[:page]).per(5).reverse_order
+    # @orders = Order.page(params[:page]).per(5).reverse_order
 
         ### 検索用 ###
     @search = Order.ransack(params[:q])
-    @selects = @search.result.page(params[:page]).per(5).reverse_order
+    @selects = @search.result.page(params[:page]).reverse_order
   end
 
   def create
