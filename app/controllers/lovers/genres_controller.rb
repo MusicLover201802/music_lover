@@ -1,7 +1,9 @@
 class Lovers::GenresController < ApplicationController
   def show
-  	@genre   = Genre.find(params[:id])
-  	@item    = Item.where(id: @genre)
+  	@i_genre = Item.where(:genre_id => params[:id])
+  	@genre = Genre.find(params[:id])
+  	@genres  = Genre.all
+  	@item    = Item.where(id: @i_genre)
   	@items   = Item.all
 
   	### 検索用 ###

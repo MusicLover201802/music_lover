@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   private
   def my_filter
   	if user_signed_in?
+       @user_items = UserItem.where(user_id: current_user.id)
     else
     end
   end
