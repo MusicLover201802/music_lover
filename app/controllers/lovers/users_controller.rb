@@ -3,7 +3,7 @@ class Lovers::UsersController < ApplicationController
 
   def show
   	@orders = Order.where(user_id: current_user.id)
-    @order  = Order.find(params[:id])
+    @order  = Order.page(params[:page]).per(2).reverse_order
   end
 
   def edit

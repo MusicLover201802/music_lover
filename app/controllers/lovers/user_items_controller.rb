@@ -28,7 +28,7 @@ before_action :get_current_cart!
     @user_items = UserItem.find_by(user_item_params)
     @user_items.update(quantity_params)
     @user_items.save
-    redirect_to lovers_user_item_path(current_user.id)
+    redirect_to lovers_user_item_path(current_user.id), notice: '数量を変更しました'
   end
 
   # 商品詳細から、商品をカートに入れる
