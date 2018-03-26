@@ -1,8 +1,9 @@
 class Admin::ItemsController < ApplicationController
   def index
-    # @items = Item.all.reverse_order
-    @items = Item.page(params[:page]).per(5).reverse_order
 
+            ### 検索用 ###
+    @search = Item.ransack(params[:q])
+    @selects = @search.result.page(params[:page]).per(5).reverse_order
   end
 
   def show
@@ -33,7 +34,7 @@ class Admin::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to admin_items_path
+    redirect_to admin_item_path(params[:id])
   end
 
   def destroy
@@ -41,6 +42,14 @@ class Admin::ItemsController < ApplicationController
    item.destroy
    redirect_to admin_items_path
   end
+
+  def retire
+    item = Item.find(params[:id])
+    item.update(retire_flag: true) ### リタイアフラグをtrueに更新
+    item.soft_destroy ### 論理削除処理※soft_destroyはkakurenbo-putiの固有メソッド
+    redirect_to lovers_retire_path ### 言わずもがな遷移先
+  end
+
 
 
   private
