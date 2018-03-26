@@ -1,11 +1,9 @@
 class Admin::ItemsController < ApplicationController
-
-    before_action :authenticate_admin!
-
   def index
             ### 検索用 ###
     @search = Itemgit .ransack(params[:q])
     @selects = @search.result.page(params[:page]).per(5).reverse_order
+
 
   end
 
