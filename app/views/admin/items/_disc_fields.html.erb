@@ -5,8 +5,10 @@
 	<div>ディスク名</div>
 	<%= f.text_field :disc_name, class: 'col-xs-7' %>
 
-	<%= f.hidden_field :_destroy %>
-	<%= link_to "削除", '#', class: "remove_fields" %>
+	<% if @item.persisted? %>
+		<%= f.check_box :_destroy %>
+		<%= f.label :_destroy, "削除", class: "btn-danger" %><br />
+	<% end %>
 </div>
 
 <div class="btn-margin-top"><h4>トラック情報</h4></div>
