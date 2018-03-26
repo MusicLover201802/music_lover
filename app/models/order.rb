@@ -3,6 +3,7 @@ class Order < ApplicationRecord
 	has_many :order_items
 	has_many :items, through: :order_items
 
+	attachment :jacket_image
 
 	accepts_nested_attributes_for :order_items, allow_destroy: true
 
@@ -59,4 +60,5 @@ class Order < ApplicationRecord
 	validates :city, presence: true
 	validates :building, presence: true
 	validates :phone_number, presence: true
+	validates :payment, presence: true
 end

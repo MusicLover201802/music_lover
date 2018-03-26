@@ -1,5 +1,7 @@
 # 開発中。アクション名は仮です。最終的にコントローラーを分ける可能性もあります
 class Lovers::UserItemsController < ApplicationController
+
+before_action :authenticate_user!
 before_action :get_current_cart!
 
   def check #進捗確認用　開発終了したら削除します
@@ -7,8 +9,6 @@ before_action :get_current_cart!
     @orders = Order.all
     @items = Item.all
   end
-
-  
 
   def show
   end
@@ -60,7 +60,7 @@ before_action :get_current_cart!
     item = UserItem.find(params[:id])
     # binding.pry
     item.destroy
-    redirect_to lovers_user_item_path(current_user.id)
+    redirect_to lovers_user_item_path(current_user.id), notice: '商品を取り消しました'
   end
 
 
