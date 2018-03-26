@@ -22,25 +22,27 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-     if @item.save
-    redirect_to admin_items_path
+    if @item.save
+    redirect_to admin_items_path, notice: "商品登録が完了しました"
     else
     @items = Item.all.reverse_order
     render :new
     end
-
   end
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to admin_item_path(params[:id])
+    if item.update(item_params)
+    redirect_to admin_items_path, notice: "商品編集が完了しました。"
+    else
+    render :edit
+    end
   end
 
   def destroy
    item = Item.find(params[:id])
    item.destroy
-   redirect_to admin_items_path
+   redirect_to admin_items_path, notice: "商品削除が完了しました。"
   end
 
   def retire
@@ -70,7 +72,7 @@ class Admin::ItemsController < ApplicationController
         :jacket_image, {
         discs_attributes: [:id, :disc_num, :item_id, :disc_name, :_destroy, {
           tracks_attributes: [:id, :track_num, :track_name, :disc_id, :_destroy] } ] })
-    end
+  end
 
 end
 

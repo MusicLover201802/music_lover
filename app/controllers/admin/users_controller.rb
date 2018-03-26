@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @orders = Order.where(user_id: params[:id])
+    @orders = Order.where(user_id: params[:id]).order("created_at").reverse_order
   end
 
   def edit
@@ -14,9 +14,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to admin_users_path
+    @user = User.find(params[:id])
+    if@user.update(user_params)
+    redirect_to admin_users_path, notice: "ユーザー情報の編集が完了しました"
+    else
+    render action: :edit
+    end
   end
 
   def retire
