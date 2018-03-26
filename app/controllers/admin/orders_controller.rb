@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
-    redirect_to admin_orders_path
+    redirect_to admin_orders_path, notice: "オーダー登録が完了しました"
   end
 
   def show
@@ -27,9 +27,9 @@ class Admin::OrdersController < ApplicationController
   def update
       @order = Order.find(params[:id])
       if @order.update(order_params)
-      redirect_to admin_orders_path
+      redirect_to admin_orders_path, notice: "オーダー編集が完了しました。"
       else
-      render action: :edit
+      render :edit
       end
   end
 
