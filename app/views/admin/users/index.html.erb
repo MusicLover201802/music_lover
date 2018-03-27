@@ -3,7 +3,7 @@
 <div class="contener">
     <div class="row btn-margin-top">
         <div class="col-xs-3" style="text-align: center;">
-            <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+            <%= link_to "Back", admin_top_path, class: "btn btn-primary btn-xs" %>
         </div>
     </div>
     <div class="row">
@@ -16,8 +16,8 @@
 <!-- 検索バー -->
 <div class="text-center">
     <%= search_form_for @search, :url => admin_users_path do |f| %>
-        <%= f.label :last_name_kana_or_first_name_kana_cont_any, "名前検索" %><br>
-        <%= f.search_field :last_name_kana_or_first_name_kana_cont_any, :placeholder => "カタカナ検索" %>
+        <%= f.label :last_name_or_first_name_or_last_name_kana_or_first_name_kana_cont_any, "ユーザー検索" %><br>
+        <%= f.search_field :last_name_or_first_name_or_last_name_kana_or_first_name_kana_cont_any, :placeholder => "姓名 セイメイ検索" %>
         <%= f.submit "検索" %>
     <% end %>
 </div>
