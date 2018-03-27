@@ -16,7 +16,7 @@
 	<div class="col-xs-6 col-xs-offset-3">
 		<table class="whole col-xs-12">
 			<tr>
-				<th>購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
+				<th width="250">購入者</th><td><%= @order.last_name_kana %> <%= @order.first_name_kana %>  様</td>
 			</tr>
 			<tr>
 				<th>購入日時</th><td><%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
@@ -52,15 +52,17 @@
 	  <% end %>
 	  <table class="table whole col-xs-12">
 		<tr class="warning">
-			<th width="231" style="padding-top: 20px">購入金額合計</th><td style="padding-top: 20px">￥<%= sum.to_s(:delimited) %></td>
+			<th width="250" style="padding-top: 20px">購入金額合計</th><td style="padding-top: 20px">￥<%= sum.to_s(:delimited) %></td>
 		</tr>
 	  </table>
 	</div>
 <%= link_to "編集", edit_admin_order_path(@order.id), class: "btn btn-primary btn-xs" %>
+<%= link_to "削除", admin_order_path(@order.id), class: "btn btn-danger btn-xs", method: :delete, data: {confirm: '本当に削除してよろしいですか?'} %>
+
 	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 40px">
 		<table class="whole col-xs-12" style="margin-bottom: 40px">
 			<tr>
-				<th width="231" style="padding-bottom: 50px">商品送付先</th>
+				<th width="250" style="padding-bottom: 50px">商品送付先</th>
 				<td style="padding-bottom: 50px">
 				<strong>郵便番号</strong> : <%= @order.postal_code %><br>
 				<strong>都道府県</strong> : <%= @order.prefecture %><br>

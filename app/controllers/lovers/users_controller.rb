@@ -2,8 +2,7 @@ class Lovers::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-  	@orders = Order.where(user_id: current_user.id).reverse_order
-    @page   = @orders.page(params[:page]).per(4)
+  	@orders = Order.where(user_id: current_user.id).page(params[:page]).per(4).reverse_order
   end
 
   def edit

@@ -94,7 +94,12 @@ class Lovers::OrdersController < ApplicationController
 	    								  order_id: past_order.id)
 	    	@neworderitem.save
 	    end
-        redirect_to lovers_user_items_cart_destroy_path
+	    @user = User.find(current_user.id)
+	    @user_items = @user.user_items
+    	@user_items.each do |user_items|  #カート中身を1レコードずつ削除していく
+    	user_items.destroy
+		end
+        redirect_to lovers_end_path
 	end
 
 
