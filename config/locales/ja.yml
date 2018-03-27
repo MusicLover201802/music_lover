@@ -4,6 +4,7 @@ ja:
       genre: ジャンル
       item: 商品
       disc: ディスク
+      user: アカウント
     attributes:
       item:
         item_name: 商品名

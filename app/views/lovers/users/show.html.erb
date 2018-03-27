@@ -26,6 +26,7 @@
 		<tbody>
 			<tr>
 				<th class="indent">
+				  	〒<%= current_user.postal_code.insert(3, '-') %>
 				  <%= current_user.prefecture %>
 				  <%= current_user.city %>
 				  <%= current_user.building %>

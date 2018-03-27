@@ -41,8 +41,11 @@
 			</div>
 		</div>
 	  <% end %>
+	</div>
 
-	<%#---<%= paginate @なんちゃら, class: "pagenate"%>
+	<!-- kaminari -->
+	<div class="row">
+		<%= paginate @item, class: "pagenate"%>
 	</div>
 </div>
 

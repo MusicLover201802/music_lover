@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325122929) do
+ActiveRecord::Schema.define(version: 20180327115428) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -63,9 +63,7 @@ ActiveRecord::Schema.define(version: 20180325122929) do
     t.string "genre_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "soft_destroyed_at"
     t.index ["genre_name"], name: "index_genres_on_genre_name"
-    t.index ["soft_destroyed_at"], name: "index_genres_on_soft_destroyed_at"
   end
 
   create_table "items", force: :cascade do |t|
@@ -82,13 +80,11 @@ ActiveRecord::Schema.define(version: 20180325122929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "jacket_image_id"
-    t.datetime "soft_destroyed_at"
     t.index ["admin_id"], name: "index_items_on_admin_id"
     t.index ["artist_name"], name: "index_items_on_artist_name"
     t.index ["artist_name_kana"], name: "index_items_on_artist_name_kana"
     t.index ["genre_id"], name: "index_items_on_genre_id"
     t.index ["item_name"], name: "index_items_on_item_name"
-    t.index ["soft_destroyed_at"], name: "index_items_on_soft_destroyed_at"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -167,7 +163,7 @@ ActiveRecord::Schema.define(version: 20180325122929) do
     t.datetime "updated_at", null: false
     t.boolean "retire_flag", default: false
     t.datetime "soft_destroyed_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "soft_destroyed_at"], name: "index_users_on_email_and_soft_destroyed_at", unique: true
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["first_name_kana"], name: "index_users_on_first_name_kana"
     t.index ["last_name"], name: "index_users_on_last_name"

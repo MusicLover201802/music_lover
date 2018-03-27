@@ -7,7 +7,7 @@ class Lovers::ItemsController < ApplicationController
 
   	### 検索用 ###
     @search    = Item.ransack(params[:q])
-    @selects   = @search.result.page(params[:page]).reverse_order
+    @selects   = @search.result.where(:purchase_flag => false).page(params[:page]).reverse_order
   end
 
   def show

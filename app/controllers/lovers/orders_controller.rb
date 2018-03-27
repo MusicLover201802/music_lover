@@ -73,9 +73,12 @@ class Lovers::OrdersController < ApplicationController
 
 	    @neworder = Order.new(order_params)
 	    @neworder.user_id = current_user.id
-	    @neworder.save
-	    redirect_to lovers_orders_orderitems_save_path
-
+		    if @neworder.save
+		    	redirect_to lovers_orders_orderitems_save_path
+			else
+				path = Rails.application.routes.recognize_path(request.referer)
+				redirect_to new_lovers_order_path, notice: "お支払い方法を選択してください"
+			end
 	    rescue ActiveRecord::RecordInvalid
 	    redirect_to lovers_user_item_path(current_user.id)
 	end
