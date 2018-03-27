@@ -1,6 +1,17 @@
 class Destination < ApplicationRecord
 	belongs_to :user
 
+### 発送先ユーザー情報のバリデーション ###
+  validates :last_name,	presence: true
+  validates :first_name, presence: true
+  validates :postal_code, presence: true,
+  			format: { with: /\A\d{7}\z/ }
+  validates :prefecture, presence: true
+  validates :city, presence: true
+  validates :phone_number, presence: true,
+  			uniqueness: true,
+  			format: { with: /\A\d{10}\z|^\d{11}\z/ }
+
 	enum prefecture: {  北海道: 0,
 						青森県: 1,
 						岩手県: 2,

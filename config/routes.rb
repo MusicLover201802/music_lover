@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resources :items
 
       resources :orders, only: [:index, :show, :edit, :create, :update]
+      delete '/orders/:id', to: 'orders#destroy'
 
       resources :genres, only: [:index, :create, :update, :destroy]
     end

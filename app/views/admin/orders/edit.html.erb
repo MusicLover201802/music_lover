@@ -42,7 +42,7 @@
 			<%= form_for @order, :url => admin_order_path do |o| %><!-- フォーム始まり -->
 				<tr>
 					<th><div>注文状況</div></th>
-					<td><%= o.select :status, ['発送前', '発送準備中', '発送済','キャンセル'], {include_blank: '注文状況を選択'}  %></td>
+					<td><%= o.select :status, ['発送前', '発送準備中', '発送済'], {include_blank: '注文状況を選択'}  %></td>
 				</tr>
 				<tr>
 					<th><div>お支払い方法</div></th>
@@ -80,24 +80,33 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
-		<div class="panel panel-default">
-			<div class="panel-body" style="padding: 15px 15px 15px 15px">
-				<div class="col-xs-8">
-					<% @order.items.each do |item| %>
-					<div style="margin-bottom: 5px"><strong>[ 商品名 ]</strong><br><%= item.item_name %></div>
-					 <strong>[ アーティスト名 ]</strong><br>
-					<%= item.artist_name %><br>
-					<br>
-					<% end %>
-				</div>
-				<div class="col-xs-4">
-					<%= o.fields_for :order_items do |i| %>
-					<div style="padding-bottom: 40px"><br><%= i.number_field :quantity %>枚</div><br>
-					<% end %>
-			</div>
-		</div>
+
+	<div class="col-xs-10 col-xs-offset-2">
+		<h3>購入履歴</h3>
 	</div>
-	<div style="margin-bottom: 40px"><%= o.submit "更新", class: "btn btn-primary btn-block" %></div>
+
+	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
+		<% sum = 0 %>
+	  <% @order.order_items.each do |i| %>
+		<div class="panel panel-default">
+			<div class="panel-body" style="padding: 15px 15px 0 15px">
+				<table>
+					<tbody>
+						<tr>
+							<td width="400"><%=i.item.item_name %></td>
+							<td width="200"><%=i.item.artist_name %></td>
+							<td width="150">￥<%= i.price.to_s(:delimited) %></td>
+							<td width="50"><%= i.quantity %>枚</td>
+							<% sub_total = i.price * i.quantity %>
+							<% sum = sum + sub_total %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer text-right">小計￥<%= sub_total.to_s(:delimited) %></div>
+		</div>
+	  <% end %>
+	</div>
+	<div class="col-xs-6 col-xs-offset-3" style="margin-bottom: 40px"><%= o.submit "更新", class: "btn btn-primary btn-block" %></div>
 			<% end %> <!-- フォーム終わり -->
 </div>

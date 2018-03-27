@@ -11,9 +11,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.save
-    redirect_to admin_orders_path, notice: "オーダー登録が完了しました"
   end
 
   def show
@@ -31,6 +28,16 @@ class Admin::OrdersController < ApplicationController
       else
       render :edit
       end
+  end
+
+  def destroy
+    order = Order.find(params[:id])
+    order.order_items.each do |order_item| #1レコードごとに、(itemsテーブルのstockカラム) + (購入履歴の中の数量) を実行し、save
+      order_item.item.stock += order_item.quantity
+      order_item.item.save!
+    end
+    order.destroy
+    redirect_to admin_orders_path, notice: "購入履歴削除が完了しました。"
   end
 
 
