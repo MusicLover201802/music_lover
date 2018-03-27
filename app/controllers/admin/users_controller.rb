@@ -20,6 +20,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    # binding.pry
     if@user.update(user_params)
     redirect_to admin_users_path, notice: "ユーザー情報の編集が完了しました"
     else
@@ -28,6 +29,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def retire
+    user = User.find(params[:id])
+    user.update(retire_flag: true) ### リタイアフラグをtrueに更新
+    user.soft_destroy ### 論理削除処理※soft_destroyはkakurenbo-putiの固有メソッド
+    redirect_to admin_users_path ### 言わずもがな遷移先
   end
 
 private
