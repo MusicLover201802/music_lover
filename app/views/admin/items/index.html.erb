@@ -61,7 +61,7 @@
             <td><%= item.price.to_s(:delimited) %>円</td>
             <td><%= item.stock %>枚</td>
             <td><%= item.release_date %></td>
-            <td><%= item.purchase_flag ? '発売中' : '未発売' %></td>
+            <td><%= item.purchase_flag ? '販売中止' : '販売可' %></td>
             <% end %>
         </tr>
     </tbody>
