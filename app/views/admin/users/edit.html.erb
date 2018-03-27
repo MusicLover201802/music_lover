@@ -82,18 +82,17 @@
 				<%= f.email_field :email, size: 65 %>
 			</div>
 
+			<div class="field col-xs-12" style="margin: 30px">
+				<%= f.label :retire_flag, "退会" %>
+				<%= f.check_box :retire_flag, {} , "true", "false" %>
+			</div>
+
 			<div class="col-xs-5">
 				<div>
 					<%= f.submit "Update User", class: "btn btn-warning", style: "margin: 30px" %>
 				</div>
 			</div>
 			<% end %>
-
-			<div class="field col-xs-12">
-				<%= link_to lovers_user_retire_path(@user.id), method: :patch do %>
-				<button class="btn btn-default">退会</button>
-				<% end %>
-			</div>
 
 		</div>
 	</div>

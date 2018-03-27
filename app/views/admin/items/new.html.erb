@@ -54,11 +54,11 @@
 				<div>発売日</div>
 				<%= f.date_field :release_date, class: 'col-xs-12' %>
 				<div>登録者id</div>
-				<%#= f.collection_select(:admin_id, Admin.all, :id, :admin_name, :prompt => true) %>
 				<%= f.select :admin_id, options_from_collection_for_select(Admin.all, :id, :admin_name), { :prompt => true } %>
-				<%#= f.text_field :admin_id, class: 'col-xs-12' %>
-				<div>購入フラグ</div>
-				<%= f.check_box :purchase_flag %>
+				<div class="field col-xs-12" style="margin-top: 30px">
+				<%= f.label :retire_flag, "販売中止" %>
+				<%= f.check_box :purchase_flag, {} , "true", "false" %>
+				</div>
 			</div>
 		</div>
 
