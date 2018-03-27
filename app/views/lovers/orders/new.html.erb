@@ -15,7 +15,7 @@
 						class: "center-block", fallback: "/no_image_m.png", width: '80', height: '80'%></td>
 							<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
 							<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
-							<td><%= u_i.quantity%></td> <!-- 数量を変更できるようにプルダウンボタン実装する -->
+							<td><%= u_i.quantity%></td>
 							<% sub_total = u_i.item.price * u_i.quantity %>
 							<td>￥<%= sub_total.to_s(:delimited) %></td>
 							<td> </td>
