@@ -103,6 +103,6 @@ ja:
       not_locked: "ロックされていません"
       not_saved:
         #1 error prohibited this %{resource} from being saved:
-        one: "エラーにより、この%{resource}　を保存できません :"
+        one: "エラーにより、この%{resource}　を保存できません"
         #%{count} errors prohibited this %{resource} from being saved:
-        other: "%{count} 個のエラーにより、この %{resource} を保存できません :"
+        other: "%{count} 個のエラーにより、この %{resource} を保存できません"

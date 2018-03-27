@@ -11,6 +11,9 @@ module MusicLover
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    ### 時間表示を日本時間へ変更 ###
+    config.time_zone = 'Asia/Tokyo'
+
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 

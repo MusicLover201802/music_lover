@@ -34,8 +34,10 @@
 						<tr class="index_item_detail"><%= link_to_unless_current i.genre.genre_name, lovers_genres_path(i.genre.id) %></tr>
 						<tr class="index_item_detail">￥<%= i.price.to_s(:delimited) %></tr>
 						<tr class="index_item_detail">
-						  <% if i.stock == 0 %>
-							  <p style="color: red">入荷待ち</p>
+						  <% if i.release_date > Date.today.to_time %>
+							  <p>近日発売</p>
+						  <% elsif i.stock == 0 %>
+							  <p style="color: red">Sold Out</p>
 						  <% elsif i.stock < 10 %>
 							  <p>残り僅か</p>
 						  <% else %>
@@ -50,7 +52,7 @@
 	</div>
 	  <!-- kaminari -->
 	<div class="row">
-		<%= paginate @item, class: "pagenate"%>
+		<%= paginate @selects, class: "pagenate"%>
 	</div>
 </div>
 
