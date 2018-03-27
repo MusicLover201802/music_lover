@@ -16,6 +16,17 @@
 <!-- main -->
 <div class="contener">
 	<%= form_for @item, :url => admin_item_path do |f| %>　<!-- フォーム1はじまり -->
+
+	<% if @item.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<ul>
+			<% @item.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
 	<div coass="row">
 		<div class="col-xs-3 col-xs-offset-1">
 			<%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_m.png", width: '200', height: '200'%>
@@ -32,7 +43,7 @@
 				<%= f.text_field :artist_name_kana, class: 'col-xs-12' %>
 				<div>ジャンルID</div>
 				<%#= f.collection_select(:genre_id, Genre.all, :id, :genre_name, :prompt => true) %>
-				<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_name), { :prompt => true } %>
+				<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_name, :selected => @item.genre_id ) %> <!-- selectedで初期値を設定 -->
 				<div>値段</div>
 				<%= f.text_field :price, class: 'col-xs-12' %>
 				<div>レーベル名</div>
@@ -43,7 +54,7 @@
 				<%= f.date_field :release_date, class: 'col-xs-12' %>
 				<div>登録者id</div>
 				<%#= f.collection_select(:admin_id, Admin.all, :id, :admin_name, :prompt => true) %>
-				<%= f.select :admin_id, options_from_collection_for_select(Admin.all, :id, :admin_name), { :prompt => true } %>
+				<%= f.select :admin_id, options_from_collection_for_select(Admin.all, :id, :admin_name, :selected => @item.admin_id ) %>
 				<%#= f.text_field :admin_id, class: 'col-xs-12' %>
 				<div class="field col-xs-12" style="margin-top: 30px">
 				<%= f.label :retire_flag, "販売中止" %>

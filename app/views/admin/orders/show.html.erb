@@ -57,6 +57,8 @@
 	  </table>
 	</div>
 <%= link_to "編集", edit_admin_order_path(@order.id), class: "btn btn-primary btn-xs" %>
+<%= link_to "削除", admin_order_path(@order.id), class: "btn btn-danger btn-xs", method: :delete, data: {confirm: '本当に削除してよろしいですか?'} %>
+
 	<div class="col-xs-6 col-xs-offset-3" style="margin-top: 40px">
 		<table class="whole col-xs-12" style="margin-bottom: 40px">
 			<tr>

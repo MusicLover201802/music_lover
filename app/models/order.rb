@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 	has_many :order_items
 	has_many :items, through: :order_items
 
-	attachment :jacket_image
+	# attachment :jacket_image
 
 	#Admin側のユーザー詳細ページの購入履歴のページネーションの記述です。
 	paginates_per 2
