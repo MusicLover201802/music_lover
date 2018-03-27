@@ -8,6 +8,8 @@ body{
 	padding-top: 90px;
 
 	height: 100%;
+	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
+	overflow: hidden;
 }
 .wrap{
 	width: 100%;
@@ -43,7 +45,9 @@ footer{
 
 ////sidebar////
 .side-bar{
-	height: 100%;
+	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
 }
 .genre_list{
   color: black;

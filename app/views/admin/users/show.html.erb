@@ -4,7 +4,7 @@
 <div class="contener">
 	<div class="row btn-margin-top">
 		<div class="col-xs-3" style="text-align: center;">
-			<%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+			<%= link_to "Back", admin_users_path, class: "btn btn-primary btn-xs" %>
 		</div>
 	</div>
 	<div class="row">
@@ -115,6 +115,7 @@
 				</td>
 			</tbody>
 		</table>
+		    <div style="padding-left: 200px"><%= paginate @orders %></div>
 		</div>
 	</div>
 </div>

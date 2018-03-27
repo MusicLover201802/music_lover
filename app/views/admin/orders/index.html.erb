@@ -3,7 +3,7 @@
 <div class="contener">
     <div class="row btn-margin-top">
         <div class="col-xs-3" style="text-align: center;">
-            <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+            <%= link_to "Back", admin_top_path, class: "btn btn-primary btn-xs" %>
         </div>
     </div>
     <div class="row">
@@ -16,8 +16,8 @@
 <!-- 検索バー -->
 <div class="text-center">
     <%= search_form_for @search, :url => admin_orders_path do |f| %>
-        <%= f.label :status_cont, "配送状況検索" %><br>
-        <%= f.search_field :status_cont, :placeholder => "配送状況" %>
+        <%= f.label :status_or_last_name_or_first_name_cont_any, "ユーザー・配送状況検索" %><br>
+        <%= f.search_field :status_or_last_name_or_first_name_cont_any, :placeholder => "ユーザー名or配送状況" %>
         <%= f.submit "検索" %>
     <% end %>
 </div>
@@ -29,9 +29,9 @@
             <thead>
                <tr>
             　　 <th>ID</th>
-            　　 <th>USER</th>
+            　　 <th>ユーザー</th>
             　　 <th>購入日</th>
-            　　 <th>STATUS</th>
+            　　 <th>配送状況</th>
                </tr>
             </thead>
             <% @selects.each do |order| %>

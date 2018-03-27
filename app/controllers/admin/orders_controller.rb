@@ -11,9 +11,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.save
-    redirect_to admin_orders_path, notice: "オーダー登録が完了しました"
   end
 
   def show
