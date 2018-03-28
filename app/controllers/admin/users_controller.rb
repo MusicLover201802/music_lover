@@ -33,6 +33,7 @@ class Admin::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(retire_flag: true) ### リタイアフラグをtrueに更新
     user.soft_destroy ### 論理削除処理※soft_destroyはkakurenbo-putiの固有メソッド
+    # session.destroy ### 退会したらログアウトさせる
     redirect_to admin_users_path ### 言わずもがな遷移先
   end
 
