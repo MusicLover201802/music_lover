@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
@@ -20,3 +19,4 @@
 //= require nested_form_fields
 //= require cocoon
 //= require jquery_nested_form
+//= require toastr

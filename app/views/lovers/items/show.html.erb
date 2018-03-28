@@ -47,11 +47,11 @@
 			<div class="col-xs-3" style="text-align: center">
 				<!-- (発売日時が現在日時よりも先の場合) -->
 				<% if @item.release_date > Date.today.to_time %>
-					<button class="btn btn-default">近日発売</button>
+					<button type="button" class="btn btn-default" disabled="disabled">近日発売</button>
 
 				<!-- 在庫が0個の場合 -->
 				<% elsif @item.stock == 0 %>
-					<button class="btn btn-danger">売り切れ</button>
+					<button type="button" class="btn btn-danger" disabled="disabled">売り切れ</button>
 
 				<!-- そのほかの場合 -->
 				<% else %>
