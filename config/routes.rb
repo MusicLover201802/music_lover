@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       get '/top', to: 'root#top'
 
       resources :users, only: [:index, :show, :edit, :update]
-      patch '/users/:id/retire', to: 'users#retire'
+      patch '/users/:id/retire', to: 'users#retire', as: 'user_retire'
 
       resources :items
 
