@@ -18,6 +18,7 @@ body{
 .user_header{
 	background: linear-gradient(-90deg, #983484, #FFE852);
 	max-height: 90px;
+	position: relative;
 }
 .user-notice{
 	font-size: 20px;
@@ -47,7 +48,11 @@ footer{
 
 ////sidebar////
 .side-bar{
+	background-color: #ffe69c;
 	height: 100%;
+	position: fixed;
+	// top: 0;
+	// bottom: 0;
 }
 .genre_list{
   color: black;
