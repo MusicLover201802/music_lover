@@ -42,7 +42,7 @@
 			<%= form_for @order, :url => admin_order_path do |o| %><!-- フォーム始まり -->
 				<tr>
 					<th><div>注文状況</div></th>
-					<td><%= o.select :status, ['発送前', '発送準備中', '発送済'], {include_blank: '注文状況を選択'}  %></td>
+					<td><%= o.select :status, ['商品準備中', '発送準備中', '発送済'], {include_blank: '注文状況を選択'}  %></td>
 				</tr>
 				<tr>
 					<th><div>お支払い方法</div></th>
@@ -59,18 +59,18 @@
 		<table class="whole col-xs-12">
 				<tr>
 					<th width="256"><div style="padding-bottom: 20px">郵便番号</div></th>
-					<td  style="padding-top: 55px"><%= o.text_field :postal_code %><br></td>
+					<td "><%= o.text_field :postal_code %><br></td>
 				</tr>
 				<tr>
 					<th><div>都道府県</div></th>
 					<td><%= o.select :prefecture, Destination.prefectures.keys.to_a,{} %></td>
 				</tr>
 				<tr>
-					<th><div>住所</div></th>
+					<th><div>市区町村・番地</div></th>
 					<td><%= o.text_field :city %><br></td>
 				</tr>
 				<tr>
-					<th><div>建物名</div></th>
+					<th><div>マンション・アパート名</div></th>
 					<td><%= o.text_field :building %><br></td>
 				</tr>
 				<tr>

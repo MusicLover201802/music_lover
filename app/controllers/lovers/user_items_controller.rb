@@ -4,12 +4,6 @@ class Lovers::UserItemsController < ApplicationController
 before_action :authenticate_user!
 before_action :get_current_cart!
 
-  def check #進捗確認用　開発終了したら削除します
-    @order_items = OrderItem.all
-    @orders = Order.all
-    @items = Item.all
-  end
-
   def show
   end
 
