@@ -1,6 +1,5 @@
 class Lovers::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :redirect_to lovers_root_path if current_user && current_user.retire_flag != 'true'
 
   def show
   	@orders = Order.where(user_id: current_user.id).page(params[:page]).per(4).reverse_order
