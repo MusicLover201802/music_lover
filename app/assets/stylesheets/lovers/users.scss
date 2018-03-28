@@ -9,7 +9,7 @@ body{
 
 	height: 100%;
 	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
-	overflow: hidden;
+	// overflow: hidden;
 }
 .wrap{
 	width: 100%;
@@ -20,17 +20,22 @@ body{
 ////header////
 .user_header{
 	background: linear-gradient(-90deg, #983484, #FFE852);
+	max-height: 90px;
 }
-.Logo{
-	margin-left: 80px;
-	margin-right: 500px;
+.user-notice{
+	font-size: 20px;
+	padding-left: 200px;
 }
 .navlink{
+	right: 10%;
 	display: inline-block;
 	line-height: 90px;
 	font-size: 15px;
 	padding-right: 20px;
 	margin-right: 0;
+}
+.hako{
+	max-height: 90px;
 }
 
 ////footer///

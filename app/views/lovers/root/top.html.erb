@@ -8,35 +8,37 @@
 <%= render 'layouts/header'%>
 <%= render 'layouts/Lsidebar' %>
 
-	<div class="col-xs-6" style="text-align: center">
+<div class="col-xs-6" style="text-align: center">
 
-		<!-- 検索バー -->
-		<div class="row" style="margin-top: 40px">
-			<%= search_form_for @search, :url => lovers_items_path do |f| %>
-			<%= f.label :item_name_or_artist_name_cont_any, "商品検索" %><br>
-			<%= f.search_field :item_name_or_artist_name_cont_any, :placeholder => "アーティスト名 or 商品名" %>
-			<%= f.submit "検索" %>
-			<% end %>
-		</div>
-
-		<!-- 広告フェイク -->
-		<div class="row pop">
-			<img class="BANANA col-xs-8 col-xs-offset-2" src="/wcp.png">
-		</div>
-
-		<!-- pickup -->
-		<div class="row pickup" style="text-align: center">
-			<h2>今月のPick Up</h2>
-				<ul class="bxslider">
-				<%= link_to '/lovers/items/7' do %>
-				<li><img src="/yuki.jpg" class="pickup"></li><% end %>
-				<%= link_to '/lovers/items/9' do %>
-				<li><img src="/ange_rave.jpg" class="pickup"></li><% end %>
-				<%= link_to '/lovers/items/5' do %>
-		  		<li><img src="/grieva.jpg" class="pickup"></li><% end %>
-			</ul>
-		</div>
+	<!-- 検索バー -->
+	<div class="row" style="margin-top: 40px">
+		<%= search_form_for @search, :url => lovers_items_path do |f| %>
+		<%= f.label :item_name_or_artist_name_cont_any, "商品検索" %><br>
+		<%= f.search_field :item_name_or_artist_name_cont_any, :placeholder => "アーティスト名 or 商品名" %>
+		<%= f.submit "検索" %>
+		<% end %>
 	</div>
+
+	<!-- 広告 -->
+	<div class="row pop">
+		<a href="https://web-camp.io/pro/">
+		<img class="BANANA col-xs-8 col-xs-offset-2" src="/wcp2.png">
+		</a>
+	</div>
+
+	<!-- pickup -->
+	<div class="row pickup" style="text-align: center">
+		<h2>今月のPick Up</h2>
+			<ul class="bxslider">
+			<%= link_to '/lovers/items/7' do %>
+			<li><img src="/yuki5.jpg" class="pickup"></li><% end %>
+			<%= link_to '/lovers/items/9' do %>
+			<li><img src="/ange_rave1.jpg" class="pickup"></li><% end %>
+			<%= link_to '/lovers/items/5' do %>
+	  		<li><img src="/grieva1.jpg" class="pickup"></li><% end %>
+		</ul>
+	</div>
+</div>
 
 <%= render 'layouts/Rsidebar' %>
 <%= render 'layouts/footer'%>
