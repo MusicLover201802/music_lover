@@ -11,8 +11,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @orders = Order.where(user_id: params[:id]).order("created_at").reverse_order
-    @orders = Order.page(params[:page])
+    @orders = Order.where(user_id: params[:id]).page(params[:page]).per(4).reverse_order
+
   end
 
   def edit
