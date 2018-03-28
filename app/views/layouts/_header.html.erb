@@ -1,20 +1,17 @@
-<header class="user_header navbar-fixed-top", style="background-color: #FFC107">
-	<div class="logo-box">
-		<%= link_to lovers_root_path do %>
-			<img class="Logo" src="/ml_logo1.png" width="90" height="90">
+<header class="row user_header navbar-fixed-top" style="padding: 0 5%">
+		<%= link_to image_tag('/ml_logo1.png'), lovers_root_path %>
+		<% unless flash.empty? %>
+		  <script type="text/javascript">
+		 　　<% flash.each do |f| %>
+		 　　　<% type = f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+		　　　　　toastr['<%=type %>']('<%=f[1] %>', {positionClass: "toast-top-center"});
+			<% end %>
+		　　</script>
 		<% end %>
-
-			<!-- notice -->
-		<% if flash[:notice] %>
-		  <i class="alert" style="color: green">
-		    <%= flash[:notice] %>
-		  </i>
-		<% end %>
-
 
 		<span class="nav-box">
-			<div class="collapse navbar-collapse navbar-right" style="line-height: 90px" id="navbarEexample7">
-		      　　<ul class="nav navbar-nav" style="margin-right: 80px">
+			<div class="collapse navbar-collapse navbar-right hako" style="line-height: 90px" id="navbarEexample7">
+		      　　<ul class="nav navbar-nav">
 
 		      	<!-- ナビゲーション条件分岐 -->
 

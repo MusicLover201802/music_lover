@@ -6,10 +6,7 @@ html{
 }
 body{
 	padding-top: 90px;
-
 	height: 100%;
-	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
-	// overflow: hidden;
 }
 .wrap{
 	width: 100%;
@@ -20,17 +17,23 @@ body{
 ////header////
 .user_header{
 	background: linear-gradient(-90deg, #983484, #FFE852);
+	max-height: 90px;
+	position: relative;
 }
-.Logo{
-	margin-left: 80px;
-	margin-right: 500px;
+.user-notice{
+	font-size: 20px;
+	padding-left: 200px;
 }
 .navlink{
+	right: 10%;
 	display: inline-block;
 	line-height: 90px;
 	font-size: 15px;
 	padding-right: 20px;
 	margin-right: 0;
+}
+.hako{
+	max-height: 90px;
 }
 
 ////footer///
@@ -45,9 +48,11 @@ footer{
 
 ////sidebar////
 .side-bar{
-	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
-	padding-bottom: 32768px;
-	margin-bottom: -32768px;
+	background-color: #ffe69c;
+	height: 100%;
+	position: fixed;
+	// top: 0;
+	// bottom: 0;
 }
 .genre_list{
   color: black;

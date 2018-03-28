@@ -95,7 +95,7 @@ class Lovers::OrdersController < ApplicationController
 				redirect_to new_lovers_order_path, notice: "お支払い方法を選択してください"
 			end
 	    rescue ActiveRecord::RecordInvalid
-	    redirect_to lovers_user_item_path(current_user.id), :notice => '在庫不足の商品があったため、ご注文を承れませんでした。誠に申し訳ございません。'
+	    redirect_to lovers_user_item_path(current_user.id), :alert => '在庫不足の商品があったため、ご注文を承れませんでした。誠に申し訳ございません。'
 	end
 
 

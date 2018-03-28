@@ -46,12 +46,12 @@
         </div>
 
         <div class="field col-xs-6">
-          <%= f.label :city,"市区町村" %><br />
+          <%= f.label :city,"市区町村・番地" %><br />
           <%= f.text_field :city, autofocus: true, autocomplete: "off", size: 27 %>
         </div>
 
         <div class="field col-xs-12">
-          <%= f.label :building,"建物マンション名" %><br />
+          <%= f.label :building,"マンション・アパート名" %><br />
           <%= f.text_field :building, autofocus: true, autocomplete: "off", size: 65 %>
         </div>
 
@@ -64,28 +64,6 @@
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "off", size: 65 %>
         </div>
-
-
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-
-          <div class="panel panel-danger col-xs-12 passbox", style="text-align: center">
-            <h1 class="panel-heading row" style="margin-top: 0">Password Edit</h1>
-            <dir class="panel-body" style="text-align: left">
-              <div class="field col-xs-12">
-                <%= f.label :password %> <i>(変更したくない場合は空白のままにしてください)</i><br />
-                <%= f.password_field :password, autocomplete: "off" %>
-                <% if @minimum_password_length %><em><%= @minimum_password_length %> characters minimum</em>
-                <% end %>
-              </div>
-
-              <div class="field col-xs-12">
-                <%= f.label :password_confirmation %><i>(password確認)</i><br />
-                <%= f.password_field :password_confirmation, autocomplete: "off" %>
-              </div>
-            </dir>
-          </div>
 
         <div class="actions col-xs-12" style="margin: 5px 0">
           <%= f.submit "Update", class: "btn btn-warning" %>

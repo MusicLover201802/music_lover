@@ -11,8 +11,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @orders = Order.where(user_id: params[:id]).order("created_at").reverse_order
-    @orders = Order.page(params[:page])
+    @orders = Order.where(user_id: params[:id]).page(params[:page]).per(4).reverse_order
+
   end
 
   def edit
@@ -33,6 +33,7 @@ class Admin::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(retire_flag: true) ### リタイアフラグをtrueに更新
     user.soft_destroy ### 論理削除処理※soft_destroyはkakurenbo-putiの固有メソッド
+    # session.destroy ### 退会したらログアウトさせる
     redirect_to admin_users_path ### 言わずもがな遷移先
   end
 

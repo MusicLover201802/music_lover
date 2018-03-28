@@ -63,12 +63,12 @@
 			</div>
 
 			<div class="field col-xs-6">
-				<%= f.label :city,"住所" %><br />
+				<%= f.label :city,"市区町村・番地" %><br />
 				<%= f.text_field :city, size: 27 %>
 			</div>
 
 			<div class="field col-xs-12">
-				<%= f.label :building,"建物マンション名" %><br />
+				<%= f.label :building,"マンション・アパート名" %><br />
 				<%= f.text_field :building, size: 65 %>
 			</div>
 
@@ -81,12 +81,6 @@
 				<%= f.label :email %><br />
 				<%= f.email_field :email, size: 65 %>
 			</div>
-
-			<div class="field col-xs-12" style="margin: 30px">
-				<%= f.label :retire_flag, "退会" %>
-				<%= f.check_box :retire_flag, {} , "true", "false" %>
-			</div>
-
 			<div class="col-xs-5">
 				<div>
 					<%= f.submit "Update User", class: "btn btn-warning", style: "margin: 30px" %>

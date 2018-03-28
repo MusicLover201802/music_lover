@@ -1,7 +1,8 @@
+<div id="container page-container">
 <%= render 'layouts/header'%>
 <%= render 'layouts/Lsidebar' %>
 
-<div class="col-xs-6" style="text-align: center">
+<div class="col-xs-6 col-xs-offset-3" style="text-align: center">
 
 	<!-- 検索バー -->
 	<div class="row" style="margin-top: 40px">
@@ -51,10 +52,11 @@
 	  <% end %>
 	</div>
 	  <!-- kaminari -->
-	<div class="row">
+	<div class="row", style="margin-bottom: 60px">
 		<%= paginate @selects, class: "pagenate"%>
 	</div>
 </div>
 
 <%= render 'layouts/Rsidebar' %>
 <%= render 'layouts/footer'%>
+</div>

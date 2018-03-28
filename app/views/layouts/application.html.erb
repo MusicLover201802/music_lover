@@ -4,13 +4,20 @@
     <title>MusicLover</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
 	<%= stylesheet_link_tag	'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
-	<script src="jquery-3.3.1.min.js"></script>
- 	<script src="jquery.bxslider.js"></script>
-	<link rel="stylesheet" href="jquery.bxslider.css">
-  <link rel="icon" href="/ml_favicon.ico">
+  <script>
+    $(document).ready(function(){
+      $('.bxslider').bxSlider();
+    });
+  </script>
+
+  <% if admin_signed_in? %>
+    <link rel="icon" href="/ml_favicon2.ico">
+  <% else %>
+    <link rel="icon" href="/ml_favicon.ico">
+  <% end %>
 
   </head>
 
