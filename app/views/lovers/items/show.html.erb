@@ -1,3 +1,4 @@
+<div id="container page-container">
 <%= render 'layouts/header'%>
 	<%= render 'layouts/Lsidebar' %>
 
@@ -57,7 +58,7 @@
 				<% else %>
 					<%= form_for @new_order, url:lovers_user_items_path do |n| %>
 					<%= n.hidden_field :item_id %>
-					<%= n.number_field :quantity %>
+					<%= n.number_field :quantity, min:0 %>
 					<%= n.submit 'カートに入れる', class:'btn btn-primary' %>
 					<% end %>
 				<% end %>
@@ -65,3 +66,4 @@
 		</div>
 	<%= render 'layouts/Rsidebar' %>
 <%= render 'layouts/footer'%>
+</div>

@@ -2,11 +2,10 @@
 	<ul class="genre-nav" style="text-align: center">
 		<h3>ジャンル</h3>
 		<% @genres.each do |g| %>
-		<li class="genre_list">
-			<%= link_to_unless_current g.genre_name, lovers_genres_path(g) %></li>
+			<%= link_to g.genre_name, lovers_genres_path(g), class: "genre_list col-xs-12" %>
 		<% end %>
-		<br>
-		<li class="genre_list"><%= link_to "一覧", lovers_items_path %></li>
+		<div class="col-xs-12">　</div>
+		<%= link_to "一覧", lovers_items_path, class: "genre_list col-xs-12" %>
 	</ul>
 	<div class="banner-box" style="text-align: center">
 		<a href="https://ja.wikipedia.org/wiki/%E3%82%BF%E3%82%A4%E5%8F%A4%E5%BC%8F%E3%83%9E%E3%83%83%E3%82%B5%E3%83%BC%E3%82%B8">
