@@ -1,0 +1,51 @@
+ja:
+  activerecord:
+    models:
+      genre: ジャンル
+      item: 商品
+      disc: ディスク
+      user: アカウント
+    attributes:
+      item:
+        item_name: 商品名
+        artist_name: アーティスト名
+        artist_name_kana: アーティスト名(カナ)
+        genre_id: ジャンルID
+        price: 値段
+        label_name: レーベル名
+        stock: 在庫
+        release_date: 発売日
+        admin_id: 登録者ID
+      item/discs:
+        disc_name: ディスク名
+        disc_num: ディスクNo.
+      item/discs/tracks:
+        track_name: 曲名
+        track_num: 曲No.
+
+    ### deviseの日本語化 ###
+      user:
+        last_name:       姓
+        last_name_kana:  セイ
+        first_name:      名
+        first_name_kana: メイ
+        postal_code:     郵便番号
+        city:            市区町村
+        phone_number:    電話番号
+        password:        パスワード
+        prefecture:      建物名
+
+      order:
+        building: 建物名
+        phone_number: 電話番号
+        city: 住所
+        postal_code: 郵便番号
+
+    ### pagenationの日本語化 ###
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: "..."

@@ -23,7 +23,7 @@
 
 
           <div class="field">
-            <%= f.label :なまえ %><br />
+            <%= f.label :名前 %><br />
             <%= f.text_field :admin_name, autofocus: true, autocomplete: "true" %>
           </div>
 
@@ -50,10 +50,10 @@
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
 
-          <div class="field">
-            <%= f.label :現在のパスワード %> <i>(変更がある場合は入力してね！)</i><br />
-            <%= f.password_field :current_password, autocomplete: "off" %>
-          </div>
+          <!-- <div class="field">
+            <%#= f.label :現在のパスワード %> <i>(変更がある場合は入力してね！)</i><br />
+            <%#= f.password_field :current_password, autocomplete: "off" %>
+          </div> -->
 
           <div class="actions">
             <%= f.submit "Update", class: "btn btn-sm btn-primary" %>

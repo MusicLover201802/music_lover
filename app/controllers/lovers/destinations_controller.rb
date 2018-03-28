@@ -8,8 +8,11 @@ class Lovers::DestinationsController < ApplicationController
 		@new_destination = Destination.new(dest_params)
 		@new_destination.user_id = current_user.id
 		session[:create] = "create"
-		@new_destination.save
+		if @new_destination.save
 		redirect_to new_lovers_order_path
+	    else
+	    redirect_to new_lovers_destination_path, notice: 'deletion successfully completed.'
+		end
 	end
 
 	def destroy

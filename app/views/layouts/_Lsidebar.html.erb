@@ -1,9 +1,9 @@
 <div class="col-xs-3 side-bar" style="background-color: #ffe69c">
 	<ul class="genre-nav" style="text-align: center">
 		<h3>ジャンル</h3>
-		<% @items.each do |i| %>
+		<% @genres.each do |g| %>
 		<li class="genre_list">
-			<%= link_to i.genre.genre_name, lovers_genres_path(i) %></li>
+			<%= link_to_unless_current g.genre_name, lovers_genres_path(g) %></li>
 		<% end %>
 		<br>
 		<li class="genre_list"><%= link_to "一覧", lovers_items_path %></li>

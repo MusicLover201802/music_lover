@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :destinations, only: [:new, :create, :destroy]
 
       get '/orders/orderitems_save', to: 'orders#orderitems_save'
+      get '/orders/default_dest', to: 'orders#default_dest'
       resources :orders, only: [:new, :show, :create]
 
       get '/items/', to: 'items#index'
@@ -32,7 +33,13 @@ Rails.application.routes.draw do
       get '/genres/:id', to: 'genres#show', as: 'genres'
 
       resources :users, only: [:show, :edit, :update]
-      get '/users/:id/retire', to: 'users#retire'
+
+      ### 論理削除の為に追記しました ###
+      get '/retire', to: 'end#retire', as: 'retire'
+      patch '/users/:id/retire', to: 'users#retire', as: 'user_retire'
+
+      ### sign_upでエラーを起こして更新すると発生するルーティングエラー回避の為、以下を追記 ###
+      get '/users', to: redirect("lovers/users/sign_up")
     end
 
 
@@ -41,11 +48,12 @@ Rails.application.routes.draw do
       get '/top', to: 'root#top'
 
       resources :users, only: [:index, :show, :edit, :update]
-      get '/users/:id/retire', to: 'users#retire'
+      patch '/users/:id/retire', to: 'users#retire'
 
       resources :items
 
       resources :orders, only: [:index, :show, :edit, :create, :update]
+      delete '/orders/:id', to: 'orders#destroy'
 
       resources :genres, only: [:index, :create, :update, :destroy]
     end

@@ -1,55 +1,79 @@
 <%= render 'layouts/header'%><!-- header -->
 
-<h1 style="text-align: center">*カート内容表示画面*</h1>  <!-- 完成したらこの行は削除する -->
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
+	<div class="row" style="margin-bottom: 60px">
+		<div class="col-xs-10 col-xs-offset-2" style="margin-top: 40px">
 			<h1>ショッピングカート</h1>
+		</div>
+
+		<div class="col-xs-6 col-xs-offset-3" style="margin-top: 20px">
 			<table class="table table-stripped">
 				<thead>
 					<tr>
-						<th>商品画像</th>
-						<th>商品名/アーティスト名</th>
-						<th>単価</th>
-						<th>数量</th>
-						<th>   </th>
+						<th width="80">商品画像</th>
+						<th width="200">商品名/アーティスト名</th>
+						<th width="50">単価</th>
+						<th width="10">数量</th>
+						<th width="40">小計</th>
+						<th width="40"></th>
 					</tr>
 				</thead>
-				<tbody>
-					<% @user_items.each do |u_i| %>
-					<tr>
-						<td> <!-- attachment_image_tag予定地 --></td>
-						<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
-						<td><%= u_i.item.price %></td>   <!-- 余裕があれば、金額形式で表記する -->
 
-						<td><%= u_i.item.price * u_i.quantity %>  </td>
-						<td><%= link_to "削除", lovers_user_item_path(u_i.id), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}  %></td>
-						<td> </td>
-						<td> </td>
+
+		  <!-- カートの中身の有無で条件分岐 -->
+
+			  <!-- 中身がない場合 -->
+				  <% if @user_items.blank? %>
+				<tbody>
+				</tbody>
+			</table>
+					<h3 style="text-align: center">※カートが空です。商品を選んでください※</h3>
+					<h3 style="text-align: center"><%= link_to "商品一覧", lovers_items_path %></h3>
+
+			  <% else %>
+			  <!-- 中身がある場合 -->
+
+			  <% sum = 0 %>
+			  <% @user_items.each do |u_i| %>
+				<tbody>
+					<tr>
+						<td><%= attachment_image_tag u_i.item, :jacket_image, format: 'jpg',
+							class: "center-block", fallback: "/no_image_s.png", width: '80', height: '80'%></td>
+						<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
+						<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
+						<td><%= form_for u_i, url:lovers_user_item_path , method: :patch do |f| %>
+							<%= f.number_field :quantity, min:0 %>
+							<%= f.hidden_field :id %>
+							<%= f.submit '更新', class: "btn btn-default btn-xs" %>
+							<% end %>
+						</td>
+						<% sub_total = (u_i.item.price * u_i.quantity) %>
+						<% sum = sum + sub_total %>
+						<td>￥<%= sub_total.to_s(:delimited) %></td>
+						<td><%= link_to lovers_user_item_path(u_i.id), method: :delete,
+						  data: {confirm: '本当に削除してよろしいですか?'} do %>
+							<button class="btn btn-danger">削除</button>
+							<% end %>
+						</td>
+					</tr>
+			  <% end %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><h4>購入合計金額： </h4></td>
+						<td><h4>￥<%= sum.to_s(:delimited) %>-</h4></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
-					<%= form_for u_i, url:lovers_user_item_path , method: :patch do |f| %>
-							<%= f.number_field :quantity, min:0  %>
-							<%= f.hidden_field :id  %>
-							<%= f.submit '更新' %>
-					<% end %>
-							<% end %>
 
-				<thoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>購入金額合計：</td>
-						<td><<!-- カート内合計金額を導き出す　やりかた不明 --></td>
-					</tr>
-				</thoot>
-			<%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
-			<%= link_to "レジへ進む", new_lovers_order_path, class: "btn btn-info" %>
+			<div class="col-xs-12" style="text-align: right;">
+			  <%= link_to "買い物を続ける", lovers_root_path, class: "btn btn-primary" %>
+			  <%= link_to "レジへ進む", new_lovers_order_path, class: "btn btn-info" %>
+			</div>
+			<% end %>
 		</div>
 	</div>
-</div>
+
 <%= render 'layouts/footer'%>
 

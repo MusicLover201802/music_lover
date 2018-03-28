@@ -23,9 +23,10 @@ class Lovers::Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy ###ログアウト
+    super ###継承先の同名のアクションを使うための記述
+    session[:keep_signed_out] = true ###サーバ側で保持しているログイン情報を切り替える
+  end
 
   # protected
 

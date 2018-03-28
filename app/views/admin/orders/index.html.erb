@@ -3,7 +3,7 @@
 <div class="contener">
     <div class="row btn-margin-top">
         <div class="col-xs-3" style="text-align: center;">
-            <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+            <%= link_to "Back", admin_top_path, class: "btn btn-primary btn-xs" %>
         </div>
     </div>
     <div class="row">
@@ -13,34 +13,35 @@
     </div>
 </div>
 
-<div class="contener">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <h4>検索バー</h4>
-        </div>
-    </div>
+<!-- 検索バー -->
+<div class="text-center">
+    <%= search_form_for @search, :url => admin_orders_path do |f| %>
+        <%= f.label :status_or_last_name_or_first_name_cont_any, "ユーザー・配送状況検索" %><br>
+        <%= f.search_field :status_or_last_name_or_first_name_cont_any, :placeholder => "ユーザー名or配送状況" %>
+        <%= f.submit "検索" %>
+    <% end %>
 </div>
 
 
 <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
+    <div class="table-link col-xs-8 col-xs-offset-2">
         <table id="foo-table" class="table table-stripped">
             <thead>
                <tr>
-        	　　 <th>ID</th>
-        	　　 <th>USER</th>
-        	　　 <th>購入日</th>
-        	　　 <th>STATUS</th>
+            　　 <th>ID</th>
+            　　 <th>ユーザー</th>
+            　　 <th>購入日</th>
+            　　 <th>配送状況</th>
                </tr>
             </thead>
-            <% @orders.each do |o| %>
+            <% @selects.each do |order| %>
             <tbody>
                <tr>
-                <td><%= o.id %></td>
-                <td><%= o.user_id %></td>
-                <td><%= o.created_at %></td>
-                <td><%= o.status %></td>
-                <td class="btn btn-primary btn-xs">編集</td>
+                <td><%= order.id %></td>
+                <td><%= order.last_name %><%= order.first_name %></td>
+                <td><%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), admin_order_path(order) %></td>
+                <td><%= order.status %></td>
+                <td><%= link_to "編集", edit_admin_order_path(order.id), class: "btn btn-primary btn-xs" %></td>
             <% end %>
                </tr>
             </tbody>
@@ -49,5 +50,5 @@
 </div>
 
 <div class="text-center">
-    <%#= paginate @orders %>
+    <%= paginate @selects %>
 </div>

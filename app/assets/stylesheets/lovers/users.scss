@@ -1,9 +1,15 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+html{
+	height: 100%;
+}
 body{
 	padding-top: 90px;
+
+	height: 100%;
+	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
+	// overflow: hidden;
 }
 .wrap{
 	width: 100%;
@@ -17,6 +23,7 @@ body{
 }
 .Logo{
 	margin-left: 80px;
+	margin-right: 500px;
 }
 .navlink{
 	display: inline-block;
@@ -38,13 +45,11 @@ footer{
 
 ////sidebar////
 .side-bar{
-	height: 980px;
+	// メインコンテンツの高さとサイドバーの高さを揃えるため記述しています
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
 }
 .genre_list{
-	// padding-top: 20px;
-	// font-size: 20px;
-	// list-style: none;
-
   color: black;
   border-left: solid 8px orange;
   background-color: #fdcbcba1;
@@ -52,6 +57,10 @@ footer{
   line-height: 1.5;
   padding: 0.5em;
   list-style-type: none;
+  transition-property: box-shadow;
+  &:hover {
+  	box-shadow: 2px 2px 2px;
+  }
 }
 .banner{
 	text-align: center;
@@ -80,3 +89,4 @@ footer{
 .passbox{
 	margin-top: 20px;
 }
+

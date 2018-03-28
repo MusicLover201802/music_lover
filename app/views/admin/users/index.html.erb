@@ -3,22 +3,23 @@
 <div class="contener">
     <div class="row btn-margin-top">
         <div class="col-xs-3" style="text-align: center;">
-            <%= link_to "Back", :back, class: "btn btn-primary btn-xs" %>
+            <%= link_to "Back", admin_top_path, class: "btn btn-primary btn-xs" %>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-3" style="text-align: right;">
-            <h2><strong>ユーザー一覧</strong></h2>
+            <h2><strong>ユーザー 一覧</strong></h2>
         </div>
     </div>
 </div>
 
-<div class="contener">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <h4>検索バー</h4>
-        </div>
-    </div>
+<!-- 検索バー -->
+<div class="text-center">
+    <%= search_form_for @search, :url => admin_users_path do |f| %>
+        <%= f.label :last_name_or_first_name_or_last_name_kana_or_first_name_kana_cont_any, "ユーザー検索" %><br>
+        <%= f.search_field :last_name_or_first_name_or_last_name_kana_or_first_name_kana_cont_any, :placeholder => "姓名 セイメイ検索" %>
+        <%= f.submit "検索" %>
+    <% end %>
 </div>
 
 
@@ -27,14 +28,15 @@
         <table id="foo-table" class="table table-bordered">
             <thead>
                <tr>
-        	　　 <th>ユーザーID</th>
-        	　　 <th>性</th>
-        	　　 <th>名</th>
-        	　　 <th>セイ</th>
-        	　　 <th>メイ</th>
+            　　 <th width="90">ユーザーID</th>
+            　　 <th>姓</th>
+            　　 <th>名</th>
+            　　 <th>セイ</th>
+            　　 <th>メイ</th>
+                <th>フラグ</th>
                </tr>
             </thead>
-            <% @users.each do |u| %>
+            <% @selects.each do |u| %>
             <tbody>
                <tr>
                 <td><%= u.id %></td>
@@ -43,6 +45,7 @@
                 <td><%= u.first_name %></td>
                 <td><%= u.last_name_kana %></td>
                 <td><%= u.first_name_kana %></td>
+                <td><%= u.retire_flag ? "退会済" : "アクティブ" %></td>
             <% end %>
                </tr>
             </tbody>
@@ -51,5 +54,5 @@
 </div>
 
 <div class="text-center">
-    <%#= paginate @users %>
+    <%= paginate @selects %>
 </div>
