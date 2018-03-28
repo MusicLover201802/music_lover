@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     namespace :lovers do
       root 'root#top'
 
-      get '/user_items/check', to: 'user_items#check'
       get '/user_items/cart_stock', to: 'user_items#cart_stock'
       # get '/user_items/orderitems_save', to: 'user_items#orderitems_save'
       get '/user_items/cart_destroy', to: 'user_items#cart_destroy'
