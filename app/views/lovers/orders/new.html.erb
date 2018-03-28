@@ -45,7 +45,7 @@
 				<%= link_to '送り先の変更はこちら', new_lovers_destination_path, class: 'btn btn-default' %>
 				<div class="line" style="margin: 10px 0"></div>
 					<div class="indent"><%= @neworder.last_name %> <%= @neworder.first_name %>様</div>
-					<div class="indent">〒<%= @neworder.postal_code %></div>
+					<div class="indent">〒<%= @neworder.postal_code.insert(3, '-') %></div>
 					<div class="indent"><%= @neworder.prefecture %> <%= @neworder.city %> <%= @neworder.building %></div>
 					<div class="indent"><%= @neworder.phone_number %></div>
 
