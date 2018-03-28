@@ -66,9 +66,8 @@
 					</table>
 				</div>
 			</div>
-
 		<div class="col-xs-6 col-xs-offset-3">
-			<div class="row">
+			<div class="row" style="margin-bottom: 60px">
 				<table class="table">
 					<thread>
 						<tr>お客様プロフィールのご住所</tr>
@@ -83,7 +82,7 @@
 										<tbody>
 											<tr>
 												<td><%= current_user.last_name %><%= current_user.first_name %>様 <br/>
-													〒<%= current_user.postal_code %><br/>
+													〒<%= current_user.postal_code.insert(3, '-') %><br/>
 													<%= current_user.prefecture %><%= current_user.city %><%= current_user.building %> <br/>
 													<%= current_user.phone_number %></td>
 												<td><%= link_to "この宛先に送る", lovers_orders_default_dest_path, class: 'btn btn-success' %> <br/></td>
@@ -103,8 +102,7 @@
 						<td>
 							<% @destinations.each do |d| %>
 							<div class="panel panel-warning">
-								<div class="panel-heading clearfix">
-								</div>
+								<div class="panel-heading clearfix"></div>
 								<div class="panel-body" style="padding: 15px 15px 0 15px">
 									<table class="table">
 										<tbody>
@@ -120,10 +118,10 @@
 									</table>
 								</div>
 							</div>
+							<% end %>
 						</td>
 					</tbody>
 				</table>
-				<% end %>
 			</div>
 		</div>
 	</div>

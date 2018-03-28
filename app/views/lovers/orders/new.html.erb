@@ -45,14 +45,14 @@
 				<%= link_to '送り先の変更はこちら', new_lovers_destination_path, class: 'btn btn-default' %>
 				<div class="line" style="margin: 10px 0"></div>
 					<div class="indent"><%= @neworder.last_name %> <%= @neworder.first_name %>様</div>
-					<div class="indent">〒<%= @neworder.postal_code %></div>
+					<div class="indent">〒<%= @neworder.postal_code.insert(3, '-') %></div>
 					<div class="indent"><%= @neworder.prefecture %> <%= @neworder.city %> <%= @neworder.building %></div>
 					<div class="indent"><%= @neworder.phone_number %></div>
 
 				</div>
 				<div class="row" style="margin: 10px 0">
 					<span style="font-size: 30px">お支払い方法</span>
-					<p class="line" style="margin: 10px 0"></p>
+					<div class="line" style="margin: 10px 0px 10px 0px"></div>
 					<%= form_for @neworder, url: lovers_orders_path do |f| %> <!-- 購入確定ボタンの効きが悪かったので記述位置修正 -->
 	         			<%= f.hidden_field :last_name %>
 		               	<%= f.hidden_field :first_name %>
@@ -64,12 +64,12 @@
 						<%= f.hidden_field :building %>
 						<%= f.hidden_field :phone_number %>
 						<div class="indent"><%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: 'お支払い方法を選択してください'} %></div>
-						<div class="space"></div>
+						<div class="space" style="padding-top: 50px"></div>
 						<%= f.submit '購入を確定する', class: 'col-xs-12 btn btn-success' %>
 					<% end %>
 				</div>
 
-				<div class="row" style="padding: 0 15px">
+				<div class="row" style="padding: 0 45px">
 					<%= link_to lovers_user_item_path(current_user) do %>
 					<button class="btn btn-info col-xs-6" >カートの中身を変更する</button>
 					<% end %>
