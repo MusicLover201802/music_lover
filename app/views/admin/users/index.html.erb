@@ -34,6 +34,7 @@
             　　 <th>セイ</th>
             　　 <th>メイ</th>
                 <th>フラグ</th>
+                <th>退会処理</th>
                </tr>
             </thead>
             <% @selects.each do |u| %>
@@ -46,6 +47,9 @@
                 <td><%= u.last_name_kana %></td>
                 <td><%= u.first_name_kana %></td>
                 <td><%= u.retire_flag ? "退会済" : "アクティブ" %></td>
+                <td style="display: left;">
+                    <%= link_to "退会", admin_user_retire_path(u), method: :patch ,class: "btn btn-danger btn-block" %>
+                </td>
             <% end %>
                </tr>
             </tbody>
