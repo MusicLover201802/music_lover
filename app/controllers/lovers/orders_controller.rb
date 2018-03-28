@@ -6,6 +6,7 @@ class Lovers::OrdersController < ApplicationController
 	def new
 		@neworder = Order.new
 		path = Rails.application.routes.recognize_path(request.referer)
+		# binding.pry
 
 		if session[:create] == "create"
 			session[:create] = nil
@@ -19,6 +20,20 @@ class Lovers::OrdersController < ApplicationController
 			@neworder.city =  new_destination.city
 			@neworder.building =  new_destination.building
 			@neworder.phone_number =  new_destination.phone_number
+
+		elsif session[:default] == "default"
+			session[:default] = nil
+			@user = User.find(current_user.id)
+			@neworder.last_name = @user.last_name
+			@neworder.first_name = @user.first_name
+			@neworder.last_name_kana = @user.last_name_kana
+			@neworder.first_name_kana = @user.first_name_kana
+			@neworder.postal_code = @user.postal_code
+			@neworder.prefecture = @user.prefecture
+			@neworder.city = @user.city
+			@neworder.building = @user.building
+			@neworder.phone_number = @user.phone_number
+
 
 		elsif path[:controller] == 'lovers/destinations' && path[:action] == 'new'
 			d = Destination.find_by(id: params[:id])
@@ -80,7 +95,7 @@ class Lovers::OrdersController < ApplicationController
 				redirect_to new_lovers_order_path, notice: "お支払い方法を選択してください"
 			end
 	    rescue ActiveRecord::RecordInvalid
-	    redirect_to lovers_user_item_path(current_user.id)
+	    redirect_to lovers_user_item_path(current_user.id), :notice => '在庫不足の商品があったため、ご注文を承れませんでした。誠に申し訳ございません。'
 	end
 
 
@@ -103,6 +118,11 @@ class Lovers::OrdersController < ApplicationController
     	user_items.destroy
 		end
         redirect_to lovers_end_path
+	end
+
+	def default_dest
+		session[:default] = "default"
+		redirect_to new_lovers_order_path
 	end
 
 

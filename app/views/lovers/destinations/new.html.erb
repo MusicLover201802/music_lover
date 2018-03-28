@@ -1,120 +1,131 @@
 <%= render 'layouts/header'%>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6" style="text-align: left">
-			<h2 style="text-align: left"><strong>送り先選択</strong></h2>
+		<div class="col-xs-6 col-xs-offset-3">
+			<h2>商品送り先変更メニュー</h2>
+  			<table class="table">
+					<thread>
+						<tr>新しく送り先を登録する</tr>
+					</thread>
+					<tbody>
+						<td>
+							<div class="panel panel-warning">
+				  			<div class="panel-heading clearfix"></div>
+				  				<div class="panel-body" style="text-align: left">
+									<%= form_for @new_destination, url:lovers_destinations_path do |n| %>
+				              			<div class="field col-xs-6">
+				                		<%= n.label :last_name, "姓"%><br />
+				             			<%= n.text_field :last_name ,size: 30 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+						                <%= n.label :first_name, "名"%><br />
+						               	<%= n.text_field :first_name, size: 30 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+				                		<%= n.label :last_name_kana, "姓（カナ）"%><br />
+										<%= n.text_field :last_name_kana, size: 30 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+				                		<%= n.label :first_name_kana, "名（カナ）"%><br />
+										<%= n.text_field :first_name_kana, size: 30 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+				                		<%= n.label :postal_code, "郵便番号"%><br />
+										<%= n.text_field :postal_code, size: 30 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+				                		<%= n.label :prefecture, "都道府県"%><br />
+										<%= n.select :prefecture, Destination.prefectures.keys.to_a,{} %>
+										</div>
+
+				              			<div class="field col-xs-12">
+				                		<%= n.label :city, "市区町村名・番地"%><br />
+										<%= n.text_field :city ,size: 65 %>
+										</div>
+
+				              			<div class="field col-xs-12">
+				                		<%= n.label :building, "マンション・アパート名"%><br />
+										<%= n.text_field :building ,size: 65 %>
+										</div>
+
+				              			<div class="field col-xs-6">
+				                		<%= n.label :phone_number, "電話番号"%><br />
+										<%= n.text_field :phone_number, size: 27 %>
+										<%= n.submit '新たな送り先として登録', class: 'btn btn-primary' %>
+										</div>
+									<% end %>
+								</div>
+							</div>
+							</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		<div class="col-xs-6 col-xs-offset-3">
+			<div class="row">
+				<table class="table">
+					<thread>
+						<tr>お客様プロフィールのご住所</tr>
+					</thread>
+					<tbody>
+						<td>
+							<div class="panel panel-warning">
+								<div class="panel-heading clearfix">
+								</div>
+								<div class="panel-body" style="padding: 15px 15px 0 15px">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td><%= current_user.last_name %><%= current_user.first_name %>様 <br/>
+													〒<%= current_user.postal_code %><br/>
+													<%= current_user.prefecture %><%= current_user.city %><%= current_user.building %> <br/>
+													<%= current_user.phone_number %></td>
+												<td><%= link_to "この宛先に送る", lovers_orders_default_dest_path, class: 'btn btn-success' %> <br/></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tbody>
+				</table>
+				<table class="table">
+					<thread>
+						<tr>過去の送付先一覧</tr>
+					</thread>
+					<tbody>
+						<td>
+							<% @destinations.each do |d| %>
+							<div class="panel panel-warning">
+								<div class="panel-heading clearfix">
+								</div>
+								<div class="panel-body" style="padding: 15px 15px 0 15px">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td><%= d.last_name %><%= d.first_name %> 様<br />
+													〒<%= d.postal_code %> <br />
+													<%= d.prefecture %><%= d.city %><%= d.building %> <br />
+													<%= d.phone_number %></td>
+												<td><%= link_to "この宛先に送る", new_lovers_order_path(id:d.id), class: 'btn btn-success' %> <br/>
+												<%= link_to "この宛先を削除", lovers_destination_path(id:d.id), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-default' %></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tbody>
+				</table>
+				<% end %>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12">
-<!-- 			<table class="table">
-				<thead>
-					<tr>
-						新しい送り先を登録する
-					</tr>
-				</thead>
-				<tbody>
-					<tr> -->
-						<%= form_for @new_destination, url:lovers_destinations_path do |n| %>
-	              			<div class="field col-xs-6">
-	                		<%= n.label :last_name, "姓"%><br />
-	             			<%= n.text_field :last_name %>
-							</div>
 
-	              			<div class="field col-xs-6">
-			                <%= n.label :first_name, "名"%><br />
-			               	<%= n.text_field :first_name %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= n.label :last_name_kana, "姓（カナ）"%><br />
-							<%= n.text_field :last_name_kana %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= n.label :first_name_kana, "名（カナ）"%><br />
-							<%= n.text_field :first_name_kana %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= n.label :postal_code, "郵便番号"%><br />
-							<%= n.text_field :postal_code %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= n.label :prefecture, "都道府県"%><br />
-							<%= n.select :prefecture, Destination.prefectures.keys.to_a,{} %>
-							</div>
-
-	              			<div class="field col-xs-12">
-	                		<%= n.label :city, "市区町村名・番地"%><br />
-							<%= n.text_field :city %>
-							</div>
-
-	              			<div class="field col-xs-12">
-	                		<%= n.label :building, "マンション・アパート名"%><br />
-							<%= n.text_field :building %>
-							</div>
-
-	              			<div class="field col-xs-6">
-	                		<%= n.label :phone_number, "電話番号"%><br />
-							<%= n.text_field :phone_number %>
-
-							<%= n.submit '登録する', class: 'btn btn-primary' %>
-
-						<% end %>
-				<!-- 	</tr>
-				</tbody>
-			</table> -->
-
-			<table class="table">
-				<thread>
-					<tr>過去の送り先一覧</tr>
-				</thread>
-				<tbody>
-					<td>
-						<div class="panel panel-warning">
-							<div class="panel-heading clearfix">
-							</div>
-							<div class="panel-body" style="padding: 15px 15px 0 15px">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td><%= current_user.last_name %></td>
-											<td><%= current_user.first_name %></td>
-											<td><%= current_user.postal_code %></td>
-											<td><%= current_user.prefecture %><%= current_user.city %><%= current_user.building %> </td>
-											<td><%= current_user.phone_number %></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<% @destinations.each do |d| %>
-						<div class="panel panel-warning">
-							<div class="panel-heading clearfix">
-							</div>
-							<div class="panel-body" style="padding: 15px 15px 0 15px">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td><%= d.last_name %></td>
-											<td><%= d.first_name %></td>
-											<td><%= d.postal_code %></td>
-											<td><%= d.prefecture %><%= d.city %><%= d.building %> </td>
-											<td><%= d.phone_number %></td>
-											<td><%= link_to "ここに送る", new_lovers_order_path(id:d.id), class: 'btn btn-danger' %>
-											<td><%= link_to "削除", lovers_destination_path(id:d.id), method: :delete, class: 'btn btn-danger' %>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<% end %>
-					</td>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
 <%= render 'layouts/footer'%>

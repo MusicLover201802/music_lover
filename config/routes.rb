@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :destinations, only: [:new, :create, :destroy]
 
       get '/orders/orderitems_save', to: 'orders#orderitems_save'
+      get '/orders/default_dest', to: 'orders#default_dest'
       resources :orders, only: [:new, :show, :create]
 
       get '/items/', to: 'items#index'
