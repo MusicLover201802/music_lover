@@ -74,37 +74,38 @@ class Lovers::OrdersController < ApplicationController
 
 	# 購入アクション①：在庫から注文数を引き、０未満にならないことを確認したあとで購入履歴(Orders)を保存する処理
 	# ０未満になった場合は、その回の注文を他の商品も含めて無効にし、カート画面に遷移させる
-
 	def create
-	    ActiveRecord::Base.transaction do
+	    ActiveRecord::Base.transaction do #トランザクション処理を定義 
+	    	# ↓実行したい、例外が発生する可能性のある処理を記述↓
 	    	@user = User.find(current_user.id)
     		@user_items = UserItem.where(user_id: current_user.id)
 
-		 	@user_items.each do |user_items| #1レコードごとに、itemsテーブルのstockカラム - カートの中の数量 を実行し、save
+		 	@user_items.each do |user_items| #1レコードごとに、itemsテーブルのstockカラム - カートの中の数量 を実行し、save!
 	        	user_items.item.stock -= user_items.quantity
 	        	user_items.item.save!
 	       	end
 	    end
 
+	    # ↓例外が発生しなかった場合の処理を記述＝購入履歴の保存
 	    @neworder = Order.new(order_params)
 	    @neworder.user_id = current_user.id
 		    if @neworder.save
 		    	redirect_to lovers_orders_orderitems_save_path
 			else
-				path = Rails.application.routes.recognize_path(request.referer)
+				path = Rails.application.routes.recognize_path(request.referer) #支払い方法未入力の場合は警告とともに注文画面に飛ばす
 				redirect_to new_lovers_order_path, notice: "お支払い方法を選択してください"
 			end
-	    rescue ActiveRecord::RecordInvalid
+
+	    rescue ActiveRecord::RecordInvalid #例外発生時の処理 警告とともにカート画面に飛ばす
 	    redirect_to lovers_user_item_path(current_user.id), :alert => '在庫不足の商品があったため、ご注文を承れませんでした。誠に申し訳ございません。'
 	end
 
 
 	# 購入アクション②：購入明細(Order_items)を保存する処理
-	# order_idは、カレントユーザーの直近の注文idを取ってくるよう設定した
-	# 流れ：①過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡す
+	# order_idは、カレントユーザーの直近の注文idを取ってくるよう設定
 	def orderitems_save
 	 	@user_items = UserItem.where(user_id: current_user.id)
-	    past_order = Order.order("created_at DESC").find_by(user_id: current_user.id)
+	    past_order = Order.order("created_at DESC").find_by(user_id: current_user.id) # 過去の注文履歴（Orders)を新しい順に並べ→②カレントユーザーの注文1件を抜き出し→③そのorder_idをOrderItemに渡す
 	    @user_items.each do |user_items| # カートの中身1レコードごとにorder_itemsテーブルのインスタンスをnew → save
 	    	@neworderitem = OrderItem.new(item_id: user_items.item_id,
 	    								  quantity: user_items.quantity,
