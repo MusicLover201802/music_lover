@@ -41,7 +41,7 @@
 						<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
 						<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
 						<td><%= form_for u_i, url:lovers_user_item_path , method: :patch do |f| %>
-							<%= f.number_field :quantity, min:0 %>
+							<%= f.number_field :quantity, min:1 %>
 							<%= f.hidden_field :id %>
 							<%= f.submit '更新', class: "btn btn-default btn-xs" %>
 							<% end %>
