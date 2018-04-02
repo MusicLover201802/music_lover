@@ -87,6 +87,14 @@
 							<table class="table">
 								<tbody>
 									<tr>
+										<th></th>
+										<th>商品名</th>
+										<th>アーティスト名</th>
+										<th>単価</th>
+										<th>数量</th>
+										<th>小計</th>
+									</tr>
+									<tr>
 									  <% sum = 0 %>
 					  					<% order.order_items.each do |i| %>
 										<td><%= attachment_image_tag @item, :jacket_image, format: 'png', class: "center-block", fallback: "/no_image_s.png", width: '20', height: '20'%></td>

@@ -5,6 +5,7 @@ before_action :authenticate_user!
 before_action :get_current_cart!
 
   def show
+    # binding.pry
   end
 
   # 購入アクション③カートの中身を空にするアクション

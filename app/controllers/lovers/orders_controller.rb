@@ -6,7 +6,6 @@ class Lovers::OrdersController < ApplicationController
 	def new
 		@neworder = Order.new
 		path = Rails.application.routes.recognize_path(request.referer)
-		# binding.pry
 
 		if session[:create] == "create"
 			session[:create] = nil
@@ -75,10 +74,12 @@ class Lovers::OrdersController < ApplicationController
 	# 購入アクション①：在庫から注文数を引き、０未満にならないことを確認したあとで購入履歴(Orders)を保存する処理
 	# ０未満になった場合は、その回の注文を他の商品も含めて無効にし、カート画面に遷移させる
 	def create
-	    ActiveRecord::Base.transaction do #トランザクション処理を定義 
+	    ActiveRecord::Base.transaction do #トランザクション処理を定義
 	    	# ↓実行したい、例外が発生する可能性のある処理を記述↓
 	    	@user = User.find(current_user.id)
     		@user_items = UserItem.where(user_id: current_user.id)
+
+    		# binding.pry
 
 		 	@user_items.each do |user_items| #1レコードごとに、itemsテーブルのstockカラム - カートの中の数量 を実行し、save!
 	        	user_items.item.stock -= user_items.quantity
