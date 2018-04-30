@@ -59,6 +59,7 @@ class Order < ApplicationRecord
 							沖縄県: 46
 						}
 
+	# validatesは確認の回数が多いコードになるのでenumより上部に書いておくと親切です。
 	validates :postal_code, presence: true
 	validates :city, presence: true
 	validates :phone_number, presence: true

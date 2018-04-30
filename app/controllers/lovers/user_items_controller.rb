@@ -72,7 +72,7 @@ private
   end
 
   # カートの中身全取得 → @user_items変数に格納
-  def get_current_cart!
+  def get_current_cart! # これは素晴らしいです！このようにコードをまとめることにはしっかり時間を使えるといいですね！
     @user = User.find(current_user.id)
     @user_items = UserItem.where(user_id: current_user.id)
   end

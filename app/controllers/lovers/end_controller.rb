@@ -1,4 +1,4 @@
 class Lovers::EndController < ApplicationController
-  def end
+  def end # この記述しかないコントローラであればどこかのコントローラにまとめた方がいいですね。
   end
 end

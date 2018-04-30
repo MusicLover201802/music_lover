@@ -6,7 +6,7 @@ class Lovers::OrdersController < ApplicationController
 	def new
 		@neworder = Order.new
 		path = Rails.application.routes.recognize_path(request.referer)
-		# binding.pry
+		# binding.pry # できるだけでバックコードは消しましょう。デプロイ後のバグの原因になります。
 
 		if session[:create] == "create"
 			session[:create] = nil

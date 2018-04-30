@@ -9,4 +9,8 @@ module ApplicationHelper
 		link_to(name, '#', class: [locals[:class], "add_fields"], data: {id: id, fields: fields.gsub("\n", "")})
 	end
 
+	# def sub_total(price, quantity)
+	# 	price * quantity
+	# end
+
 end

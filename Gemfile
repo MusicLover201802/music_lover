@@ -78,3 +78,4 @@ group :development do
   gem 'toastr-rails'
 end
 
+# group :development doの括りが二つ以上あるのは望ましくないのでまとめましょう！

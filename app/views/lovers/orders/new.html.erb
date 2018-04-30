@@ -16,7 +16,12 @@
 							<td><%= u_i.item.item_name %> / <%= u_i.item.artist_name %></td>
 							<td>￥<%= u_i.item.price.to_s(:delimited) %></td>
 							<td><%= u_i.quantity%></td>
-							<% sub_total = u_i.item.price * u_i.quantity %>
+							<% sub_total = u_i.item.price * u_i.quantity %> 
+
+							<!-- viewに計算ロジック等を書き込むのは理想的ではないのでhelperにまとめましょう！ application_helper.rbにコメントアウトしてあります。 -->
+							<!-- 使うときは以下のように使いましょう。 -->
+							<!-- <td>￥<%#= sub_total(u_i.item.price, u_i.quantity).to_s(:delimited) %></td> -->
+							
 							<td>￥<%= sub_total.to_s(:delimited) %></td>
 							<td> </td>
 							<td> </td>

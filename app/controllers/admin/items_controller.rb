@@ -73,6 +73,8 @@ class Admin::ItemsController < ApplicationController
 
 end
 
+# @item = Item.find(params[:id]) この記述も複数あるのでまとめましょう！  class Lovers::ItemsController < ApplicationControllerを参考に。
+
 # {
 #   "item_name"=>"a",
 #    "artist_name"=>"b", 

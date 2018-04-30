@@ -12,6 +12,7 @@ class Destination < ApplicationRecord
   			uniqueness: true,
   			format: { with: /\A\d{10}\z|^\d{11}\z/ }
 
+  	# enumが長くなってしまうのはしょうがないです。もしgemがあればコードを節約すると言う意味でも使うといいかもしれないですね。
 	enum prefecture: {  北海道: 0,
 						青森県: 1,
 						岩手県: 2,

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	# このモデルクラスは一番まとまっていてみやすいです！メモもすばらしいですね。
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

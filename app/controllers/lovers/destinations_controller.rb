@@ -32,7 +32,7 @@ class Lovers::DestinationsController < ApplicationController
 											:prefecture,
 											:city,
 											:building,
-											:phone_number)
+											:phone_number) # このような改行はすばらしいです。
 	end
 
 end
